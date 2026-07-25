@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NEBN3T6JEB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-NEBN3T6JEB');
+</script>
+
+<!-- Google AdSense Code -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6397492407361252" crossorigin="anonymous"></script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WebBox — أدواتك التقنية في متصفحك مباشرة</title>
+<meta name="description" content="WebBox: أدوات مجانية وسريعة تعمل بالكامل داخل متصفحك، دون رفع أي ملف لأي خادم. ضغط صور، تنسيق JSON، مولّد كلمات مرور، والمزيد.">
+
+<!-- Canonical Link -->
+<link rel="canonical" href="https://webbox.tools/">
+
+<!-- Favicon -->
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%230b1220'/%3E%3Crect x='3' y='5' width='18' height='14' rx='2' fill='none' stroke='%234fdcc4' stroke-width='1.8'/%3E%3Cpath d='M3 8.6h18' stroke='%234fdcc4' stroke-width='1.3'/%3E%3Ccircle cx='5.5' cy='6.8' r='0.6' fill='%234fdcc4'/%3E%3Ccircle cx='7.5' cy='6.8' r='0.6' fill='%234fdcc4'/%3E%3C/svg%3E">
+
+<!-- Open Graph Tags (OG Tags) -->
+<meta property="og:title" content="WebBox — أدواتك التقنية في متصفحك مباشرة">
+<meta property="og:description" content="أدوات مجانية وسريعة تعمل بالكامل داخل متصفحك دون رفع ملفات للخوادم.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://webbox.tools/">
+<meta property="og:locale" content="ar_AR">
+
+<!-- Twitter Card Tags -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="WebBox — أدواتك التقنية في متصفحك مباشرة">
+<meta name="twitter:description" content="أدوات مجانية وسريعة تعمل بالكامل داخل متصفحك دون رفع ملفات للخوادم.">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Cairo', 'sans-serif'],
+          mono: ['"JetBrains Mono"', 'monospace'],
+        },
+        colors: {
+          ink: {
+            950: '#070c16',
+            900: '#0b1220',
+            850: '#0f1826',
+            800: '#131f30',
+            700: '#1b2a3f',
+            600: '#28405c',
+            500: '#3a5878',
+          },
+          teal: {
+            300: '#7fe9d6',
+            400: '#4fdcc4',
+            500: '#2bc4ab',
+          },
+          amber: {
+            300: '#fbc167',
+            400: '#f6a621',
+          },
+        },
+        boxShadow: {
+          glow: '0 0 0 1px rgba(79,220,196,0.18), 0 0 40px -8px rgba(79,220,196,0.35)',
+        },
+      }
+    }
+  }
+</script>
+
+<style>
+  :root { color-scheme: dark; }
+  html.light { color-scheme: light; }
+  body { background-color: #0b1220; }
+  html.light body { background-color: #f4f7fb; }
+
+  .blueprint-grid {
+    background-image:
+      linear-gradient(rgba(79,220,196,0.055) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(79,220,196,0.055) 1px, transparent 1px);
+    background-size: 34px 34px;
+  }
+  .blueprint-grid-fine {
+    background-image:
+      linear-gradient(rgba(148,163,184,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(148,163,184,0.06) 1px, transparent 1px);
+    background-size: 8px 8px;
+  }
+
+  .corner-marks { position: relative; }
+  .corner-marks::before,
+  .corner-marks::after,
+  .corner-marks .cm-tr,
+  .corner-marks .cm-bl {
+    content: "";
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border-color: rgba(127,233,214,0.55);
+    transition: border-color .25s ease, width .25s ease, height .25s ease;
+  }
+  .corner-marks::before { top: -1px; right: -1px; border-top: 2px solid; border-right: 2px solid; }
+  .corner-marks::after { bottom: -1px; left: -1px; border-bottom: 2px solid; border-left: 2px solid; }
+  .corner-marks:hover::before,
+  .corner-marks:hover::after { width: 20px; height: 20px; border-color: rgba(127,233,214,0.95); }
+
+  .scrollbar-thin::-webkit-scrollbar { height: 6px; width: 6px; }
+  .scrollbar-thin::-webkit-scrollbar-thumb { background: #28405c; border-radius: 999px; }
+
+  @keyframes dash-move {
+    to { stroke-dashoffset: -200; }
+  }
+  .signal-line { stroke-dasharray: 6 8; animation: dash-move 6s linear infinite; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .signal-line { animation: none; }
+    * { scroll-behavior: auto !important; }
+  }
+
+  html { scroll-behavior: smooth; }
+
+  input[type="range"] {
+    -webkit-appearance: none;
+    background: transparent;
+  }
+  input[type="range"]::-webkit-slider-runnable-track {
+    height: 4px; border-radius: 999px; background: #28405c;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    margin-top: -6px;
+    width: 16px; height: 16px; border-radius: 999px;
+    background: #4fdcc4;
+    box-shadow: 0 0 0 4px rgba(79,220,196,0.18);
+  }
+  input[type="range"]::-moz-range-track { height: 4px; border-radius: 999px; background: #28405c; }
+  input[type="range"]::-moz-range-thumb {
+    width: 16px; height: 16px; border-radius: 999px; border: none;
+    background: #4fdcc4; box-shadow: 0 0 0 4px rgba(79,220,196,0.18);
+  }
+
+  .focus-ring:focus-visible {
+    outline: 2px solid #4fdcc4;
+    outline-offset: 3px;
+  }
+
+  .check-tile input {
+    position: absolute; opacity: 0; width: 0; height: 0;
+  }
+  .check-tile .box {
+    width: 20px; height: 20px; border-radius: 6px;
+    border: 1.5px solid #28405c; background: #0f1826;
+    display: grid; place-items: center; flex-shrink: 0;
+    transition: border-color .15s ease, background .15s ease;
+  }
+  .check-tile .box svg {
+    width: 12px; height: 12px; opacity: 0; transform: scale(.6);
+    transition: opacity .15s ease, transform .15s ease;
+  }
+  .check-tile input:checked + .box {
+    border-color: #4fdcc4; background: rgba(79,220,196,0.12);
+  }
+  .check-tile input:checked + .box svg { opacity: 1; transform: scale(1); }
+  .check-tile input:focus-visible + .box {
+    outline: 2px solid #4fdcc4; outline-offset: 2px;
+  }
+
+  .format-tab {
+    background: #0f1826;
+    border: 1px solid rgba(255,255,255,0.1);
+    color: #94a3b8;
+  }
+  .format-tab.active-format {
+    background: rgba(79,220,196,0.12);
+    border-color: rgba(79,220,196,0.4);
+    color: #7fe9d6;
+  }
+  .format-tab:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  #copyToast, #jsonCopyToast, #b64CopyToast, #textCopyToast, #caseCopyToast {
+    transform: translateY(10px);
+    opacity: 0;
+    transition: opacity .2s ease, transform .2s ease;
+    pointer-events: none;
+  }
+  #copyToast.show, #jsonCopyToast.show, #b64CopyToast.show, #textCopyToast.show, #caseCopyToast.show {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  textarea.code-area {
+    font-variant-ligatures: none;
+    tab-size: 2;
+  }
+
+  .unit-tab {
+    background: #0f1826;
+    border: 1px solid rgba(255,255,255,0.1);
+    color: #94a3b8;
+  }
+  .unit-tab.active-tab {
+    background: rgba(79,220,196,0.12);
+    border-color: rgba(79,220,196,0.4);
+    color: #7fe9d6;
+  }
+
+  #qrCodeContainer canvas,
+  #qrCodeContainer img {
+    border-radius: 10px;
+    max-width: 100%;
+    height: auto;
+  }
+
+  html.light body { color: #101828; }
+  html.light .bg-ink-900 { background-color: #f4f7fb !important; }
+  html.light .bg-ink-900\/80 { background-color: rgba(244,247,251,0.85) !important; }
+  html.light .bg-ink-900\/60 { background-color: rgba(244,247,251,0.6) !important; }
+  html.light .bg-ink-900\/50 { background-color: rgba(255,255,255,0.7) !important; }
+  html.light .bg-ink-900\/40 { background-color: rgba(255,255,255,0.6) !important; }
+  html.light .bg-ink-850,
+  html.light .bg-ink-850\/70 { background-color: #ffffff !important; }
+  html.light .bg-ink-800 { background-color: #eef2f7 !important; }
+  html.light .bg-ink-950,
+  html.light .bg-ink-950\/60 { background-color: #f0f3f8 !important; }
+  html.light .from-ink-800 { --tw-gradient-from: #ffffff !important; }
+  html.light .to-ink-850 { --tw-gradient-to: #f6f9fc !important; }
+  html.light .from-ink-900,
+  html.light .via-ink-900,
+  html.light .via-ink-900\/95,
+  html.light .to-ink-900,
+  html.light .from-ink-900\/60,
+  html.light .via-ink-900\/60 { --tw-gradient-from: #f4f7fb !important; --tw-gradient-to: #f4f7fb !important; --tw-gradient-stops: #f4f7fb !important; }
+  html.light .text-white { color: #101828 !important; }
+  html.light .text-ink-100 { color: #1e293b !important; }
+  html.light .text-ink-200,
+  html.light .text-ink-200\/90,
+  html.light .text-ink-200\/80 { color: #334155 !important; }
+  html.light .text-ink-300\/60,
+  html.light .text-ink-300\/70,
+  html.light .text-ink-300\/75,
+  html.light .text-ink-300\/80,
+  html.light .text-ink-300 { color: #64748b !important; }
+  html.light .text-ink-400\/60,
+  html.light .text-ink-400\/70 { color: #94a3b8 !important; }
+  html.light .border-white\/5,
+  html.light .border-white\/10,
+  html.light .border-white\/15,
+  html.light .border-white\/20 { border-color: rgba(15,23,42,0.1) !important; }
+  html.light .hover\:bg-white\/5:hover { background-color: rgba(15,23,42,0.05) !important; }
+  html.light input, html.light textarea, html.light select { color: #101828; }
+  html.light .placeholder\:text-ink-500::placeholder { color: #94a3b8 !important; }
+  html.light .blueprint-grid,
+  html.light .blueprint-grid-fine { opacity: 0.6; }
+
+  #themeToggle .icon-sun,
+  #themeToggle .icon-moon { transition: opacity .2s ease, transform .2s ease; }
+  html:not(.light) #themeToggle .icon-sun { opacity: 0; position: absolute; transform: scale(.5) rotate(45deg); }
+  html.light #themeToggle .icon-moon { opacity: 0; position: absolute; transform: scale(.5) rotate(-45deg); }
+
+  .page-view { display: none; }
+  .page-view.active-view { display: block; }
+</style>
+</head>
+
+<body class="font-sans text-ink-100 bg-ink-900 antialiased selection:bg-teal-400/30 selection:text-white">
+
+<!-- ===================== الشريط العلوي ===================== -->
+<header class="sticky top-0 z-50 border-b border-white/5 bg-ink-900/80 backdrop-blur-md">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="h-16 flex items-center justify-between">
+
+      <!-- الشعار -->
+      <a href="#top" onclick="switchView('home')" class="flex items-center gap-2.5 group">
+        <span class="relative w-9 h-9 rounded-lg bg-ink-800 border border-white/10 flex items-center justify-center overflow-hidden">
+          <svg viewBox="0 0 24 24" class="w-5 h-5 text-teal-300" fill="none" stroke="currentColor" stroke-width="1.6">
+            <rect x="2.5" y="4.5" width="19" height="15" rx="2.2" stroke-linejoin="round"/>
+            <path d="M2.5 8.6h19" stroke-width="1.3"/>
+            <circle cx="5.1" cy="6.55" r="0.55" fill="currentColor" stroke="none"/>
+            <circle cx="7.1" cy="6.55" r="0.55" fill="currentColor" stroke="none"/>
+            <path d="M15.1 10.9a2.6 2.6 0 0 0-3.53 3.53L8.2 17.8l1.4 1.4 3.37-3.37a2.6 2.6 0 0 0 3.53-3.53l-1.5 1.5-1.4-1.4 1.5-1.5z" stroke-linejoin="round" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span class="font-mono font-bold text-lg tracking-tight text-white">Web<span class="text-teal-300">Box</span></span>
+      </a>
+
+      <!-- روابط التنقل الرئيسية -->
+      <nav class="hidden md:flex items-center gap-1 font-medium text-sm">
+        <a href="#top" onclick="switchView('home')" class="px-3 py-2 rounded-full text-ink-200/95 hover:text-white hover:bg-white/5 transition focus-ring">الرئيسية</a>
+        <a href="#tools-grid" onclick="switchView('home')" class="px-3 py-2 rounded-full text-ink-200/95 hover:text-white hover:bg-white/5 transition focus-ring">الأدوات</a>
+        <a href="#articles-section" onclick="switchView('home')" class="px-3 py-2 rounded-full text-ink-200/95 hover:text-white hover:bg-white/5 transition focus-ring">المقالات والشروحات</a>
+        <button onclick="switchView('about')" class="px-3 py-2 rounded-full text-ink-200/95 hover:text-white hover:bg-white/5 transition focus-ring">من نحن</button>
+        <button onclick="switchView('contact')" class="px-3 py-2 rounded-full text-ink-200/95 hover:text-white hover:bg-white/5 transition focus-ring">اتصل بنا</button>
+      </nav>
+
+      <div class="hidden md:flex items-center gap-3">
+        <button id="themeToggle" aria-label="تبديل المظهر" class="relative w-10 h-10 grid place-items-center rounded-lg border border-white/10 text-ink-100 hover:border-teal-400/40 hover:text-teal-300 transition focus-ring">
+          <svg class="icon-moon w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon-sun w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1.5M12 19.5V21M4.22 4.22l1.06 1.06M18.72 18.72l1.06 1.06M3 12h1.5M19.5 12H21M4.22 19.78l1.06-1.06M18.72 5.28l1.06-1.06M16.5 12a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0z"/></svg>
+        </button>
+        <a href="#compressor" onclick="switchView('home')" class="inline-flex items-center gap-2 rounded-full bg-teal-400 text-ink-950 font-bold text-sm px-4 py-2 shadow-glow hover:bg-teal-300 transition focus-ring">
+          جرّب ضاغط الصور
+        </a>
+      </div>
+
+      <div class="flex items-center gap-2 md:hidden">
+        <button id="themeToggleMobile" aria-label="تبديل المظهر" class="relative w-10 h-10 grid place-items-center rounded-lg border border-white/10 text-ink-100 focus-ring">
+          <svg class="icon-moon w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon-sun w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1.5M12 19.5V21M4.22 4.22l1.06 1.06M18.72 18.72l1.06 1.06M3 12h1.5M19.5 12H21M4.22 19.78l1.06-1.06M18.72 5.28l1.06-1.06M16.5 12a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0z"/></svg>
+        </button>
+        <button id="menuBtn" aria-label="فتح القائمة" aria-expanded="false" class="w-10 h-10 grid place-items-center rounded-lg border border-white/10 text-ink-100 focus-ring">
+          <svg id="menuIconOpen" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg>
+          <svg id="menuIconClose" class="w-5 h-5 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- قائمة الجوال -->
+    <nav id="mobileMenu" class="md:hidden hidden pb-4 flex flex-col gap-1 font-medium text-sm">
+      <a href="#top" onclick="switchView('home'); toggleMobileMenu();" class="px-4 py-2.5 rounded-lg text-ink-200/90 hover:bg-white/5">الرئيسية</a>
+      <a href="#tools-grid" onclick="switchView('home'); toggleMobileMenu();" class="px-4 py-2.5 rounded-lg text-ink-200/90 hover:bg-white/5">الأدوات</a>
+      <a href="#articles-section" onclick="switchView('home'); toggleMobileMenu();" class="px-4 py-2.5 rounded-lg text-ink-200/90 hover:bg-white/5">المقالات والشروحات</a>
+      <button onclick="switchView('about'); toggleMobileMenu();" class="text-right px-4 py-2.5 rounded-lg text-ink-200/90 hover:bg-white/5">من نحن</button>
+      <button onclick="switchView('contact'); toggleMobileMenu();" class="text-right px-4 py-2.5 rounded-lg text-ink-200/90 hover:bg-white/5">اتصل بنا</button>
+      <a href="#compressor" onclick="switchView('home'); toggleMobileMenu();" class="mt-1 text-center rounded-lg bg-teal-400 text-ink-950 font-bold px-4 py-2.5">جرّب ضاغط الصور</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ===================== محتوى الموقع الرئيسي (الصفحة الرئيسية) ===================== -->
+<div id="homeView" class="page-view active-view">
+
+  <!-- قسم الترحيب -->
+  <section id="top" class="relative overflow-hidden blueprint-grid">
+    <div class="absolute inset-0 bg-gradient-to-b from-ink-900 via-ink-900/95 to-ink-900"></div>
+
+    <svg class="absolute inset-x-0 top-0 w-full h-full opacity-40 pointer-events-none" preserveAspectRatio="none">
+      <line x1="0" y1="90" x2="100%" y2="90" stroke="#28405c" stroke-width="1" class="signal-line" stroke-dasharray="1 0"/>
+    </svg>
+
+    <div class="relative max-w-7xl mx-auto px-5 sm:px-8 pt-20 pb-24 md:pt-28 md:pb-32">
+      <div class="max-w-3xl">
+        <span class="inline-flex items-center gap-2 font-mono text-xs tracking-wider text-teal-300 bg-teal-400/10 border border-teal-400/20 rounded-full px-3 py-1.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-teal-300 animate-pulse"></span>
+          كل المعالجة تتم محليًا — لا رفع، لا خوادم
+        </span>
+
+        <h1 class="mt-6 text-4xl sm:text-5xl md:text-6xl font-black leading-[1.15] text-white">
+          أدواتك التقنية اليومية،
+          <span class="block text-teal-300">جاهزة داخل متصفحك مباشرة.</span>
+        </h1>
+
+        <p class="mt-6 text-lg text-ink-200/80 leading-relaxed max-w-2xl">
+          WebBox مجموعة أدوات مجانية وسريعة — من ضغط الصور إلى تحويل البيانات وإجراء الحسابات — تُنجز مهمتها فورًا دون تثبيت برامج أو انتظار رفع الملفات.
+        </p>
+
+        <div class="mt-9 flex flex-wrap items-center gap-4">
+          <a href="#compressor" class="inline-flex items-center gap-2 rounded-full bg-teal-400 text-ink-950 font-bold px-6 py-3.5 shadow-glow hover:bg-teal-300 transition focus-ring">
+            ابدأ بضغط صورة الآن
+            <svg class="w-4 h-4 rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#tools-grid" class="inline-flex items-center gap-2 rounded-full border border-white/15 text-ink-100 font-semibold px-6 py-3.5 hover:bg-white/5 transition focus-ring">
+            استعرض كل الأدوات
+          </a>
+        </div>
+
+        <div class="mt-14 grid grid-cols-3 max-w-md font-mono">
+          <div class="border-r border-white/10 pr-4">
+            <div class="text-2xl font-bold text-white">100%</div>
+            <div class="text-[11px] text-ink-300/70 mt-1">تشغيل من المتصفح</div>
+          </div>
+          <div class="border-r border-white/10 px-4">
+            <div class="text-2xl font-bold text-white">0</div>
+            <div class="text-[11px] text-ink-300/70 mt-1">ملفات تُرفع لخادم</div>
+          </div>
+          <div class="pl-4">
+            <div class="text-2xl font-bold text-white">10</div>
+            <div class="text-[11px] text-ink-300/70 mt-1">أدوات فعّالة الآن</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- شبكة الأدوات -->
+  <section id="tools-grid" class="relative py-20 md:py-28 border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+      <div class="flex items-end justify-between flex-wrap gap-4 mb-12">
+        <div>
+          <span class="font-mono text-xs tracking-widest text-ink-300/60">TOOLKIT / الفهرس</span>
+          <h2 class="mt-2 text-3xl sm:text-4xl font-extrabold text-white">اختر أداتك</h2>
+        </div>
+        <p class="text-ink-300/70 max-w-sm text-sm leading-relaxed">
+          جميع الأدوات متاحة للاستخدام الفوري والمجاني بالكامل دون قيود.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <a id="image-tools" href="#compressor" class="corner-marks group relative flex flex-col justify-between rounded-2xl border border-teal-400/25 bg-gradient-to-b from-ink-800 to-ink-850 p-6 hover:border-teal-400/60 transition shadow-[0_0_0_1px_rgba(255,255,255,0.02)]">
+          <div>
+            <div class="flex items-center justify-between mb-5">
+              <span class="w-11 h-11 rounded-xl bg-teal-400/10 border border-teal-400/25 grid place-items-center">
+                <svg class="w-5 h-5 text-teal-300" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5V19a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-2.5M7 10l5 5 5-5M12 15V3"/></svg>
+              </span>
+              <span class="font-mono text-[10px] font-bold tracking-wider text-teal-950 bg-teal-300 rounded-full px-2.5 py-1">متاحة الآن</span>
+            </div>
+            <h3 class="text-lg font-bold text-white">🖼️ ضاغط الصور</h3>
+            <p class="mt-2 text-sm text-ink-300/75 leading-relaxed">قلّل حجم صور PNG وJPEG وWebP مع معاينة فورية قبل التحميل، دون فقدان يُذكر في الجودة.</p>
+          </div>
+          <span class="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-teal-300">افتح الأداة <svg class="w-4 h-4 rotate-180 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></span>
+        </a>
+
+        <a href="#image-resizer" class="corner-marks group relative flex flex-col justify-between rounded-2xl border border-teal-400/25 bg-gradient-to-b from-ink-800 to-ink-850 p-6 hover:border-teal-400/60 transition">
+          <div>
+            <div class="flex items-center justify-between mb-5">
+              <span class="w-11 h-11 rounded-xl bg-teal-400/10 border border-teal-400/25 grid place-items-center">
+                <svg class="w-5 h-5 text-teal-300" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 8V4h4M20 8V4h-4M4 16v4h4M20 16v4h-4"/></svg>
+              </span>
+              <span class="font-mono text-[10px] font-bold tracking-wider text-teal-950 bg-teal-300 rounded-full px-2.5 py-1">متاحة الآن</span>
+            </div>
+            <h3 class="text-lg font-bold text-white">📐 تغيير أبعاد الصور</h3>
+            <p class="mt-2 text-sm text-ink-300/75 leading-relaxed">تحكّم في عرض وارتفاع الصورة بدقة، مع حفظ النسبة الأصلية تلقائيًا إن أردت.</p>
+          </div>
+          <span class="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-teal-300">افتح الأداة <svg class="w-4 h-4 rotate-180 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></span>
+        </a>
+
+        <a id="dev-tools" href="#json-formatter" class="corner-marks group relative flex flex-col justify-between rounded-2xl border border-teal-400/25 bg-gradient-to-b from-ink-800 to-ink-850 p-6 hover:border-teal-400/60 transition">
+          <div>
+            <div class="flex items-center justify-between mb-5">
+              <span class="w-11 h-11 rounded-xl bg-teal-400/10 border border-teal-400/25 grid place-items-center">
+                <svg class="w-5 h-5 text-teal-300" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 3H6a2 2 0 0 0-2 2v4a2 2 0 0 1-2 2 2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h2M16 3h2a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2 2 2 0 0 0-2 2v4a2 2 0 0 1-2 2h-2"/></svg>
+              </span>
+              <span class="font-mono text-[10px] font-bold tracking-wider text-teal-950 bg-teal-300 rounded-full px-2.5 py-1">متاحة الآن</span>
+            </div>
+            <h3 class="text-lg font-bold text-white">🧩 منسّق ومدقّق JSON</h3>
+            <p class="mt-2 text-sm text-ink-300/75 leading-relaxed">نسّق، صغّر، وتحقّق من صحة بيانات JSON فورًا مع رسائل خطأ واضحة.</p>
+          </div>
+          <span class="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-teal-300">افتح الأداة <svg class="w-4 h-4 rotate-180 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></span>
+        </a>
+
+        <a href="#password-generator" class="corner-marks group relative flex flex-col justify-between rounded-2xl border border-teal-400/25 bg-gradient-to-b from-ink-800 to-ink-850 p-6 hover:border-teal-400/60 transition">
+          <div>
+            <div class="flex items-center justify-between mb-5">
+              <span class="w-11 h-11 rounded-xl bg-teal-400/10 border border-teal-400/25 grid place-items-center">
+                <svg class="w-5 h-5 text-teal-300" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 0 0 2-2v-6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2zM8 11V7a4 4 0 1 1 8 0v4"/></svg>
+              </span>
+              <span class="font-mono text-[10px] font-bold tracking-wider text-teal-950 bg-teal-300 rounded-full px-2.5 py-1">متاحة الآن</span>
+            </div>
+            <h3 class="text-lg font-bold text-white">🔐 مولّد كلمات المرور</h3>
+            <p class="mt-2 text-sm text-ink-300/75 leading-relaxed">ولّد كلمات مرور قوية وعشوائية بالطول والخصائص التي تحددها بنقرة واحدة.</p>
+          </div>
+          <span class="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-teal-300">افتح الأداة <svg class="w-4 h-4 rotate-180 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></span>
+        </a>
+
+        <a href="#base64-tool" class="corner-marks group relative flex flex-col justify-between rounded-2xl border border-teal-400/25 bg-gradient-to-b from-ink-800 to-ink-850 p-6 hover:border-teal-400/60 transition">
+          <div>
+            <div class="flex items-center justify-between mb-5">
+              <span class="w-11 h-11 rounded-xl bg-teal-400/10 border border-teal-400/25 grid place-items-center">
+                <svg class="w-5 h-5 text-teal-300" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16M6 8l-4 4 4 4M18 8l4 4-4 4"/></svg>
+              </span>
+              <span class="font-mono text-[10px] font-bold tracking-wider text-teal-950 bg-teal-300 rounded-full px-2.5 py-1">متاحة الآن</span>
+            </div>
+            <h3 class="text-lg font-bold text-white">🔤 ترميز وفك Base64</h3>
+            <p class="mt-2 text-sm text-ink-300/75 leading-relaxed">حوّل النصوص من وإلى Base64 فورًا، مع دعم كامل للحروف العربية.</p>
+          </div>
+          <span class="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-teal-300">افتح الأداة <svg class="w-4 h-4 rotate-180 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></span>
+        </a>
+
+        <a id="calc-tools" href="#percentage-calculator" class="corner-marks group relative flex flex-col justify-between rounded-2xl border border-teal-400/25 bg-gradient-to-b from-ink-800 to-ink-850 p-6 hover:border-teal-400/60 transition">
+          <div>
+            <div class="flex items-center justify-between mb-5">
+              <span class="w-11 h-11 rounded-xl bg-teal-400/10 border border-teal-400/25 grid place-items-center">
+                <svg class="w-5 h-5 text-teal-300" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 7h6M9 11h6M9 15h3M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/></svg>
+              </span>
+              <span class="font-mono text-[10px] font-bold tracking-wider text-teal-950 bg-teal-300 rounded-full px-2.5 py-1">متاحة الآن</span>
+            </div>
+            <h3 class="text-lg font-bold text-white">📊 حاسبة النسب المئوية</h3>
+            <p class="mt-2 text-sm text-ink-300/75 leading-relaxed">احسب النسب، الزيادة، والنقصان في ثوانٍ عبر ثلاث حاسبات متقدمة.</p>
+          </div>
+          <span class="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-teal-300">افتح الأداة <svg class="w-4 h-4 rotate-180 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></span>
+        </a>
+
+        <a href="#unit-converter" class="corner-marks group relative flex flex-col justify-between rounded-2xl border border-teal-400/25 bg-gradient-to-b from-ink-800 to-ink-850 p-6 hover:border-teal-400/60 transition">
+          <div>
+            <div class="flex items-center justify-between mb-5">
+              <span class="w-11 h-11 rounded-xl bg-teal-400/10 border border-teal-400/25 grid place-items-center">
+                <svg class="w-5 h-5 text-teal-300" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 7L9 19l-5.5-5.5M21 7l-6 6"/></svg>
+              </span>
+              <span class="font-mono text-[10px] font-bold tracking-wider text-teal-950 bg-teal-300 rounded-full px-2.5 py-1">متاحة الآن</span>
+            </div>
+            <h3 class="text-lg font-bold text-white">📏 محول الوحدات</h3>
+            <p class="mt-2 text-sm text-ink-300/75 leading-relaxed">تحويل فوري بين وحدات الطول، الوزن، والحرارة بدقة متناهية.</p>
+          </div>
+          <span class="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-teal-300">افتح الأداة <svg class="w-4 h-4 rotate-180 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></span>
+        </a>
+
+        <a id="text-tools" href="#word-counter" class="corner-marks group relative flex flex-col justify-between rounded-2xl border border-teal-400/25 bg-gradient-to-b from-ink-800 to-ink-850 p-6 hover:border-teal-400/60 transition">
+          <div>
+            <div class="flex items-center justify-between mb-5">
+              <span class="w-11 h-11 rounded-xl bg-teal-400/10 border border-teal-400/25 grid place-items-center">
+                <svg class="w-5 h-5 text-teal-300" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 10h16M4 14h10M4 18h6"/></svg>
+              </span>
+              <span class="font-mono text-[10px] font-bold tracking-wider text-teal-950 bg-teal-300 rounded-full px-2.5 py-1">متاحة الآن</span>
+            </div>
+            <h3 class="text-lg font-bold text-white">📝 عداد الكلمات والحروف</h3>
+            <p class="mt-2 text-sm text-ink-300/75 leading-relaxed">تتبّع عدد الكلمات والحروف والفقرات في نصك أثناء الكتابة مباشرة.</p>
+          </div>
+          <span class="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-teal-300">افتح الأداة <svg class="w-4 h-4 rotate-180 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></span>
+        </a>
+
+        <a href="#case-converter" class="corner-marks group relative flex flex-col justify-between rounded-2xl border border-teal-400/25 bg-gradient-to-b from-ink-800 to-ink-850 p-6 hover:border-teal-400/60 transition">
+          <div>
+            <div class="flex items-center justify-between mb-5">
+              <span class="w-11 h-11 rounded-xl bg-teal-400/10 border border-teal-400/25 grid place-items-center">
+                <svg class="w-5 h-5 text-teal-300" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 7h4l2 10M9 7l3 10 3-10M17 7h4l-2 10h-2"/></svg>
+              </span>
+              <span class="font-mono text-[10px] font-bold tracking-wider text-teal-950 bg-teal-300 rounded-full px-2.5 py-1">متاحة الآن</span>
+            </div>
+            <h3 class="text-lg font-bold text-white">🔠 تحويل حالة الأحرف</h3>
+            <p class="mt-2 text-sm text-ink-300/75 leading-relaxed">حوّل النص الإنجليزي إلى أحرف كبيرة، صغيرة، أو حالة العنوان بنقرة واحدة.</p>
+          </div>
+          <span class="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-teal-300">افتح الأداة <svg class="w-4 h-4 rotate-180 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></span>
+        </a>
+
+        <a href="#qr-generator" class="corner-marks group relative flex flex-col justify-between rounded-2xl border border-teal-400/25 bg-gradient-to-b from-ink-800 to-ink-850 p-6 hover:border-teal-400/60 transition">
+          <div>
+            <div class="flex items-center justify-between mb-5">
+              <span class="w-11 h-11 rounded-xl bg-teal-400/10 border border-teal-400/25 grid place-items-center">
+                <svg class="w-5 h-5 text-teal-300" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24">
+                  <rect x="3" y="3" width="7" height="7" rx="1"/>
+                  <rect x="14" y="3" width="7" height="7" rx="1"/>
+                  <rect x="3" y="14" width="7" height="7" rx="1"/>
+                  <path d="M14 14h3v3h-3zM19 14h2v2h-2zM14 19h2v2h-2zM19 19h2v2h-2z" fill="currentColor" stroke="none"/>
+                </svg>
+              </span>
+              <span class="font-mono text-[10px] font-bold tracking-wider text-teal-950 bg-teal-300 rounded-full px-2.5 py-1">متاحة الآن</span>
+            </div>
+            <h3 class="text-lg font-bold text-white">🔳 مولّد رموز QR</h3>
+            <p class="mt-2 text-sm text-ink-300/75 leading-relaxed">أنشئ رمز QR من أي رابط أو نص، وحمّله كصورة PNG بشكل محلي بالكامل.</p>
+          </div>
+          <span class="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-teal-300">افتح الأداة <svg class="w-4 h-4 rotate-180 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- أدوات التطبيق التفاعلية -->
+  <section id="compressor" class="relative py-20 md:py-28 border-t border-white/5 blueprint-grid-fine">
+    <div class="absolute inset-0 bg-gradient-to-b from-ink-900/60 via-ink-900 to-ink-900 pointer-events-none"></div>
+    <div class="relative max-w-5xl mx-auto px-5 sm:px-8">
+      <div class="mb-10">
+        <span class="font-mono text-xs tracking-widest text-teal-300/80">ACTIVE TOOL / أداة فعّالة</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl font-extrabold text-white">ضاغط الصور</h2>
+        <p class="mt-3 text-ink-300/75 leading-relaxed max-w-2xl">
+          ارفع صورة بصيغة PNG أو JPEG، اختر صيغة الإخراج، اضبط مستوى الجودة، وحمّل النسخة المضغوطة فوراً محلياً داخل متصفحك.
+        </p>
+      </div>
+      <div class="rounded-2xl border border-white/10 bg-ink-850/70 p-5 sm:p-8">
+        <div id="dropZone" tabindex="0" class="focus-ring relative rounded-xl border-2 border-dashed border-white/15 hover:border-teal-400/50 transition-colors cursor-pointer bg-ink-900/40 px-6 py-14 text-center">
+          <input id="fileInput" type="file" accept="image/png, image/jpeg, image/webp" class="hidden" />
+          <div class="flex flex-col items-center gap-4">
+            <span class="w-14 h-14 rounded-full bg-teal-400/10 border border-teal-400/25 grid place-items-center">
+              <svg class="w-6 h-6 text-teal-300" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5V19a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-2.5M7 10l5 5 5-5M12 15V3"/></svg>
+            </span>
+            <div>
+              <p class="font-semibold text-white">اسحب وأفلت صورتك هنا</p>
+              <p class="text-sm text-ink-300/70 mt-1">أو <span class="text-teal-300 font-semibold">اختر ملفًا</span> من جهازك</p>
+            </div>
+          </div>
+        </div>
+        <div id="workspace" class="hidden mt-8">
+          <div class="flex flex-wrap items-center gap-3 rounded-xl border border-white/10 bg-ink-900/50 px-5 py-4 mb-4">
+            <span class="font-mono text-xs text-ink-300/70 whitespace-nowrap">صيغة الإخراج</span>
+            <div class="flex flex-wrap gap-2" id="formatTabs">
+              <button data-format="jpeg" class="format-tab active-format px-4 py-2 rounded-full text-sm font-semibold transition">JPEG</button>
+              <button data-format="webp" class="format-tab px-4 py-2 rounded-full text-sm font-semibold transition">WebP</button>
+            </div>
+            <span id="webpUnsupportedNote" class="hidden font-mono text-[11px] text-amber-300">متصفحك لا يدعم WebP للتصدير.</span>
+          </div>
+          <div class="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8 rounded-xl border border-white/10 bg-ink-900/50 px-5 py-4 mb-6">
+            <label for="qualityRange" class="font-mono text-xs text-ink-300/70 whitespace-nowrap">مستوى الجودة</label>
+            <input id="qualityRange" type="range" min="0.1" max="1" step="0.05" value="0.7" class="w-full sm:w-64" />
+            <span id="qualityValue" class="font-mono text-sm font-bold text-teal-300 w-12 text-left">70%</span>
+            <div class="flex items-center gap-4 sm:mr-auto">
+              <button id="clearCompressorBtn" class="text-sm font-semibold text-ink-300/80 hover:text-white transition">مسح المحتوى</button>
+              <button id="newImageBtn" class="text-sm font-semibold text-ink-300/80 hover:text-white transition">صورة جديدة</button>
+            </div>
+          </div>
+          <div class="grid sm:grid-cols-2 gap-5">
+            <div class="corner-marks rounded-xl border border-white/10 overflow-hidden bg-ink-900/50">
+              <div class="aspect-video bg-[repeating-conic-gradient(#182233_0%_25%,#131c2a_0%_50%)] bg-[length:16px_16px] flex items-center justify-center">
+                <img id="originalPreview" class="max-w-full max-h-full object-contain" alt="الأصلية" />
+              </div>
+              <div class="px-4 py-3 flex items-center justify-between border-t border-white/10">
+                <span class="text-xs font-semibold text-ink-300/70">قبل الضغط</span>
+                <span id="originalSize" class="font-mono text-sm font-bold text-white">—</span>
+              </div>
+            </div>
+            <div class="corner-marks rounded-xl border border-teal-400/25 overflow-hidden bg-ink-900/50">
+              <div class="aspect-video bg-[repeating-conic-gradient(#182233_0%_25%,#131c2a_0%_50%)] bg-[length:16px_16px] flex items-center justify-center">
+                <img id="compressedPreview" class="max-w-full max-h-full object-contain" alt="المضغوطة" />
+              </div>
+              <div class="px-4 py-3 flex items-center justify-between border-t border-white/10">
+                <span class="text-xs font-semibold text-teal-300">بعد الضغط</span>
+                <span id="compressedSize" class="font-mono text-sm font-bold text-teal-300">—</span>
+              </div>
+            </div>
+          </div>
+          <div class="mt-6 flex flex-col sm:flex-row sm:items-center gap-4 rounded-xl border border-white/10 bg-ink-900/50 px-5 py-4">
+            <div class="font-mono text-sm text-ink-200">نسبة التوفير: <span id="savingsPercent" class="text-teal-300 font-bold">—</span></div>
+            <a id="downloadBtn" download="compressed-image.jpg" class="sm:mr-auto inline-flex items-center justify-center gap-2 rounded-full bg-teal-400 text-ink-950 font-bold px-6 py-3 shadow-glow hover:bg-teal-300 transition pointer-events-none opacity-50">تحميل الصورة المضغوطة</a>
+          </div>
+          <p id="statusMsg" class="mt-3 text-xs text-ink-400/70 font-mono"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- أداة تغيير أبعاد الصور -->
+  <section id="image-resizer" class="relative py-20 md:py-28 border-t border-white/5 blueprint-grid-fine">
+    <div class="absolute inset-0 bg-gradient-to-b from-ink-900/60 via-ink-900 to-ink-900 pointer-events-none"></div>
+    <div class="relative max-w-5xl mx-auto px-5 sm:px-8">
+      <div class="mb-10">
+        <span class="font-mono text-xs tracking-widest text-teal-300/80">ACTIVE TOOL / أداة فعّالة</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl font-extrabold text-white">تغيير أبعاد الصور</h2>
+        <p class="mt-3 text-ink-300/75 leading-relaxed max-w-2xl">تحكّم في عرض وارتفاع الصورة وحمّلها بالقياسات الجديدة.</p>
+      </div>
+      <div class="rounded-2xl border border-white/10 bg-ink-850/70 p-5 sm:p-8">
+        <div id="resizeDropZone" tabindex="0" class="focus-ring relative rounded-xl border-2 border-dashed border-white/15 hover:border-teal-400/50 transition-colors cursor-pointer bg-ink-900/40 px-6 py-14 text-center">
+          <input id="resizeFileInput" type="file" accept="image/png, image/jpeg" class="hidden" />
+          <div class="flex flex-col items-center gap-4">
+            <span class="w-14 h-14 rounded-full bg-teal-400/10 border border-teal-400/25 grid place-items-center">
+              <svg class="w-6 h-6 text-teal-300" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 8V4h4M20 8V4h-4M4 16v4h4M20 16v4h-4"/></svg>
+            </span>
+            <div>
+              <p class="font-semibold text-white">اسحب وأفلت صورتك هنا لتغيير أبعادها</p>
+              <p class="text-sm text-ink-300/70 mt-1">PNG أو JPEG</p>
+            </div>
+          </div>
+        </div>
+        <div id="resizeWorkspace" class="hidden mt-8">
+          <div class="rounded-xl border border-white/10 bg-ink-900/50 px-5 py-5 mb-6">
+            <div class="flex flex-wrap items-end gap-4">
+              <div>
+                <label for="resizeWidth" class="block font-mono text-xs text-ink-300/70 mb-1.5">العرض (px)</label>
+                <input id="resizeWidth" type="number" min="1" class="w-32 rounded-lg bg-ink-950 border border-white/10 px-3 py-2 font-mono text-sm text-white focus:outline-none" />
+              </div>
+              <button id="swapDimsBtn" class="mb-0.5 w-10 h-10 grid place-items-center rounded-lg border border-white/10 text-ink-300 hover:text-teal-300 transition">⥂</button>
+              <div>
+                <label for="resizeHeight" class="block font-mono text-xs text-ink-300/70 mb-1.5">الارتفاع (px)</label>
+                <input id="resizeHeight" type="number" min="1" class="w-32 rounded-lg bg-ink-950 border border-white/10 px-3 py-2 font-mono text-sm text-white focus:outline-none" />
+              </div>
+              <label class="check-tile flex items-center gap-2.5 rounded-xl border border-white/10 bg-ink-950/60 px-3.5 py-2.5 cursor-pointer">
+                <input type="checkbox" id="lockAspect" checked />
+                <span class="box"><svg fill="none" stroke="#0b1220" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span>
+                <span class="text-sm text-ink-100">حفظ النسبة</span>
+              </label>
+              <button id="applyResizeBtn" class="inline-flex items-center gap-2 rounded-full bg-teal-400 text-ink-950 font-bold text-sm px-5 py-2.5 shadow-glow hover:bg-teal-300 transition">تطبيق التغيير</button>
+              <button id="clearResizeBtn" class="sm:mr-auto text-sm font-semibold text-ink-300/80 hover:text-white">مسح</button>
+              <button id="newResizeImageBtn" class="text-sm font-semibold text-ink-300/80 hover:text-white">صورة جديدة</button>
+            </div>
+          </div>
+          <div class="grid sm:grid-cols-2 gap-5">
+            <div class="corner-marks rounded-xl border border-white/10 overflow-hidden bg-ink-900/50">
+              <div class="aspect-video bg-[repeating-conic-gradient(#182233_0%_25%,#131c2a_0%_50%)] bg-[length:16px_16px] flex items-center justify-center">
+                <img id="resizeOriginalPreview" class="max-w-full max-h-full object-contain" alt="الأصلية" />
+              </div>
+              <div class="px-4 py-3 flex items-center justify-between border-t border-white/10">
+                <span class="text-xs font-semibold text-ink-300/70">الأبعاد الأصلية</span>
+                <span id="resizeOriginalDims" class="font-mono text-sm font-bold text-white">—</span>
+              </div>
+            </div>
+            <div class="corner-marks rounded-xl border border-teal-400/25 overflow-hidden bg-ink-900/50">
+              <div class="aspect-video bg-[repeating-conic-gradient(#182233_0%_25%,#131c2a_0%_50%)] bg-[length:16px_16px] flex items-center justify-center">
+                <img id="resizedPreview" class="max-w-full max-h-full object-contain" alt="الجديدة" />
+              </div>
+              <div class="px-4 py-3 flex items-center justify-between border-t border-white/10">
+                <span class="text-xs font-semibold text-teal-300">الأبعاد الجديدة</span>
+                <span id="resizeNewDims" class="font-mono text-sm font-bold text-teal-300">—</span>
+              </div>
+            </div>
+          </div>
+          <div class="mt-6 flex items-center gap-4 rounded-xl border border-white/10 bg-ink-900/50 px-5 py-4">
+            <a id="resizeDownloadBtn" download="resized-image.png" class="mr-auto inline-flex items-center justify-center gap-2 rounded-full bg-teal-400 text-ink-950 font-bold px-6 py-3 shadow-glow pointer-events-none opacity-50">تحميل الصورة الجديدة</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- أداة منسّق JSON -->
+  <section id="json-formatter" class="relative py-20 md:py-28 border-t border-white/5">
+    <div class="max-w-6xl mx-auto px-5 sm:px-8">
+      <div class="mb-10">
+        <span class="font-mono text-xs tracking-widest text-teal-300/80">ACTIVE TOOL / أداة فعّالة</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl font-extrabold text-white">منسّق ومدقّق JSON</h2>
+        <p class="mt-3 text-ink-300/75 leading-relaxed max-w-2xl">نسّق وصغّر وافحص أخطاء كود JSON فوراً.</p>
+      </div>
+      <div class="rounded-2xl border border-white/10 bg-ink-850/70 p-5 sm:p-8">
+        <div class="flex flex-wrap items-center gap-3 mb-6">
+          <button id="jsonBeautifyBtn" class="inline-flex items-center gap-2 rounded-full bg-teal-400 text-ink-950 font-bold text-sm px-5 py-2.5 shadow-glow hover:bg-teal-300 transition">تنسيق (Beautify)</button>
+          <button id="jsonMinifyBtn" class="inline-flex items-center gap-2 rounded-full border border-white/15 text-ink-100 font-semibold text-sm px-5 py-2.5 hover:bg-white/5 transition">تصغير (Minify)</button>
+          <button id="jsonCopyBtn" class="inline-flex items-center gap-2 rounded-full border border-white/15 text-ink-100 font-semibold text-sm px-5 py-2.5 hover:bg-white/5 transition">نسخ النتيجة</button>
+          <button id="jsonClearBtn" class="sm:mr-auto inline-flex items-center gap-2 text-sm font-semibold text-ink-300/80 hover:text-white">مسح</button>
+        </div>
+        <div class="grid lg:grid-cols-2 gap-5">
+          <div class="corner-marks rounded-xl border border-white/10 overflow-hidden bg-ink-900/50 flex flex-col">
+            <div class="px-4 py-2.5 border-b border-white/10 flex items-center justify-between">
+              <span class="font-mono text-xs text-ink-300/70">JSON.input</span>
+              <span id="jsonInputCount" class="font-mono text-[11px] text-ink-400/60">0 حرف</span>
+            </div>
+            <textarea id="jsonInput" spellcheck="false" placeholder='{ "example": true }' class="code-area w-full h-72 sm:h-80 resize-none bg-transparent p-4 font-mono text-sm text-ink-100 focus:outline-none" dir="ltr"></textarea>
+          </div>
+          <div class="corner-marks rounded-xl border border-teal-400/25 overflow-hidden bg-ink-900/50 flex flex-col">
+            <div class="px-4 py-2.5 border-b border-white/10 flex items-center justify-between">
+              <span class="font-mono text-xs text-teal-300">JSON.output</span>
+              <span id="jsonOutputCount" class="font-mono text-[11px] text-ink-400/60">0 حرف</span>
+            </div>
+            <textarea id="jsonOutput" spellcheck="false" readonly placeholder="ستظهر النتيجة هنا..." class="code-area w-full h-72 sm:h-80 resize-none bg-transparent p-4 font-mono text-sm text-teal-100 focus:outline-none" dir="ltr"></textarea>
+          </div>
+        </div>
+        <div id="jsonStatus" class="hidden mt-5 rounded-xl border px-4 py-3 font-mono text-sm"></div>
+        <div class="relative mt-2">
+          <div id="jsonCopyToast" class="absolute left-0 -top-2 inline-flex items-center gap-1.5 rounded-full bg-teal-400 text-ink-950 text-xs font-bold px-3 py-1.5">تم نسخ النتيجة</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- أداة عداد الكلمات -->
+  <section id="word-counter" class="relative py-20 md:py-28 border-t border-white/5 blueprint-grid-fine">
+    <div class="absolute inset-0 bg-gradient-to-b from-ink-900/60 via-ink-900 to-ink-900 pointer-events-none"></div>
+    <div class="relative max-w-5xl mx-auto px-5 sm:px-8">
+      <div class="mb-10">
+        <span class="font-mono text-xs tracking-widest text-teal-300/80">ACTIVE TOOL / أداة فعّالة</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl font-extrabold text-white">عداد الكلمات والحروف والفقرات</h2>
+      </div>
+      <div class="rounded-2xl border border-white/10 bg-ink-850/70 p-5 sm:p-8">
+        <div class="corner-marks rounded-xl border border-white/10 overflow-hidden bg-ink-900/50 flex flex-col">
+          <div class="px-4 py-2.5 border-b border-white/10 flex items-center justify-between">
+            <span class="font-mono text-xs text-ink-300/70">النص</span>
+            <button id="textClearBtn" class="text-xs font-semibold text-ink-300/80 hover:text-white">مسح المحتوى</button>
+          </div>
+          <textarea id="textCounterInput" spellcheck="false" placeholder="ابدأ الكتابة أو الصق نصك هنا..." class="code-area w-full h-64 sm:h-72 resize-none bg-transparent p-4 font-sans text-sm text-ink-100 focus:outline-none"></textarea>
+        </div>
+        <div class="mt-6 grid grid-cols-2 md:grid-cols-4 gap-4 font-mono">
+          <div class="corner-marks rounded-xl border border-white/10 bg-ink-900/50 px-4 py-4 text-center">
+            <div id="statWords" class="text-2xl font-bold text-teal-300">0</div>
+            <div class="text-[11px] text-ink-300/70 mt-1">كلمة</div>
+          </div>
+          <div class="corner-marks rounded-xl border border-white/10 bg-ink-900/50 px-4 py-4 text-center">
+            <div id="statChars" class="text-2xl font-bold text-teal-300">0</div>
+            <div class="text-[11px] text-ink-300/70 mt-1">حرف (مع المسافات)</div>
+          </div>
+          <div class="corner-marks rounded-xl border border-white/10 bg-ink-900/50 px-4 py-4 text-center">
+            <div id="statCharsNoSpace" class="text-2xl font-bold text-teal-300">0</div>
+            <div class="text-[11px] text-ink-300/70 mt-1">حرف (بدون مسافات)</div>
+          </div>
+          <div class="corner-marks rounded-xl border border-white/10 bg-ink-900/50 px-4 py-4 text-center">
+            <div id="statParagraphs" class="text-2xl font-bold text-teal-300">0</div>
+            <div class="text-[11px] text-ink-300/70 mt-1">فقرة</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- أداة تحويل حالة الأحرف -->
+  <section id="case-converter" class="relative py-20 md:py-28 border-t border-white/5">
+    <div class="max-w-5xl mx-auto px-5 sm:px-8">
+      <div class="mb-10">
+        <span class="font-mono text-xs tracking-widest text-teal-300/80">ACTIVE TOOL / أداة فعّالة</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl font-extrabold text-white">تحويل حالة الأحرف</h2>
+      </div>
+      <div class="rounded-2xl border border-white/10 bg-ink-850/70 p-5 sm:p-8">
+        <div class="flex flex-wrap items-center gap-3 mb-6">
+          <button id="caseUpperBtn" class="rounded-full bg-teal-400 text-ink-950 font-bold text-sm px-5 py-2.5 shadow-glow">UPPERCASE</button>
+          <button id="caseLowerBtn" class="rounded-full border border-white/15 text-ink-100 font-semibold text-sm px-5 py-2.5 hover:bg-white/5">lowercase</button>
+          <button id="caseTitleBtn" class="rounded-full border border-white/15 text-ink-100 font-semibold text-sm px-5 py-2.5 hover:bg-white/5">Title Case</button>
+          <button id="caseSentenceBtn" class="rounded-full border border-white/15 text-ink-100 font-semibold text-sm px-5 py-2.5 hover:bg-white/5">Sentence case</button>
+          <button id="caseCopyBtn" class="rounded-full border border-white/15 text-ink-100 font-semibold text-sm px-5 py-2.5 hover:bg-white/5">نسخ النتيجة</button>
+          <button id="caseClearBtn" class="sm:mr-auto text-sm font-semibold text-ink-300/80 hover:text-white">مسح</button>
+        </div>
+        <div class="grid lg:grid-cols-2 gap-5">
+          <div class="corner-marks rounded-xl border border-white/10 overflow-hidden bg-ink-900/50 flex flex-col">
+            <div class="px-4 py-2.5 border-b border-white/10"><span class="font-mono text-xs text-ink-300/70">input</span></div>
+            <textarea id="caseInput" spellcheck="false" placeholder="Type text here..." class="code-area w-full h-56 sm:h-64 resize-none bg-transparent p-4 font-mono text-sm text-ink-100 focus:outline-none" dir="ltr"></textarea>
+          </div>
+          <div class="corner-marks rounded-xl border border-teal-400/25 overflow-hidden bg-ink-900/50 flex flex-col">
+            <div class="px-4 py-2.5 border-b border-white/10"><span class="font-mono text-xs text-teal-300">output</span></div>
+            <textarea id="caseOutput" spellcheck="false" readonly placeholder="Result..." class="code-area w-full h-56 sm:h-64 resize-none bg-transparent p-4 font-mono text-sm text-teal-100 focus:outline-none" dir="ltr"></textarea>
+          </div>
+        </div>
+        <div class="relative mt-2">
+          <div id="caseCopyToast" class="absolute left-0 -top-2 inline-flex items-center gap-1.5 rounded-full bg-teal-400 text-ink-950 text-xs font-bold px-3 py-1.5">تم نسخ النتيجة</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- أداة مولّد كلمات المرور -->
+  <section id="password-generator" class="relative py-20 md:py-28 border-t border-white/5 blueprint-grid-fine">
+    <div class="absolute inset-0 bg-gradient-to-b from-ink-900/60 via-ink-900 to-ink-900 pointer-events-none"></div>
+    <div class="relative max-w-4xl mx-auto px-5 sm:px-8">
+      <div class="mb-10">
+        <span class="font-mono text-xs tracking-widest text-teal-300/80">ACTIVE TOOL / أداة فعّالة</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl font-extrabold text-white">مولّد كلمات المرور الآمنة</h2>
+      </div>
+      <div class="rounded-2xl border border-white/10 bg-ink-850/70 p-5 sm:p-8">
+        <div class="corner-marks relative rounded-xl border border-teal-400/25 bg-ink-900/60 px-5 py-6 flex items-center gap-4">
+          <input id="passwordOutput" type="text" readonly value="اضغط «توليد كلمة مرور» للبدء" class="flex-1 min-w-0 bg-transparent font-mono text-lg sm:text-xl font-bold text-teal-200 focus:outline-none" dir="ltr" />
+          <button id="copyPasswordBtn" aria-label="نسخ" class="relative shrink-0 w-11 h-11 grid place-items-center rounded-lg border border-white/10 text-ink-200 hover:text-teal-300 transition">
+            <svg class="w-4.5 h-4.5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2m-6 4h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-8a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2z"/></svg>
+            <div id="copyToast" class="absolute -top-11 left-1/2 -translate-x-1/2 whitespace-nowrap inline-flex items-center gap-1.5 rounded-full bg-teal-400 text-ink-950 text-xs font-bold px-3 py-1.5">تم النسخ</div>
+          </button>
+        </div>
+        <div class="mt-8 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8">
+          <label for="lengthRange" class="font-mono text-xs text-ink-300/70 whitespace-nowrap">طول كلمة المرور</label>
+          <input id="lengthRange" type="range" min="8" max="32" step="1" value="16" class="w-full sm:w-72" />
+          <span id="lengthValue" class="font-mono text-sm font-bold text-teal-300 w-16 text-left">16 حرفًا</span>
+        </div>
+        <div class="mt-7 grid grid-cols-2 sm:grid-cols-4 gap-3">
+          <label class="check-tile flex items-center gap-2.5 rounded-xl border border-white/10 bg-ink-900/40 px-3.5 py-3 cursor-pointer">
+            <input type="checkbox" id="optUpper" checked />
+            <span class="box"><svg fill="none" stroke="#0b1220" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span>
+            <span class="text-sm text-ink-100">A-Z</span>
+          </label>
+          <label class="check-tile flex items-center gap-2.5 rounded-xl border border-white/10 bg-ink-900/40 px-3.5 py-3 cursor-pointer">
+            <input type="checkbox" id="optLower" checked />
+            <span class="box"><svg fill="none" stroke="#0b1220" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span>
+            <span class="text-sm text-ink-100">a-z</span>
+          </label>
+          <label class="check-tile flex items-center gap-2.5 rounded-xl border border-white/10 bg-ink-900/40 px-3.5 py-3 cursor-pointer">
+            <input type="checkbox" id="optNumbers" checked />
+            <span class="box"><svg fill="none" stroke="#0b1220" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span>
+            <span class="text-sm text-ink-100">0-9</span>
+          </label>
+          <label class="check-tile flex items-center gap-2.5 rounded-xl border border-white/10 bg-ink-900/40 px-3.5 py-3 cursor-pointer">
+            <input type="checkbox" id="optSymbols" />
+            <span class="box"><svg fill="none" stroke="#0b1220" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span>
+            <span class="text-sm text-ink-100">!@#$%</span>
+          </label>
+        </div>
+        <div class="mt-8 flex flex-col sm:flex-row items-center gap-4">
+          <button id="generatePasswordBtn" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-teal-400 text-ink-950 font-bold px-6 py-3.5 shadow-glow">توليد كلمة مرور</button>
+          <button id="clearPasswordBtn" class="w-full sm:w-auto sm:mr-auto text-sm font-semibold text-ink-300/80 hover:text-white">إعادة ضبط</button>
+          <p id="passwordStatus" class="text-xs text-ink-400/70 font-mono"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- أداة ترميز وفك Base64 -->
+  <section id="base64-tool" class="relative py-20 md:py-28 border-t border-white/5">
+    <div class="max-w-6xl mx-auto px-5 sm:px-8">
+      <div class="mb-10">
+        <span class="font-mono text-xs tracking-widest text-teal-300/80">ACTIVE TOOL / أداة فعّالة</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl font-extrabold text-white">ترميز وفك Base64</h2>
+      </div>
+      <div class="rounded-2xl border border-white/10 bg-ink-850/70 p-5 sm:p-8">
+        <div class="flex flex-wrap items-center gap-3 mb-6">
+          <button id="b64EncodeBtn" class="rounded-full bg-teal-400 text-ink-950 font-bold text-sm px-5 py-2.5 shadow-glow">ترميز (Encode)</button>
+          <button id="b64DecodeBtn" class="rounded-full border border-white/15 text-ink-100 font-semibold text-sm px-5 py-2.5 hover:bg-white/5">فك الترميز (Decode)</button>
+          <button id="b64CopyBtn" class="rounded-full border border-white/15 text-ink-100 font-semibold text-sm px-5 py-2.5 hover:bg-white/5">نسخ النتيجة</button>
+          <button id="b64ClearBtn" class="sm:mr-auto text-sm font-semibold text-ink-300/80 hover:text-white">مسح</button>
+        </div>
+        <div class="grid lg:grid-cols-2 gap-5">
+          <div class="corner-marks rounded-xl border border-white/10 overflow-hidden bg-ink-900/50 flex flex-col">
+            <div class="px-4 py-2.5 border-b border-white/10"><span class="font-mono text-xs text-ink-300/70">input</span></div>
+            <textarea id="b64Input" spellcheck="false" placeholder="اكتب نصاً..." class="code-area w-full h-64 sm:h-72 resize-none bg-transparent p-4 font-mono text-sm text-ink-100 focus:outline-none"></textarea>
+          </div>
+          <div class="corner-marks rounded-xl border border-teal-400/25 overflow-hidden bg-ink-900/50 flex flex-col">
+            <div class="px-4 py-2.5 border-b border-white/10"><span class="font-mono text-xs text-teal-300">output</span></div>
+            <textarea id="b64Output" spellcheck="false" readonly placeholder="النتيجة..." class="code-area w-full h-64 sm:h-72 resize-none bg-transparent p-4 font-mono text-sm text-teal-100 focus:outline-none"></textarea>
+          </div>
+        </div>
+        <div id="b64Status" class="hidden mt-5 rounded-xl border px-4 py-3 font-mono text-sm"></div>
+        <div class="relative mt-2">
+          <div id="b64CopyToast" class="absolute left-0 -top-2 inline-flex items-center gap-1.5 rounded-full bg-teal-400 text-ink-950 text-xs font-bold px-3 py-1.5">تم نسخ النتيجة</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- أداة حاسبة النسب المئوية -->
+  <section id="percentage-calculator" class="relative py-20 md:py-28 border-t border-white/5 blueprint-grid-fine">
+    <div class="absolute inset-0 bg-gradient-to-b from-ink-900/60 via-ink-900 to-ink-900 pointer-events-none"></div>
+    <div class="relative max-w-6xl mx-auto px-5 sm:px-8">
+      <div class="mb-10 flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <span class="font-mono text-xs tracking-widest text-teal-300/80">ACTIVE TOOL / أداة فعّالة</span>
+          <h2 class="mt-2 text-3xl sm:text-4xl font-extrabold text-white">حاسبة النسب المئوية</h2>
+        </div>
+        <button id="clearPercentBtn" class="text-sm font-semibold text-ink-300/80 hover:text-white rounded-full border border-white/10 px-4 py-2.5">إعادة ضبط</button>
+      </div>
+      <div class="grid md:grid-cols-3 gap-5">
+        <div class="corner-marks rounded-2xl border border-white/10 bg-ink-850/70 p-6 flex flex-col">
+          <h3 class="font-bold text-white mb-1">ما هو X% من رقم؟</h3>
+          <div class="space-y-3 mt-4">
+            <div>
+              <label class="block font-mono text-xs text-ink-300/70 mb-1.5">النسبة X (%)</label>
+              <input id="pc1_percent" type="number" value="20" class="w-full rounded-lg bg-ink-950 border border-white/10 px-3 py-2.5 font-mono text-sm text-white focus:outline-none" />
+            </div>
+            <div>
+              <label class="block font-mono text-xs text-ink-300/70 mb-1.5">الرقم Y</label>
+              <input id="pc1_number" type="number" value="150" class="w-full rounded-lg bg-ink-950 border border-white/10 px-3 py-2.5 font-mono text-sm text-white focus:outline-none" />
+            </div>
+          </div>
+          <div class="mt-5 pt-5 border-t border-white/10 mt-auto">
+            <span class="block font-mono text-xs text-ink-300/60 mb-1">النتيجة</span>
+            <span id="pc1_result" class="font-mono text-2xl font-bold text-teal-300">30</span>
+          </div>
+        </div>
+        <div class="corner-marks rounded-2xl border border-white/10 bg-ink-850/70 p-6 flex flex-col">
+          <h3 class="font-bold text-white mb-1">X كم نسبته من Y؟</h3>
+          <div class="space-y-3 mt-4">
+            <div>
+              <label class="block font-mono text-xs text-ink-300/70 mb-1.5">الرقم X</label>
+              <input id="pc2_x" type="number" value="30" class="w-full rounded-lg bg-ink-950 border border-white/10 px-3 py-2.5 font-mono text-sm text-white focus:outline-none" />
+            </div>
+            <div>
+              <label class="block font-mono text-xs text-ink-300/70 mb-1.5">من الرقم Y</label>
+              <input id="pc2_y" type="number" value="150" class="w-full rounded-lg bg-ink-950 border border-white/10 px-3 py-2.5 font-mono text-sm text-white focus:outline-none" />
+            </div>
+          </div>
+          <div class="mt-5 pt-5 border-t border-white/10 mt-auto">
+            <span class="block font-mono text-xs text-ink-300/60 mb-1">النتيجة</span>
+            <span id="pc2_result" class="font-mono text-2xl font-bold text-teal-300">20%</span>
+          </div>
+        </div>
+        <div class="corner-marks rounded-2xl border border-white/10 bg-ink-850/70 p-6 flex flex-col">
+          <h3 class="font-bold text-white mb-1">نسبة التغيّر بين رقمين</h3>
+          <div class="space-y-3 mt-4">
+            <div>
+              <label class="block font-mono text-xs text-ink-300/70 mb-1.5">القيمة القديمة</label>
+              <input id="pc3_old" type="number" value="150" class="w-full rounded-lg bg-ink-950 border border-white/10 px-3 py-2.5 font-mono text-sm text-white focus:outline-none" />
+            </div>
+            <div>
+              <label class="block font-mono text-xs text-ink-300/70 mb-1.5">القيمة الجديدة</label>
+              <input id="pc3_new" type="number" value="180" class="w-full rounded-lg bg-ink-950 border border-white/10 px-3 py-2.5 font-mono text-sm text-white focus:outline-none" />
+            </div>
+          </div>
+          <div class="mt-5 pt-5 border-t border-white/10 mt-auto flex items-center gap-2">
+            <div>
+              <span class="block font-mono text-xs text-ink-300/60 mb-1">النتيجة</span>
+              <span id="pc3_result" class="font-mono text-2xl font-bold text-teal-300">+20%</span>
+            </div>
+            <span id="pc3_label" class="font-mono text-[11px] font-bold px-2 py-1 rounded-full bg-teal-400/10 text-teal-300 border border-teal-400/25">زيادة</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- أداة محول الوحدات -->
+  <section id="unit-converter" class="relative py-20 md:py-28 border-t border-white/5">
+    <div class="max-w-4xl mx-auto px-5 sm:px-8">
+      <div class="mb-10 flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <span class="font-mono text-xs tracking-widest text-teal-300/80">ACTIVE TOOL / أداة فعّالة</span>
+          <h2 class="mt-2 text-3xl sm:text-4xl font-extrabold text-white">محول الوحدات</h2>
+        </div>
+        <button id="clearUnitBtn" class="text-sm font-semibold text-ink-300/80 hover:text-white rounded-full border border-white/10 px-4 py-2.5">إعادة ضبط</button>
+      </div>
+      <div class="rounded-2xl border border-white/10 bg-ink-850/70 p-5 sm:p-8">
+        <div class="flex flex-wrap gap-2 mb-7" id="unitCategoryTabs">
+          <button data-category="length" class="unit-tab active-tab px-4 py-2 rounded-full text-sm font-semibold">الطول</button>
+          <button data-category="weight" class="unit-tab px-4 py-2 rounded-full text-sm font-semibold">الوزن</button>
+          <button data-category="temperature" class="unit-tab px-4 py-2 rounded-full text-sm font-semibold">الحرارة</button>
+        </div>
+        <div class="grid sm:grid-cols-[1fr_auto_1fr] items-end gap-4">
+          <div class="corner-marks rounded-xl border border-white/10 bg-ink-900/50 p-4">
+            <label class="block font-mono text-xs text-ink-300/70 mb-2">من</label>
+            <select id="unitFrom" class="w-full bg-ink-950 border border-white/10 rounded-lg px-3 py-2.5 text-sm text-white font-mono focus:outline-none mb-3"></select>
+            <input id="unitValueFrom" type="number" value="1" class="w-full rounded-lg bg-ink-950 border border-white/10 px-3 py-2.5 font-mono text-lg font-bold text-white focus:outline-none" />
+          </div>
+          <button id="swapUnitsBtn" class="mb-8 sm:mb-16 w-11 h-11 grid place-items-center rounded-full border border-white/10 text-ink-300 hover:text-teal-300 transition justify-self-center">⥂</button>
+          <div class="corner-marks rounded-xl border border-teal-400/25 bg-ink-900/50 p-4">
+            <label class="block font-mono text-xs text-teal-300 mb-2">إلى</label>
+            <select id="unitTo" class="w-full bg-ink-950 border border-white/10 rounded-lg px-3 py-2.5 text-sm text-white font-mono focus:outline-none mb-3"></select>
+            <input id="unitValueTo" type="text" readonly class="w-full rounded-lg bg-ink-950 border border-white/10 px-3 py-2.5 font-mono text-lg font-bold text-teal-300 focus:outline-none" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- أداة مولّد رموز QR -->
+  <section id="qr-generator" class="relative py-20 md:py-28 border-t border-white/5 blueprint-grid-fine">
+    <div class="absolute inset-0 bg-gradient-to-b from-ink-900/60 via-ink-900 to-ink-900 pointer-events-none"></div>
+    <div class="relative max-w-5xl mx-auto px-5 sm:px-8">
+      <div class="mb-10">
+        <span class="font-mono text-xs tracking-widest text-teal-300/80">ACTIVE TOOL / أداة فعّالة</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl font-extrabold text-white">مولّد رموز QR</h2>
+      </div>
+      <div class="rounded-2xl border border-white/10 bg-ink-850/70 p-5 sm:p-8">
+        <div class="grid lg:grid-cols-[1.1fr_0.9fr] gap-6 items-start">
+          <div>
+            <label for="qrTextInput" class="block font-mono text-xs text-ink-300/70 mb-2">الرابط أو النص</label>
+            <textarea id="qrTextInput" spellcheck="false" placeholder="https://example.com..." class="code-area w-full h-32 resize-none rounded-xl bg-ink-900/50 border border-white/10 p-4 font-mono text-sm text-ink-100 focus:outline-none"></textarea>
+            <div class="mt-5 flex flex-wrap items-center gap-3">
+              <button id="qrGenerateBtn" class="inline-flex items-center gap-2 rounded-full bg-teal-400 text-ink-950 font-bold text-sm px-5 py-2.5 shadow-glow">توليد رمز QR</button>
+              <button id="qrClearBtn" class="text-sm font-semibold text-ink-300/80 hover:text-white">مسح</button>
+            </div>
+            <p id="qrStatus" class="mt-3 text-xs text-ink-400/70 font-mono"></p>
+          </div>
+          <div id="qrResultWrap" class="hidden corner-marks rounded-xl border border-teal-400/25 bg-ink-900/50 p-6 flex flex-col items-center gap-5">
+            <div id="qrCodeContainer" class="bg-white p-3 rounded-xl grid place-items-center"></div>
+            <a id="qrDownloadBtn" download="webbox-qrcode.png" class="pointer-events-none opacity-50 inline-flex items-center justify-center gap-2 rounded-full bg-teal-400 text-ink-950 font-bold px-5 py-2.5 shadow-glow">تحميل الرمز PNG</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== قسم المقالات والشروحات ===================== -->
+  <section id="articles-section" class="relative py-20 md:py-28 border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+      <div class="mb-12">
+        <span class="font-mono text-xs tracking-widest text-teal-300/80">GUIDES & ARTICLES / دليل استخدام الأدوات</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl font-extrabold text-white">مقالات تفصيلية وشروحات لكل أداة</h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <article class="corner-marks rounded-2xl border border-white/10 bg-ink-850/70 p-6 flex flex-col justify-between">
+          <div>
+            <span class="font-mono text-xs text-teal-300 bg-teal-400/10 px-2.5 py-1 rounded-full">أداة ضغط الصور</span>
+            <h3 class="mt-4 text-lg font-bold text-white leading-snug">دليلك لتقليل حجم صور الويب دون التأثير على جودتها المرئية</h3>
+            <p class="mt-3 text-sm text-ink-300/75 leading-relaxed">تؤثر أحجام الصور الضخمة سلباً على سرعة تصفح المواقع.</p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs text-ink-400 font-mono">
+            <span>يوليو 2026</span>
+            <a href="#compressor" class="text-teal-300 font-semibold hover:underline">افتح الأداة ←</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- نافذة "من نحن" و "اتصل بنا" وباقي الصفحات تبقى كما هي -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+  // دوال التشغيل والتنقل
+  function switchView(viewName) {
+    document.querySelectorAll('.page-view').forEach(el => el.classList.remove('active-view'));
+    if (viewName === 'home') document.getElementById('homeView').classList.add('active-view');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+</body>
+</html>
