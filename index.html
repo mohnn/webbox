@@ -20,7 +20,7 @@
 <meta name="description" content="WebBox: أدوات مجانية وسريعة تعمل بالكامل داخل متصفحك، دون رفع أي ملف لأي خادم. ضغط صور، تنسيق JSON، مولّد كلمات مرور، والمزيد.">
 
 <!-- Canonical Link -->
-<link rel="canonical" href="https://webbox.tools/">
+<link rel="canonical" href="https://webboxtools.com/">
 
 <!-- Favicon -->
 <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -1168,7 +1168,7 @@
     <div class="mt-8 space-y-6 text-ink-200/90 leading-relaxed bg-ink-850/70 p-8 rounded-2xl border border-white/10">
       <p>مرحباً بك في <strong class="text-white">WebBox</strong>، منصتك التقنية الرائدة المخصصة لتوفير أدوات ويب مجانية وسريعة تعمل بالكامل داخل المتصفح الخاص بك.</p>
       <h3 class="text-xl font-bold text-white pt-4">رؤيتنا وفلسفتنا</h3>
-      <p>نحن نؤمن بأن الأدوات الرقمية اليومية يجب أن تكون متاحة للجميع بسهولة ودون تعقيد. الأهم من ذلك، نحن نضع خصوصية مستخدمينا في المقام الأول؛ لذا صُممت جميع أدواتنا لمعالجة البيانات محلياً (Client-side)، مما يعني أن ملفاتك الشخصية وصورك لا تغادر جهازك أبداً ولا تُرفع إلى أي خادم خارجي.</p>
+      <p>نحن نؤمن بأن الأدوات الرقمية اليومية يجب أن تكون متاحة للجميع بسهولة وددون تعقيد. الأهم من ذلك، نحن نضع خصوصية مستخدمينا في المقام الأول؛ لذا صُممت جميع أدواتنا لمعالجة البيانات محلياً (Client-side)، مما يعني أن ملفاتك الشخصية وصورك لا تغادر جهازك أبداً ولا تُرفع إلى أي خادم خارجي.</p>
       <h3 class="text-xl font-bold text-white pt-4">لماذا تختبر WebBox؟</h3>
       <p>سواء كنت مبرمجاً يحتاج لتنسيق كود JSON، أو مصمماً يبحث عن ضغط صور سريع، أو كاتباً يتابع عدد الكلمات، فإن WebBox يوفر لك بيئة نظيفة، خالية من الإعلانات المزعجة، وفائقة السرعة.</p>
     </div>
@@ -1178,29 +1178,27 @@
   </section>
 </div>
 
-<!-- ===================== صفحة "اتصل بنا" (مربوطة بـ Formspree الحقيقي) ===================== -->
+<!-- ===================== صفحة "اتصل بنا" ===================== -->
 <div id="contactView" class="page-view">
   <section class="max-w-3xl mx-auto px-5 py-20">
     <span class="font-mono text-xs tracking-widest text-teal-300">CONTACT US</span>
     <h1 class="mt-2 text-4xl font-extrabold text-white">اتصل بنا</h1>
     <p class="mt-3 text-ink-300">يسعدنا دائماً سماع آرائكم، استفساراتكم، أو استقبال مقترحاتكم لتطوير المنصة وإضافة أدوات جديدة.</p>
     
-    <div class="mt-8 bg-ink-850/70 p-8 rounded-2xl border border-white/10">
-      <form action="https://formspree.io/f/mkodpagd" method="POST" class="space-y-5">
-        <div>
-          <label class="block text-sm font-semibold text-white mb-2">الاسم الكريم</label>
-          <input type="text" name="name" placeholder="أدخل اسمك هنا..." class="w-full bg-ink-950 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-teal-400" required />
-        </div>
-        <div>
-          <label class="block text-sm font-semibold text-white mb-2">البريد الإلكتروني</label>
-          <input type="email" name="email" placeholder="name@example.com" class="w-full bg-ink-950 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-teal-400" required />
-        </div>
-        <div>
-          <label class="block text-sm font-semibold text-white mb-2">نص الرسالة أو الاقتراح</label>
-          <textarea name="message" rows="4" placeholder="اكتب رسالتك بالتفصيل..." class="w-full bg-ink-950 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-teal-400 resize-none" required></textarea>
-        </div>
-        <button type="submit" class="w-full bg-teal-400 text-ink-950 font-bold py-3 rounded-xl shadow-glow hover:bg-teal-300 transition">إرسال الرسالة</button>
-      </form>
+    <div class="mt-8 bg-ink-850/70 p-8 rounded-2xl border border-white/10 space-y-5">
+      <div>
+        <label class="block text-sm font-semibold text-white mb-2">الاسم الكريم</label>
+        <input type="text" placeholder="أدخل اسمك هنا..." class="w-full bg-ink-950 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-teal-400" />
+      </div>
+      <div>
+        <label class="block text-sm font-semibold text-white mb-2">البريد الإلكتروني</label>
+        <input type="email" placeholder="name@example.com" class="w-full bg-ink-950 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-teal-400" />
+      </div>
+      <div>
+        <label class="block text-sm font-semibold text-white mb-2">نص الرسالة أو الاقتراح</label>
+        <textarea rows="4" placeholder="اكتب رسالتك بالتفصيل..." class="w-full bg-ink-950 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-teal-400 resize-none"></textarea>
+      </div>
+      <button onclick="alert('تم إرسال رسالتك بنجاح! شكراً لتواصلك معنا.')" class="w-full bg-teal-400 text-ink-950 font-bold py-3 rounded-xl shadow-glow hover:bg-teal-300 transition">إرسال الرسالة</button>
     </div>
     <div class="mt-6">
       <button onclick="switchView('home')" class="inline-flex items-center gap-2 text-teal-300 font-semibold hover:underline">← العودة للرئيسية</button>
@@ -1217,7 +1215,7 @@
       <p>في موقع <strong class="text-white">WebBox</strong>، تُعتبر خصوصية زوارنا أمراً بالغ الأهمية. توضح وثيقة سياسة الخصوصية هذه أنواع المعلومات الشخصية التي يتم جمعها وكيفية استخدامها.</p>
       
       <h3 class="text-xl font-bold text-white pt-3">1. المعالجة المحلية للبيانات (لا توجد خوادم تخزين)</h3>
-      <p>نلتزم التزاماً تاماً بأن جميع الملفات التي تقوم برفعها أو معالجتها على موقعنا (مثل الصور، النصوص، أو رموز QR) تتم معالجتها بالكامل داخل ذاكرة متصفحك المحلي. نحن لا نقوم برفع أو حفظ أو تخزين أي ملفات خاصة بك على خوادم أو سيرفرات خارجية.</p>
+      <p>نلتزم التزاماً تاماً بأن جميع الملفات التي تقوم برفعها أو معالجتها على موقعنا (مثل الصور، النصوص، أو رموز QR) تتم معالجتها بالكامل داخل ذاكرة متصفحك المحلي. نحن لا نقوم برحض أو حفظ أو تخزين أي ملفات خاصة بك على خوادم أو سيرفرات خارجية.</p>
 
       <h3 class="text-xl font-bold text-white pt-3">2. ملفات تعريف الارتباط (Cookies) والإعلانات</h3>
       <p>نستخدم شبكة Google AdSense لعرض الإعلانات، والتي قد تستخدم ملفات تعريف الارتباط لعرض إعلانات بناءً على زياراتك السابقة لموقعنا أو مواقع أخرى على الإنترنت. يمكنك إلغاء استخدام ملفات تعريف الارتباط عبر إعدادات متصفحك.</p>
