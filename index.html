@@ -25,11 +25,11 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WebBox — أدواتك التقنية في متصفحك مباشرة</title>
-<meta name="description" content="WebBox: أدوات مجانية وسريعة تعمل بالكامل داخل متصفحك، دون رفع أي ملف لأي خادم. ضغط صور، تنسيق JSON، مولّد كلمات مرور، والمزيد.">
+<title id="pageTitle">WebBox — أدواتك التقنية في متصفحك مباشرة</title>
+<meta name="description" id="pageDescription" content="WebBox: أدوات مجانية وسريعة تعمل بالكامل داخل متصفحك، دون رفع أي ملف لأي خادم. ضغط صور، تنسيق JSON، مولّد كلمات مرور، والمزيد.">
 
 <!-- Canonical Link -->
-<link rel="canonical" href="https://webboxtools.com/">
+<link rel="canonical" href="https://webbox.tools/">
 
 <!-- Favicon -->
 <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -282,6 +282,11 @@
 
   .page-view { display: none; }
   .page-view.active-view { display: block; }
+
+  .lang-toggle {
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.02em;
+  }
 </style>
 </head>
 
@@ -308,24 +313,30 @@
 
       <!-- روابط التنقل الرئيسية -->
       <nav class="hidden md:flex items-center gap-1 font-medium text-sm">
-        <a href="#top" onclick="switchView('home')" class="px-3 py-2 rounded-full text-ink-200/95 hover:text-white hover:bg-white/5 transition focus-ring">الرئيسية</a>
-        <a href="#tools-grid" onclick="switchView('home')" class="px-3 py-2 rounded-full text-ink-200/95 hover:text-white hover:bg-white/5 transition focus-ring">الأدوات</a>
-        <a href="#articles-section" onclick="switchView('home')" class="px-3 py-2 rounded-full text-ink-200/95 hover:text-white hover:bg-white/5 transition focus-ring">المقالات والشروحات</a>
-        <button onclick="switchView('about')" class="px-3 py-2 rounded-full text-ink-200/95 hover:text-white hover:bg-white/5 transition focus-ring">من نحن</button>
-        <button onclick="switchView('contact')" class="px-3 py-2 rounded-full text-ink-200/95 hover:text-white hover:bg-white/5 transition focus-ring">اتصل بنا</button>
+        <a href="#top" onclick="switchView('home')" data-i18n="nav.home" class="px-3 py-2 rounded-full text-ink-200/95 hover:text-white hover:bg-white/5 transition focus-ring">الرئيسية</a>
+        <a href="#tools-grid" onclick="switchView('home')" data-i18n="nav.tools" class="px-3 py-2 rounded-full text-ink-200/95 hover:text-white hover:bg-white/5 transition focus-ring">الأدوات</a>
+        <a href="#articles-section" onclick="switchView('home')" data-i18n="nav.articles" class="px-3 py-2 rounded-full text-ink-200/95 hover:text-white hover:bg-white/5 transition focus-ring">المقالات والشروحات</a>
+        <button onclick="switchView('about')" data-i18n="nav.about" class="px-3 py-2 rounded-full text-ink-200/95 hover:text-white hover:bg-white/5 transition focus-ring">من نحن</button>
+        <button onclick="switchView('contact')" data-i18n="nav.contact" class="px-3 py-2 rounded-full text-ink-200/95 hover:text-white hover:bg-white/5 transition focus-ring">اتصل بنا</button>
       </nav>
 
       <div class="hidden md:flex items-center gap-3">
+        <button id="langToggle" aria-label="Switch language" class="lang-toggle w-10 h-10 grid place-items-center rounded-lg border border-white/10 text-ink-100 hover:border-teal-400/40 hover:text-teal-300 transition focus-ring text-xs font-bold">
+          <span id="langToggleLabel">EN</span>
+        </button>
         <button id="themeToggle" aria-label="تبديل المظهر" class="relative w-10 h-10 grid place-items-center rounded-lg border border-white/10 text-ink-100 hover:border-teal-400/40 hover:text-teal-300 transition focus-ring">
           <svg class="icon-moon w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
           <svg class="icon-sun w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1.5M12 19.5V21M4.22 4.22l1.06 1.06M18.72 18.72l1.06 1.06M3 12h1.5M19.5 12H21M4.22 19.78l1.06-1.06M18.72 5.28l1.06-1.06M16.5 12a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0z"/></svg>
         </button>
-        <a href="#compressor" onclick="switchView('home')" class="inline-flex items-center gap-2 rounded-full bg-teal-400 text-ink-950 font-bold text-sm px-4 py-2 shadow-glow hover:bg-teal-300 transition focus-ring">
+        <a href="#compressor" onclick="switchView('home')" data-i18n="nav.cta" class="inline-flex items-center gap-2 rounded-full bg-teal-400 text-ink-950 font-bold text-sm px-4 py-2 shadow-glow hover:bg-teal-300 transition focus-ring">
           جرّب ضاغط الصور
         </a>
       </div>
 
       <div class="flex items-center gap-2 md:hidden">
+        <button id="langToggleMobile" aria-label="Switch language" class="lang-toggle w-10 h-10 grid place-items-center rounded-lg border border-white/10 text-ink-100 focus-ring text-xs font-bold">
+          <span id="langToggleLabelMobile">EN</span>
+        </button>
         <button id="themeToggleMobile" aria-label="تبديل المظهر" class="relative w-10 h-10 grid place-items-center rounded-lg border border-white/10 text-ink-100 focus-ring">
           <svg class="icon-moon w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
           <svg class="icon-sun w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1.5M12 19.5V21M4.22 4.22l1.06 1.06M18.72 18.72l1.06 1.06M3 12h1.5M19.5 12H21M4.22 19.78l1.06-1.06M18.72 5.28l1.06-1.06M16.5 12a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0z"/></svg>
@@ -339,12 +350,12 @@
 
     <!-- قائمة الجوال -->
     <nav id="mobileMenu" class="md:hidden hidden pb-4 flex flex-col gap-1 font-medium text-sm">
-      <a href="#top" onclick="switchView('home'); toggleMobileMenu();" class="px-4 py-2.5 rounded-lg text-ink-200/90 hover:bg-white/5">الرئيسية</a>
-      <a href="#tools-grid" onclick="switchView('home'); toggleMobileMenu();" class="px-4 py-2.5 rounded-lg text-ink-200/90 hover:bg-white/5">الأدوات</a>
-      <a href="#articles-section" onclick="switchView('home'); toggleMobileMenu();" class="px-4 py-2.5 rounded-lg text-ink-200/90 hover:bg-white/5">المقالات والشروحات</a>
-      <button onclick="switchView('about'); toggleMobileMenu();" class="text-right px-4 py-2.5 rounded-lg text-ink-200/90 hover:bg-white/5">من نحن</button>
-      <button onclick="switchView('contact'); toggleMobileMenu();" class="text-right px-4 py-2.5 rounded-lg text-ink-200/90 hover:bg-white/5">اتصل بنا</button>
-      <a href="#compressor" onclick="switchView('home'); toggleMobileMenu();" class="mt-1 text-center rounded-lg bg-teal-400 text-ink-950 font-bold px-4 py-2.5">جرّب ضاغط الصور</a>
+      <a href="#top" onclick="switchView('home'); toggleMobileMenu();" data-i18n="nav.home" class="px-4 py-2.5 rounded-lg text-ink-200/90 hover:bg-white/5">الرئيسية</a>
+      <a href="#tools-grid" onclick="switchView('home'); toggleMobileMenu();" data-i18n="nav.tools" class="px-4 py-2.5 rounded-lg text-ink-200/90 hover:bg-white/5">الأدوات</a>
+      <a href="#articles-section" onclick="switchView('home'); toggleMobileMenu();" data-i18n="nav.articles" class="px-4 py-2.5 rounded-lg text-ink-200/90 hover:bg-white/5">المقالات والشروحات</a>
+      <button onclick="switchView('about'); toggleMobileMenu();" data-i18n="nav.about" class="text-right px-4 py-2.5 rounded-lg text-ink-200/90 hover:bg-white/5">من نحن</button>
+      <button onclick="switchView('contact'); toggleMobileMenu();" data-i18n="nav.contact" class="text-right px-4 py-2.5 rounded-lg text-ink-200/90 hover:bg-white/5">اتصل بنا</button>
+      <a href="#compressor" onclick="switchView('home'); toggleMobileMenu();" data-i18n="nav.cta" class="mt-1 text-center rounded-lg bg-teal-400 text-ink-950 font-bold px-4 py-2.5">جرّب ضاغط الصور</a>
     </nav>
   </div>
 </header>
@@ -362,26 +373,26 @@
 
     <div class="relative max-w-7xl mx-auto px-5 sm:px-8 pt-20 pb-24 md:pt-28 md:pb-32">
       <div class="max-w-3xl">
-        <span class="inline-flex items-center gap-2 font-mono text-xs tracking-wider text-teal-300 bg-teal-400/10 border border-teal-400/20 rounded-full px-3 py-1.5">
+        <span data-i18n="hero.badge" class="inline-flex items-center gap-2 font-mono text-xs tracking-wider text-teal-300 bg-teal-400/10 border border-teal-400/20 rounded-full px-3 py-1.5">
           <span class="w-1.5 h-1.5 rounded-full bg-teal-300 animate-pulse"></span>
           كل المعالجة تتم محليًا — لا رفع، لا خوادم
         </span>
 
         <h1 class="mt-6 text-4xl sm:text-5xl md:text-6xl font-black leading-[1.15] text-white">
-          أدواتك التقنية اليومية،
-          <span class="block text-teal-300">جاهزة داخل متصفحك مباشرة.</span>
+          <span data-i18n="hero.title1">أدواتك التقنية اليومية،</span>
+          <span data-i18n="hero.title2" class="block text-teal-300">جاهزة داخل متصفحك مباشرة.</span>
         </h1>
 
-        <p class="mt-6 text-lg text-ink-200/80 leading-relaxed max-w-2xl">
+        <p data-i18n="hero.desc" class="mt-6 text-lg text-ink-200/80 leading-relaxed max-w-2xl">
           WebBox مجموعة أدوات مجانية وسريعة — من ضغط الصور إلى تحويل البيانات وإجراء الحسابات — تُنجز مهمتها فورًا دون تثبيت برامج أو انتظار رفع الملفات.
         </p>
 
         <div class="mt-9 flex flex-wrap items-center gap-4">
-          <a href="#compressor" class="inline-flex items-center gap-2 rounded-full bg-teal-400 text-ink-950 font-bold px-6 py-3.5 shadow-glow hover:bg-teal-300 transition focus-ring">
+          <a href="#compressor" data-i18n="hero.cta1" class="inline-flex items-center gap-2 rounded-full bg-teal-400 text-ink-950 font-bold px-6 py-3.5 shadow-glow hover:bg-teal-300 transition focus-ring">
             ابدأ بضغط صورة الآن
-            <svg class="w-4 h-4 rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+            <svg class="w-4 h-4 rtl-flip" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
           </a>
-          <a href="#tools-grid" class="inline-flex items-center gap-2 rounded-full border border-white/15 text-ink-100 font-semibold px-6 py-3.5 hover:bg-white/5 transition focus-ring">
+          <a href="#tools-grid" data-i18n="hero.cta2" class="inline-flex items-center gap-2 rounded-full border border-white/15 text-ink-100 font-semibold px-6 py-3.5 hover:bg-white/5 transition focus-ring">
             استعرض كل الأدوات
           </a>
         </div>
@@ -389,15 +400,15 @@
         <div class="mt-14 grid grid-cols-3 max-w-md font-mono">
           <div class="border-r border-white/10 pr-4">
             <div class="text-2xl font-bold text-white">100%</div>
-            <div class="text-[11px] text-ink-300/70 mt-1">تشغيل من المتصفح</div>
+            <div data-i18n="hero.stat1" class="text-[11px] text-ink-300/70 mt-1">تشغيل من المتصفح</div>
           </div>
           <div class="border-r border-white/10 px-4">
             <div class="text-2xl font-bold text-white">0</div>
-            <div class="text-[11px] text-ink-300/70 mt-1">ملفات تُرفع لخادم</div>
+            <div data-i18n="hero.stat2" class="text-[11px] text-ink-300/70 mt-1">ملفات تُرفع لخادم</div>
           </div>
           <div class="pl-4">
             <div class="text-2xl font-bold text-white">10</div>
-            <div class="text-[11px] text-ink-300/70 mt-1">أدوات فعّالة الآن</div>
+            <div data-i18n="hero.stat3" class="text-[11px] text-ink-300/70 mt-1">أدوات فعّالة الآن</div>
           </div>
         </div>
       </div>
@@ -409,10 +420,10 @@
     <div class="max-w-7xl mx-auto px-5 sm:px-8">
       <div class="flex items-end justify-between flex-wrap gap-4 mb-12">
         <div>
-          <span class="font-mono text-xs tracking-widest text-ink-300/60">TOOLKIT / الفهرس</span>
-          <h2 class="mt-2 text-3xl sm:text-4xl font-extrabold text-white">اختر أداتك</h2>
+          <span data-i18n="grid.eyebrow" class="font-mono text-xs tracking-widest text-ink-300/60">TOOLKIT / الفهرس</span>
+          <h2 data-i18n="grid.title" class="mt-2 text-3xl sm:text-4xl font-extrabold text-white">اختر أداتك</h2>
         </div>
-        <p class="text-ink-300/70 max-w-sm text-sm leading-relaxed">
+        <p data-i18n="grid.desc" class="text-ink-300/70 max-w-sm text-sm leading-relaxed">
           جميع الأدوات متاحة للاستخدام الفوري والمجاني بالكامل دون قيود.
         </p>
       </div>
@@ -424,12 +435,12 @@
               <span class="w-11 h-11 rounded-xl bg-teal-400/10 border border-teal-400/25 grid place-items-center">
                 <svg class="w-5 h-5 text-teal-300" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5V19a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-2.5M7 10l5 5 5-5M12 15V3"/></svg>
               </span>
-              <span class="font-mono text-[10px] font-bold tracking-wider text-teal-950 bg-teal-300 rounded-full px-2.5 py-1">متاحة الآن</span>
+              <span data-i18n="grid.badge" class="font-mono text-[10px] font-bold tracking-wider text-teal-950 bg-teal-300 rounded-full px-2.5 py-1">متاحة الآن</span>
             </div>
-            <h3 class="text-lg font-bold text-white">🖼️ ضاغط الصور</h3>
-            <p class="mt-2 text-sm text-ink-300/75 leading-relaxed">قلّل حجم صور PNG وJPEG وWebP مع معاينة فورية قبل التحميل، دون فقدان يُذكر في الجودة.</p>
+            <h3 data-i18n="card.compressor.title" class="text-lg font-bold text-white">🖼️ ضاغط الصور</h3>
+            <p data-i18n="card.compressor.desc" class="mt-2 text-sm text-ink-300/75 leading-relaxed">قلّل حجم صور PNG وJPEG وWebP مع معاينة فورية قبل التحميل، دون فقدان يُذكر في الجودة.</p>
           </div>
-          <span class="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-teal-300">افتح الأداة <svg class="w-4 h-4 rotate-180 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></span>
+          <span data-i18n="grid.open" class="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-teal-300">افتح الأداة <svg class="w-4 h-4 rtl-flip group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></span>
         </a>
 
         <a href="#image-resizer" class="corner-marks group relative flex flex-col justify-between rounded-2xl border border-teal-400/25 bg-gradient-to-b from-ink-800 to-ink-850 p-6 hover:border-teal-400/60 transition">
@@ -438,12 +449,12 @@
               <span class="w-11 h-11 rounded-xl bg-teal-400/10 border border-teal-400/25 grid place-items-center">
                 <svg class="w-5 h-5 text-teal-300" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 8V4h4M20 8V4h-4M4 16v4h4M20 16v4h-4"/></svg>
               </span>
-              <span class="font-mono text-[10px] font-bold tracking-wider text-teal-950 bg-teal-300 rounded-full px-2.5 py-1">متاحة الآن</span>
+              <span data-i18n="grid.badge" class="font-mono text-[10px] font-bold tracking-wider text-teal-950 bg-teal-300 rounded-full px-2.5 py-1">متاحة الآن</span>
             </div>
-            <h3 class="text-lg font-bold text-white">📐 تغيير أبعاد الصور</h3>
-            <p class="mt-2 text-sm text-ink-300/75 leading-relaxed">تحكّم في عرض وارتفاع الصورة بدقة، مع حفظ النسبة الأصلية تلقائيًا إن أردت.</p>
+            <h3 data-i18n="card.resizer.title" class="text-lg font-bold text-white">📐 تغيير أبعاد الصور</h3>
+            <p data-i18n="card.resizer.desc" class="mt-2 text-sm text-ink-300/75 leading-relaxed">تحكّم في عرض وارتفاع الصورة بدقة، مع حفظ النسبة الأصلية تلقائيًا إن أردت.</p>
           </div>
-          <span class="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-teal-300">افتح الأداة <svg class="w-4 h-4 rotate-180 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></span>
+          <span data-i18n="grid.open" class="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-teal-300">افتح الأداة <svg class="w-4 h-4 rtl-flip group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></span>
         </a>
 
         <a id="dev-tools" href="#json-formatter" class="corner-marks group relative flex flex-col justify-between rounded-2xl border border-teal-400/25 bg-gradient-to-b from-ink-800 to-ink-850 p-6 hover:border-teal-400/60 transition">
@@ -452,12 +463,12 @@
               <span class="w-11 h-11 rounded-xl bg-teal-400/10 border border-teal-400/25 grid place-items-center">
                 <svg class="w-5 h-5 text-teal-300" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 3H6a2 2 0 0 0-2 2v4a2 2 0 0 1-2 2 2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h2M16 3h2a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2 2 2 0 0 0-2 2v4a2 2 0 0 1-2 2h-2"/></svg>
               </span>
-              <span class="font-mono text-[10px] font-bold tracking-wider text-teal-950 bg-teal-300 rounded-full px-2.5 py-1">متاحة الآن</span>
+              <span data-i18n="grid.badge" class="font-mono text-[10px] font-bold tracking-wider text-teal-950 bg-teal-300 rounded-full px-2.5 py-1">متاحة الآن</span>
             </div>
-            <h3 class="text-lg font-bold text-white">🧩 منسّق ومدقّق JSON</h3>
-            <p class="mt-2 text-sm text-ink-300/75 leading-relaxed">نسّق، صغّر، وتحقّق من صحة بيانات JSON فورًا مع رسائل خطأ واضحة.</p>
+            <h3 data-i18n="card.json.title" class="text-lg font-bold text-white">🧩 منسّق ومدقّق JSON</h3>
+            <p data-i18n="card.json.desc" class="mt-2 text-sm text-ink-300/75 leading-relaxed">نسّق، صغّر، وتحقّق من صحة بيانات JSON فورًا مع رسائل خطأ واضحة.</p>
           </div>
-          <span class="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-teal-300">افتح الأداة <svg class="w-4 h-4 rotate-180 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></span>
+          <span data-i18n="grid.open" class="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-teal-300">افتح الأداة <svg class="w-4 h-4 rtl-flip group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></span>
         </a>
 
         <a href="#password-generator" class="corner-marks group relative flex flex-col justify-between rounded-2xl border border-teal-400/25 bg-gradient-to-b from-ink-800 to-ink-850 p-6 hover:border-teal-400/60 transition">
@@ -466,12 +477,12 @@
               <span class="w-11 h-11 rounded-xl bg-teal-400/10 border border-teal-400/25 grid place-items-center">
                 <svg class="w-5 h-5 text-teal-300" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 0 0 2-2v-6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2zM8 11V7a4 4 0 1 1 8 0v4"/></svg>
               </span>
-              <span class="font-mono text-[10px] font-bold tracking-wider text-teal-950 bg-teal-300 rounded-full px-2.5 py-1">متاحة الآن</span>
+              <span data-i18n="grid.badge" class="font-mono text-[10px] font-bold tracking-wider text-teal-950 bg-teal-300 rounded-full px-2.5 py-1">متاحة الآن</span>
             </div>
-            <h3 class="text-lg font-bold text-white">🔐 مولّد كلمات المرور</h3>
-            <p class="mt-2 text-sm text-ink-300/75 leading-relaxed">ولّد كلمات مرور قوية وعشوائية بالطول والخصائص التي تحددها بنقرة واحدة.</p>
+            <h3 data-i18n="card.password.title" class="text-lg font-bold text-white">🔐 مولّد كلمات المرور</h3>
+            <p data-i18n="card.password.desc" class="mt-2 text-sm text-ink-300/75 leading-relaxed">ولّد كلمات مرور قوية وعشوائية بالطول والخصائص التي تحددها بنقرة واحدة.</p>
           </div>
-          <span class="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-teal-300">افتح الأداة <svg class="w-4 h-4 rotate-180 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></span>
+          <span data-i18n="grid.open" class="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-teal-300">افتح الأداة <svg class="w-4 h-4 rtl-flip group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></span>
         </a>
 
         <a href="#base64-tool" class="corner-marks group relative flex flex-col justify-between rounded-2xl border border-teal-400/25 bg-gradient-to-b from-ink-800 to-ink-850 p-6 hover:border-teal-400/60 transition">
@@ -480,12 +491,12 @@
               <span class="w-11 h-11 rounded-xl bg-teal-400/10 border border-teal-400/25 grid place-items-center">
                 <svg class="w-5 h-5 text-teal-300" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16M6 8l-4 4 4 4M18 8l4 4-4 4"/></svg>
               </span>
-              <span class="font-mono text-[10px] font-bold tracking-wider text-teal-950 bg-teal-300 rounded-full px-2.5 py-1">متاحة الآن</span>
+              <span data-i18n="grid.badge" class="font-mono text-[10px] font-bold tracking-wider text-teal-950 bg-teal-300 rounded-full px-2.5 py-1">متاحة الآن</span>
             </div>
-            <h3 class="text-lg font-bold text-white">🔤 ترميز وفك Base64</h3>
-            <p class="mt-2 text-sm text-ink-300/75 leading-relaxed">حوّل النصوص من وإلى Base64 فورًا، مع دعم كامل للحروف العربية.</p>
+            <h3 data-i18n="card.base64.title" class="text-lg font-bold text-white">🔤 ترميز وفك Base64</h3>
+            <p data-i18n="card.base64.desc" class="mt-2 text-sm text-ink-300/75 leading-relaxed">حوّل النصوص من وإلى Base64 فورًا، مع دعم كامل للحروف العربية.</p>
           </div>
-          <span class="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-teal-300">افتح الأداة <svg class="w-4 h-4 rotate-180 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></span>
+          <span data-i18n="grid.open" class="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-teal-300">افتح الأداة <svg class="w-4 h-4 rtl-flip group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></span>
         </a>
 
         <a id="calc-tools" href="#percentage-calculator" class="corner-marks group relative flex flex-col justify-between rounded-2xl border border-teal-400/25 bg-gradient-to-b from-ink-800 to-ink-850 p-6 hover:border-teal-400/60 transition">
@@ -494,12 +505,12 @@
               <span class="w-11 h-11 rounded-xl bg-teal-400/10 border border-teal-400/25 grid place-items-center">
                 <svg class="w-5 h-5 text-teal-300" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 7h6M9 11h6M9 15h3M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/></svg>
               </span>
-              <span class="font-mono text-[10px] font-bold tracking-wider text-teal-950 bg-teal-300 rounded-full px-2.5 py-1">متاحة الآن</span>
+              <span data-i18n="grid.badge" class="font-mono text-[10px] font-bold tracking-wider text-teal-950 bg-teal-300 rounded-full px-2.5 py-1">متاحة الآن</span>
             </div>
-            <h3 class="text-lg font-bold text-white">📊 حاسبة النسب المئوية</h3>
-            <p class="mt-2 text-sm text-ink-300/75 leading-relaxed">احسب النسب، الزيادة، والنقصان في ثوانٍ عبر ثلاث حاسبات متقدمة.</p>
+            <h3 data-i18n="card.percent.title" class="text-lg font-bold text-white">📊 حاسبة النسب المئوية</h3>
+            <p data-i18n="card.percent.desc" class="mt-2 text-sm text-ink-300/75 leading-relaxed">احسب النسب، الزيادة، والنقصان في ثوانٍ عبر ثلاث حاسبات متقدمة.</p>
           </div>
-          <span class="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-teal-300">افتح الأداة <svg class="w-4 h-4 rotate-180 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></span>
+          <span data-i18n="grid.open" class="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-teal-300">افتح الأداة <svg class="w-4 h-4 rtl-flip group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></span>
         </a>
 
         <a href="#unit-converter" class="corner-marks group relative flex flex-col justify-between rounded-2xl border border-teal-400/25 bg-gradient-to-b from-ink-800 to-ink-850 p-6 hover:border-teal-400/60 transition">
@@ -508,12 +519,12 @@
               <span class="w-11 h-11 rounded-xl bg-teal-400/10 border border-teal-400/25 grid place-items-center">
                 <svg class="w-5 h-5 text-teal-300" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 7L9 19l-5.5-5.5M21 7l-6 6"/></svg>
               </span>
-              <span class="font-mono text-[10px] font-bold tracking-wider text-teal-950 bg-teal-300 rounded-full px-2.5 py-1">متاحة الآن</span>
+              <span data-i18n="grid.badge" class="font-mono text-[10px] font-bold tracking-wider text-teal-950 bg-teal-300 rounded-full px-2.5 py-1">متاحة الآن</span>
             </div>
-            <h3 class="text-lg font-bold text-white">📏 محول الوحدات</h3>
-            <p class="mt-2 text-sm text-ink-300/75 leading-relaxed">تحويل فوري بين وحدات الطول، الوزن، والحرارة بدقة متناهية.</p>
+            <h3 data-i18n="card.unit.title" class="text-lg font-bold text-white">📏 محول الوحدات</h3>
+            <p data-i18n="card.unit.desc" class="mt-2 text-sm text-ink-300/75 leading-relaxed">تحويل فوري بين وحدات الطول، الوزن، والحرارة بدقة متناهية.</p>
           </div>
-          <span class="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-teal-300">افتح الأداة <svg class="w-4 h-4 rotate-180 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></span>
+          <span data-i18n="grid.open" class="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-teal-300">افتح الأداة <svg class="w-4 h-4 rtl-flip group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></span>
         </a>
 
         <a id="text-tools" href="#word-counter" class="corner-marks group relative flex flex-col justify-between rounded-2xl border border-teal-400/25 bg-gradient-to-b from-ink-800 to-ink-850 p-6 hover:border-teal-400/60 transition">
@@ -522,12 +533,12 @@
               <span class="w-11 h-11 rounded-xl bg-teal-400/10 border border-teal-400/25 grid place-items-center">
                 <svg class="w-5 h-5 text-teal-300" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 10h16M4 14h10M4 18h6"/></svg>
               </span>
-              <span class="font-mono text-[10px] font-bold tracking-wider text-teal-950 bg-teal-300 rounded-full px-2.5 py-1">متاحة الآن</span>
+              <span data-i18n="grid.badge" class="font-mono text-[10px] font-bold tracking-wider text-teal-950 bg-teal-300 rounded-full px-2.5 py-1">متاحة الآن</span>
             </div>
-            <h3 class="text-lg font-bold text-white">📝 عداد الكلمات والحروف</h3>
-            <p class="mt-2 text-sm text-ink-300/75 leading-relaxed">تتبّع عدد الكلمات والحروف والفقرات في نصك أثناء الكتابة مباشرة.</p>
+            <h3 data-i18n="card.words.title" class="text-lg font-bold text-white">📝 عداد الكلمات والحروف</h3>
+            <p data-i18n="card.words.desc" class="mt-2 text-sm text-ink-300/75 leading-relaxed">تتبّع عدد الكلمات والحروف والفقرات في نصك أثناء الكتابة مباشرة.</p>
           </div>
-          <span class="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-teal-300">افتح الأداة <svg class="w-4 h-4 rotate-180 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></span>
+          <span data-i18n="grid.open" class="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-teal-300">افتح الأداة <svg class="w-4 h-4 rtl-flip group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></span>
         </a>
 
         <a href="#case-converter" class="corner-marks group relative flex flex-col justify-between rounded-2xl border border-teal-400/25 bg-gradient-to-b from-ink-800 to-ink-850 p-6 hover:border-teal-400/60 transition">
@@ -536,12 +547,12 @@
               <span class="w-11 h-11 rounded-xl bg-teal-400/10 border border-teal-400/25 grid place-items-center">
                 <svg class="w-5 h-5 text-teal-300" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 7h4l2 10M9 7l3 10 3-10M17 7h4l-2 10h-2"/></svg>
               </span>
-              <span class="font-mono text-[10px] font-bold tracking-wider text-teal-950 bg-teal-300 rounded-full px-2.5 py-1">متاحة الآن</span>
+              <span data-i18n="grid.badge" class="font-mono text-[10px] font-bold tracking-wider text-teal-950 bg-teal-300 rounded-full px-2.5 py-1">متاحة الآن</span>
             </div>
-            <h3 class="text-lg font-bold text-white">🔠 تحويل حالة الأحرف</h3>
-            <p class="mt-2 text-sm text-ink-300/75 leading-relaxed">حوّل النص الإنجليزي إلى أحرف كبيرة، صغيرة، أو حالة العنوان بنقرة واحدة.</p>
+            <h3 data-i18n="card.case.title" class="text-lg font-bold text-white">🔠 تحويل حالة الأحرف</h3>
+            <p data-i18n="card.case.desc" class="mt-2 text-sm text-ink-300/75 leading-relaxed">حوّل النص الإنجليزي إلى أحرف كبيرة، صغيرة، أو حالة العنوان بنقرة واحدة.</p>
           </div>
-          <span class="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-teal-300">افتح الأداة <svg class="w-4 h-4 rotate-180 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></span>
+          <span data-i18n="grid.open" class="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-teal-300">افتح الأداة <svg class="w-4 h-4 rtl-flip group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></span>
         </a>
 
         <a href="#qr-generator" class="corner-marks group relative flex flex-col justify-between rounded-2xl border border-teal-400/25 bg-gradient-to-b from-ink-800 to-ink-850 p-6 hover:border-teal-400/60 transition">
@@ -555,12 +566,12 @@
                   <path d="M14 14h3v3h-3zM19 14h2v2h-2zM14 19h2v2h-2zM19 19h2v2h-2z" fill="currentColor" stroke="none"/>
                 </svg>
               </span>
-              <span class="font-mono text-[10px] font-bold tracking-wider text-teal-950 bg-teal-300 rounded-full px-2.5 py-1">متاحة الآن</span>
+              <span data-i18n="grid.badge" class="font-mono text-[10px] font-bold tracking-wider text-teal-950 bg-teal-300 rounded-full px-2.5 py-1">متاحة الآن</span>
             </div>
-            <h3 class="text-lg font-bold text-white">🔳 مولّد رموز QR</h3>
-            <p class="mt-2 text-sm text-ink-300/75 leading-relaxed">أنشئ رمز QR من أي رابط أو نص، وحمّله كصورة PNG بشكل محلي بالكامل.</p>
+            <h3 data-i18n="card.qr.title" class="text-lg font-bold text-white">🔳 مولّد رموز QR</h3>
+            <p data-i18n="card.qr.desc" class="mt-2 text-sm text-ink-300/75 leading-relaxed">أنشئ رمز QR من أي رابط أو نص، وحمّله كصورة PNG بشكل محلي بالكامل.</p>
           </div>
-          <span class="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-teal-300">افتح الأداة <svg class="w-4 h-4 rotate-180 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></span>
+          <span data-i18n="grid.open" class="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-teal-300">افتح الأداة <svg class="w-4 h-4 rtl-flip group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></span>
         </a>
       </div>
     </div>
@@ -571,9 +582,9 @@
     <div class="absolute inset-0 bg-gradient-to-b from-ink-900/60 via-ink-900 to-ink-900 pointer-events-none"></div>
     <div class="relative max-w-5xl mx-auto px-5 sm:px-8">
       <div class="mb-10">
-        <span class="font-mono text-xs tracking-widest text-teal-300/80">ACTIVE TOOL / أداة فعّالة</span>
-        <h2 class="mt-2 text-3xl sm:text-4xl font-extrabold text-white">ضاغط الصور</h2>
-        <p class="mt-3 text-ink-300/75 leading-relaxed max-w-2xl">
+        <span data-i18n="tool.eyebrow" class="font-mono text-xs tracking-widest text-teal-300/80">ACTIVE TOOL / أداة فعّالة</span>
+        <h2 data-i18n="tool.compressor.title" class="mt-2 text-3xl sm:text-4xl font-extrabold text-white">ضاغط الصور</h2>
+        <p data-i18n="tool.compressor.desc" class="mt-3 text-ink-300/75 leading-relaxed max-w-2xl">
           ارفع صورة بصيغة PNG أو JPEG، اختر صيغة الإخراج، اضبط مستوى الجودة، وحمّل النسخة المضغوطة فوراً محلياً داخل متصفحك.
         </p>
       </div>
@@ -585,27 +596,27 @@
               <svg class="w-6 h-6 text-teal-300" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5V19a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-2.5M7 10l5 5 5-5M12 15V3"/></svg>
             </span>
             <div>
-              <p class="font-semibold text-white">اسحب وأفلت صورتك هنا</p>
-              <p class="text-sm text-ink-300/70 mt-1">أو <span class="text-teal-300 font-semibold">اختر ملفًا</span> من جهازك</p>
+              <p data-i18n="drop.title" class="font-semibold text-white">اسحب وأفلت صورتك هنا</p>
+              <p class="text-sm text-ink-300/70 mt-1"><span data-i18n="drop.or">أو</span> <span data-i18n="drop.choose" class="text-teal-300 font-semibold">اختر ملفًا</span> <span data-i18n="drop.fromDevice">من جهازك</span></p>
             </div>
           </div>
         </div>
         <div id="workspace" class="hidden mt-8">
           <div class="flex flex-wrap items-center gap-3 rounded-xl border border-white/10 bg-ink-900/50 px-5 py-4 mb-4">
-            <span class="font-mono text-xs text-ink-300/70 whitespace-nowrap">صيغة الإخراج</span>
+            <span data-i18n="compressor.outputFormat" class="font-mono text-xs text-ink-300/70 whitespace-nowrap">صيغة الإخراج</span>
             <div class="flex flex-wrap gap-2" id="formatTabs">
               <button data-format="jpeg" class="format-tab active-format px-4 py-2 rounded-full text-sm font-semibold transition">JPEG</button>
               <button data-format="webp" class="format-tab px-4 py-2 rounded-full text-sm font-semibold transition">WebP</button>
             </div>
-            <span id="webpUnsupportedNote" class="hidden font-mono text-[11px] text-amber-300">متصفحك لا يدعم WebP للتصدير.</span>
+            <span id="webpUnsupportedNote" data-i18n="compressor.webpUnsupported" class="hidden font-mono text-[11px] text-amber-300">متصفحك لا يدعم WebP للتصدير.</span>
           </div>
           <div class="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8 rounded-xl border border-white/10 bg-ink-900/50 px-5 py-4 mb-6">
-            <label for="qualityRange" class="font-mono text-xs text-ink-300/70 whitespace-nowrap">مستوى الجودة</label>
+            <label for="qualityRange" data-i18n="compressor.quality" class="font-mono text-xs text-ink-300/70 whitespace-nowrap">مستوى الجودة</label>
             <input id="qualityRange" type="range" min="0.1" max="1" step="0.05" value="0.7" class="w-full sm:w-64" />
             <span id="qualityValue" class="font-mono text-sm font-bold text-teal-300 w-12 text-left">70%</span>
             <div class="flex items-center gap-4 sm:mr-auto">
-              <button id="clearCompressorBtn" class="text-sm font-semibold text-ink-300/80 hover:text-white transition">مسح المحتوى</button>
-              <button id="newImageBtn" class="text-sm font-semibold text-ink-300/80 hover:text-white transition">صورة جديدة</button>
+              <button id="clearCompressorBtn" data-i18n="action.clear" class="text-sm font-semibold text-ink-300/80 hover:text-white transition">مسح المحتوى</button>
+              <button id="newImageBtn" data-i18n="action.newImage" class="text-sm font-semibold text-ink-300/80 hover:text-white transition">صورة جديدة</button>
             </div>
           </div>
           <div class="grid sm:grid-cols-2 gap-5">
@@ -614,7 +625,7 @@
                 <img id="originalPreview" class="max-w-full max-h-full object-contain" alt="الأصلية" />
               </div>
               <div class="px-4 py-3 flex items-center justify-between border-t border-white/10">
-                <span class="text-xs font-semibold text-ink-300/70">قبل الضغط</span>
+                <span data-i18n="compressor.before" class="text-xs font-semibold text-ink-300/70">قبل الضغط</span>
                 <span id="originalSize" class="font-mono text-sm font-bold text-white">—</span>
               </div>
             </div>
@@ -623,14 +634,14 @@
                 <img id="compressedPreview" class="max-w-full max-h-full object-contain" alt="المضغوطة" />
               </div>
               <div class="px-4 py-3 flex items-center justify-between border-t border-white/10">
-                <span class="text-xs font-semibold text-teal-300">بعد الضغط</span>
+                <span data-i18n="compressor.after" class="text-xs font-semibold text-teal-300">بعد الضغط</span>
                 <span id="compressedSize" class="font-mono text-sm font-bold text-teal-300">—</span>
               </div>
             </div>
           </div>
           <div class="mt-6 flex flex-col sm:flex-row sm:items-center gap-4 rounded-xl border border-white/10 bg-ink-900/50 px-5 py-4">
-            <div class="font-mono text-sm text-ink-200">نسبة التوفير: <span id="savingsPercent" class="text-teal-300 font-bold">—</span></div>
-            <a id="downloadBtn" download="compressed-image.jpg" class="sm:mr-auto inline-flex items-center justify-center gap-2 rounded-full bg-teal-400 text-ink-950 font-bold px-6 py-3 shadow-glow hover:bg-teal-300 transition pointer-events-none opacity-50">تحميل الصورة المضغوطة</a>
+            <div class="font-mono text-sm text-ink-200"><span data-i18n="compressor.savings">نسبة التوفير:</span> <span id="savingsPercent" class="text-teal-300 font-bold">—</span></div>
+            <a id="downloadBtn" download="compressed-image.jpg" data-i18n="compressor.download" class="sm:mr-auto inline-flex items-center justify-center gap-2 rounded-full bg-teal-400 text-ink-950 font-bold px-6 py-3 shadow-glow hover:bg-teal-300 transition pointer-events-none opacity-50">تحميل الصورة المضغوطة</a>
           </div>
           <p id="statusMsg" class="mt-3 text-xs text-ink-400/70 font-mono"></p>
         </div>
@@ -643,9 +654,9 @@
     <div class="absolute inset-0 bg-gradient-to-b from-ink-900/60 via-ink-900 to-ink-900 pointer-events-none"></div>
     <div class="relative max-w-5xl mx-auto px-5 sm:px-8">
       <div class="mb-10">
-        <span class="font-mono text-xs tracking-widest text-teal-300/80">ACTIVE TOOL / أداة فعّالة</span>
-        <h2 class="mt-2 text-3xl sm:text-4xl font-extrabold text-white">تغيير أبعاد الصور</h2>
-        <p class="mt-3 text-ink-300/75 leading-relaxed max-w-2xl">تحكّم في عرض وارتفاع الصورة وحمّلها بالقياسات الجديدة.</p>
+        <span data-i18n="tool.eyebrow" class="font-mono text-xs tracking-widest text-teal-300/80">ACTIVE TOOL / أداة فعّالة</span>
+        <h2 data-i18n="tool.resizer.title" class="mt-2 text-3xl sm:text-4xl font-extrabold text-white">تغيير أبعاد الصور</h2>
+        <p data-i18n="tool.resizer.desc" class="mt-3 text-ink-300/75 leading-relaxed max-w-2xl">تحكّم في عرض وارتفاع الصورة وحمّلها بالقياسات الجديدة.</p>
       </div>
       <div class="rounded-2xl border border-white/10 bg-ink-850/70 p-5 sm:p-8">
         <div id="resizeDropZone" tabindex="0" class="focus-ring relative rounded-xl border-2 border-dashed border-white/15 hover:border-teal-400/50 transition-colors cursor-pointer bg-ink-900/40 px-6 py-14 text-center">
@@ -655,8 +666,8 @@
               <svg class="w-6 h-6 text-teal-300" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 8V4h4M20 8V4h-4M4 16v4h4M20 16v4h-4"/></svg>
             </span>
             <div>
-              <p class="font-semibold text-white">اسحب وأفلت صورتك هنا لتغيير أبعادها</p>
-              <p class="text-sm text-ink-300/70 mt-1">PNG أو JPEG</p>
+              <p data-i18n="resizer.dropTitle" class="font-semibold text-white">اسحب وأفلت صورتك هنا لتغيير أبعادها</p>
+              <p data-i18n="resizer.dropHint" class="text-sm text-ink-300/70 mt-1">PNG أو JPEG</p>
             </div>
           </div>
         </div>
@@ -664,22 +675,22 @@
           <div class="rounded-xl border border-white/10 bg-ink-900/50 px-5 py-5 mb-6">
             <div class="flex flex-wrap items-end gap-4">
               <div>
-                <label for="resizeWidth" class="block font-mono text-xs text-ink-300/70 mb-1.5">العرض (px)</label>
+                <label for="resizeWidth" data-i18n="resizer.width" class="block font-mono text-xs text-ink-300/70 mb-1.5">العرض (px)</label>
                 <input id="resizeWidth" type="number" min="1" class="w-32 rounded-lg bg-ink-950 border border-white/10 px-3 py-2 font-mono text-sm text-white focus:outline-none" />
               </div>
               <button id="swapDimsBtn" class="mb-0.5 w-10 h-10 grid place-items-center rounded-lg border border-white/10 text-ink-300 hover:text-teal-300 transition">⥂</button>
               <div>
-                <label for="resizeHeight" class="block font-mono text-xs text-ink-300/70 mb-1.5">الارتفاع (px)</label>
+                <label for="resizeHeight" data-i18n="resizer.height" class="block font-mono text-xs text-ink-300/70 mb-1.5">الارتفاع (px)</label>
                 <input id="resizeHeight" type="number" min="1" class="w-32 rounded-lg bg-ink-950 border border-white/10 px-3 py-2 font-mono text-sm text-white focus:outline-none" />
               </div>
               <label class="check-tile flex items-center gap-2.5 rounded-xl border border-white/10 bg-ink-950/60 px-3.5 py-2.5 cursor-pointer">
                 <input type="checkbox" id="lockAspect" checked />
                 <span class="box"><svg fill="none" stroke="#0b1220" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span>
-                <span class="text-sm text-ink-100">حفظ النسبة</span>
+                <span data-i18n="resizer.lockAspect" class="text-sm text-ink-100">حفظ النسبة</span>
               </label>
-              <button id="applyResizeBtn" class="inline-flex items-center gap-2 rounded-full bg-teal-400 text-ink-950 font-bold text-sm px-5 py-2.5 shadow-glow hover:bg-teal-300 transition">تطبيق التغيير</button>
-              <button id="clearResizeBtn" class="sm:mr-auto text-sm font-semibold text-ink-300/80 hover:text-white">مسح</button>
-              <button id="newResizeImageBtn" class="text-sm font-semibold text-ink-300/80 hover:text-white">صورة جديدة</button>
+              <button id="applyResizeBtn" data-i18n="resizer.apply" class="inline-flex items-center gap-2 rounded-full bg-teal-400 text-ink-950 font-bold text-sm px-5 py-2.5 shadow-glow hover:bg-teal-300 transition">تطبيق التغيير</button>
+              <button id="clearResizeBtn" data-i18n="action.clearShort" class="sm:mr-auto text-sm font-semibold text-ink-300/80 hover:text-white">مسح</button>
+              <button id="newResizeImageBtn" data-i18n="action.newImage" class="text-sm font-semibold text-ink-300/80 hover:text-white">صورة جديدة</button>
             </div>
           </div>
           <div class="grid sm:grid-cols-2 gap-5">
@@ -688,7 +699,7 @@
                 <img id="resizeOriginalPreview" class="max-w-full max-h-full object-contain" alt="الأصلية" />
               </div>
               <div class="px-4 py-3 flex items-center justify-between border-t border-white/10">
-                <span class="text-xs font-semibold text-ink-300/70">الأبعاد الأصلية</span>
+                <span data-i18n="resizer.originalDims" class="text-xs font-semibold text-ink-300/70">الأبعاد الأصلية</span>
                 <span id="resizeOriginalDims" class="font-mono text-sm font-bold text-white">—</span>
               </div>
             </div>
@@ -697,13 +708,13 @@
                 <img id="resizedPreview" class="max-w-full max-h-full object-contain" alt="الجديدة" />
               </div>
               <div class="px-4 py-3 flex items-center justify-between border-t border-white/10">
-                <span class="text-xs font-semibold text-teal-300">الأبعاد الجديدة</span>
+                <span data-i18n="resizer.newDims" class="text-xs font-semibold text-teal-300">الأبعاد الجديدة</span>
                 <span id="resizeNewDims" class="font-mono text-sm font-bold text-teal-300">—</span>
               </div>
             </div>
           </div>
           <div class="mt-6 flex items-center gap-4 rounded-xl border border-white/10 bg-ink-900/50 px-5 py-4">
-            <a id="resizeDownloadBtn" download="resized-image.png" class="mr-auto inline-flex items-center justify-center gap-2 rounded-full bg-teal-400 text-ink-950 font-bold px-6 py-3 shadow-glow pointer-events-none opacity-50">تحميل الصورة الجديدة</a>
+            <a id="resizeDownloadBtn" download="resized-image.png" data-i18n="resizer.download" class="mr-auto inline-flex items-center justify-center gap-2 rounded-full bg-teal-400 text-ink-950 font-bold px-6 py-3 shadow-glow pointer-events-none opacity-50">تحميل الصورة الجديدة</a>
           </div>
         </div>
       </div>
@@ -714,36 +725,36 @@
   <section id="json-formatter" class="relative py-20 md:py-28 border-t border-white/5">
     <div class="max-w-6xl mx-auto px-5 sm:px-8">
       <div class="mb-10">
-        <span class="font-mono text-xs tracking-widest text-teal-300/80">ACTIVE TOOL / أداة فعّالة</span>
-        <h2 class="mt-2 text-3xl sm:text-4xl font-extrabold text-white">منسّق ومدقّق JSON</h2>
-        <p class="mt-3 text-ink-300/75 leading-relaxed max-w-2xl">نسّق وصغّر وافحص أخطاء كود JSON فوراً.</p>
+        <span data-i18n="tool.eyebrow" class="font-mono text-xs tracking-widest text-teal-300/80">ACTIVE TOOL / أداة فعّالة</span>
+        <h2 data-i18n="tool.json.title" class="mt-2 text-3xl sm:text-4xl font-extrabold text-white">منسّق ومدقّق JSON</h2>
+        <p data-i18n="tool.json.desc" class="mt-3 text-ink-300/75 leading-relaxed max-w-2xl">نسّق وصغّر وافحص أخطاء كود JSON فوراً.</p>
       </div>
       <div class="rounded-2xl border border-white/10 bg-ink-850/70 p-5 sm:p-8">
         <div class="flex flex-wrap items-center gap-3 mb-6">
-          <button id="jsonBeautifyBtn" class="inline-flex items-center gap-2 rounded-full bg-teal-400 text-ink-950 font-bold text-sm px-5 py-2.5 shadow-glow hover:bg-teal-300 transition">تنسيق (Beautify)</button>
-          <button id="jsonMinifyBtn" class="inline-flex items-center gap-2 rounded-full border border-white/15 text-ink-100 font-semibold text-sm px-5 py-2.5 hover:bg-white/5 transition">تصغير (Minify)</button>
-          <button id="jsonCopyBtn" class="inline-flex items-center gap-2 rounded-full border border-white/15 text-ink-100 font-semibold text-sm px-5 py-2.5 hover:bg-white/5 transition">نسخ النتيجة</button>
-          <button id="jsonClearBtn" class="sm:mr-auto inline-flex items-center gap-2 text-sm font-semibold text-ink-300/80 hover:text-white">مسح</button>
+          <button id="jsonBeautifyBtn" data-i18n="json.beautify" class="inline-flex items-center gap-2 rounded-full bg-teal-400 text-ink-950 font-bold text-sm px-5 py-2.5 shadow-glow hover:bg-teal-300 transition">تنسيق (Beautify)</button>
+          <button id="jsonMinifyBtn" data-i18n="json.minify" class="inline-flex items-center gap-2 rounded-full border border-white/15 text-ink-100 font-semibold text-sm px-5 py-2.5 hover:bg-white/5 transition">تصغير (Minify)</button>
+          <button id="jsonCopyBtn" data-i18n="action.copyResult" class="inline-flex items-center gap-2 rounded-full border border-white/15 text-ink-100 font-semibold text-sm px-5 py-2.5 hover:bg-white/5 transition">نسخ النتيجة</button>
+          <button id="jsonClearBtn" data-i18n="action.clearShort" class="sm:mr-auto inline-flex items-center gap-2 text-sm font-semibold text-ink-300/80 hover:text-white">مسح</button>
         </div>
         <div class="grid lg:grid-cols-2 gap-5">
           <div class="corner-marks rounded-xl border border-white/10 overflow-hidden bg-ink-900/50 flex flex-col">
             <div class="px-4 py-2.5 border-b border-white/10 flex items-center justify-between">
               <span class="font-mono text-xs text-ink-300/70">JSON.input</span>
-              <span id="jsonInputCount" class="font-mono text-[11px] text-ink-400/60">0 حرف</span>
+              <span id="jsonInputCount" class="font-mono text-[11px] text-ink-400/60" data-count-suffix="chars">0 حرف</span>
             </div>
             <textarea id="jsonInput" spellcheck="false" placeholder='{ "example": true }' class="code-area w-full h-72 sm:h-80 resize-none bg-transparent p-4 font-mono text-sm text-ink-100 focus:outline-none" dir="ltr"></textarea>
           </div>
           <div class="corner-marks rounded-xl border border-teal-400/25 overflow-hidden bg-ink-900/50 flex flex-col">
             <div class="px-4 py-2.5 border-b border-white/10 flex items-center justify-between">
               <span class="font-mono text-xs text-teal-300">JSON.output</span>
-              <span id="jsonOutputCount" class="font-mono text-[11px] text-ink-400/60">0 حرف</span>
+              <span id="jsonOutputCount" class="font-mono text-[11px] text-ink-400/60" data-count-suffix="chars">0 حرف</span>
             </div>
             <textarea id="jsonOutput" spellcheck="false" readonly placeholder="ستظهر النتيجة هنا..." class="code-area w-full h-72 sm:h-80 resize-none bg-transparent p-4 font-mono text-sm text-teal-100 focus:outline-none" dir="ltr"></textarea>
           </div>
         </div>
         <div id="jsonStatus" class="hidden mt-5 rounded-xl border px-4 py-3 font-mono text-sm"></div>
         <div class="relative mt-2">
-          <div id="jsonCopyToast" class="absolute left-0 -top-2 inline-flex items-center gap-1.5 rounded-full bg-teal-400 text-ink-950 text-xs font-bold px-3 py-1.5">تم نسخ النتيجة</div>
+          <div id="jsonCopyToast" data-i18n="toast.copied" class="absolute left-0 -top-2 inline-flex items-center gap-1.5 rounded-full bg-teal-400 text-ink-950 text-xs font-bold px-3 py-1.5">تم نسخ النتيجة</div>
         </div>
       </div>
     </div>
@@ -754,33 +765,33 @@
     <div class="absolute inset-0 bg-gradient-to-b from-ink-900/60 via-ink-900 to-ink-900 pointer-events-none"></div>
     <div class="relative max-w-5xl mx-auto px-5 sm:px-8">
       <div class="mb-10">
-        <span class="font-mono text-xs tracking-widest text-teal-300/80">ACTIVE TOOL / أداة فعّالة</span>
-        <h2 class="mt-2 text-3xl sm:text-4xl font-extrabold text-white">عداد الكلمات والحروف والفقرات</h2>
+        <span data-i18n="tool.eyebrow" class="font-mono text-xs tracking-widest text-teal-300/80">ACTIVE TOOL / أداة فعّالة</span>
+        <h2 data-i18n="tool.words.title" class="mt-2 text-3xl sm:text-4xl font-extrabold text-white">عداد الكلمات والحروف والفقرات</h2>
       </div>
       <div class="rounded-2xl border border-white/10 bg-ink-850/70 p-5 sm:p-8">
         <div class="corner-marks rounded-xl border border-white/10 overflow-hidden bg-ink-900/50 flex flex-col">
           <div class="px-4 py-2.5 border-b border-white/10 flex items-center justify-between">
-            <span class="font-mono text-xs text-ink-300/70">النص</span>
-            <button id="textClearBtn" class="text-xs font-semibold text-ink-300/80 hover:text-white">مسح المحتوى</button>
+            <span data-i18n="words.text" class="font-mono text-xs text-ink-300/70">النص</span>
+            <button id="textClearBtn" data-i18n="action.clear" class="text-xs font-semibold text-ink-300/80 hover:text-white">مسح المحتوى</button>
           </div>
-          <textarea id="textCounterInput" spellcheck="false" placeholder="ابدأ الكتابة أو الصق نصك هنا..." class="code-area w-full h-64 sm:h-72 resize-none bg-transparent p-4 font-sans text-sm text-ink-100 focus:outline-none"></textarea>
+          <textarea id="textCounterInput" spellcheck="false" placeholder="ابدأ الكتابة أو الصق نصك هنا..." data-ph-key="words.placeholder" class="code-area w-full h-64 sm:h-72 resize-none bg-transparent p-4 font-sans text-sm text-ink-100 focus:outline-none"></textarea>
         </div>
         <div class="mt-6 grid grid-cols-2 md:grid-cols-4 gap-4 font-mono">
           <div class="corner-marks rounded-xl border border-white/10 bg-ink-900/50 px-4 py-4 text-center">
             <div id="statWords" class="text-2xl font-bold text-teal-300">0</div>
-            <div class="text-[11px] text-ink-300/70 mt-1">كلمة</div>
+            <div data-i18n="words.words" class="text-[11px] text-ink-300/70 mt-1">كلمة</div>
           </div>
           <div class="corner-marks rounded-xl border border-white/10 bg-ink-900/50 px-4 py-4 text-center">
             <div id="statChars" class="text-2xl font-bold text-teal-300">0</div>
-            <div class="text-[11px] text-ink-300/70 mt-1">حرف (مع المسافات)</div>
+            <div data-i18n="words.charsWithSpace" class="text-[11px] text-ink-300/70 mt-1">حرف (مع المسافات)</div>
           </div>
           <div class="corner-marks rounded-xl border border-white/10 bg-ink-900/50 px-4 py-4 text-center">
             <div id="statCharsNoSpace" class="text-2xl font-bold text-teal-300">0</div>
-            <div class="text-[11px] text-ink-300/70 mt-1">حرف (بدون مسافات)</div>
+            <div data-i18n="words.charsNoSpace" class="text-[11px] text-ink-300/70 mt-1">حرف (بدون مسافات)</div>
           </div>
           <div class="corner-marks rounded-xl border border-white/10 bg-ink-900/50 px-4 py-4 text-center">
             <div id="statParagraphs" class="text-2xl font-bold text-teal-300">0</div>
-            <div class="text-[11px] text-ink-300/70 mt-1">فقرة</div>
+            <div data-i18n="words.paragraphs" class="text-[11px] text-ink-300/70 mt-1">فقرة</div>
           </div>
         </div>
       </div>
@@ -791,8 +802,8 @@
   <section id="case-converter" class="relative py-20 md:py-28 border-t border-white/5">
     <div class="max-w-5xl mx-auto px-5 sm:px-8">
       <div class="mb-10">
-        <span class="font-mono text-xs tracking-widest text-teal-300/80">ACTIVE TOOL / أداة فعّالة</span>
-        <h2 class="mt-2 text-3xl sm:text-4xl font-extrabold text-white">تحويل حالة الأحرف</h2>
+        <span data-i18n="tool.eyebrow" class="font-mono text-xs tracking-widest text-teal-300/80">ACTIVE TOOL / أداة فعّالة</span>
+        <h2 data-i18n="tool.case.title" class="mt-2 text-3xl sm:text-4xl font-extrabold text-white">تحويل حالة الأحرف</h2>
       </div>
       <div class="rounded-2xl border border-white/10 bg-ink-850/70 p-5 sm:p-8">
         <div class="flex flex-wrap items-center gap-3 mb-6">
@@ -800,8 +811,8 @@
           <button id="caseLowerBtn" class="rounded-full border border-white/15 text-ink-100 font-semibold text-sm px-5 py-2.5 hover:bg-white/5">lowercase</button>
           <button id="caseTitleBtn" class="rounded-full border border-white/15 text-ink-100 font-semibold text-sm px-5 py-2.5 hover:bg-white/5">Title Case</button>
           <button id="caseSentenceBtn" class="rounded-full border border-white/15 text-ink-100 font-semibold text-sm px-5 py-2.5 hover:bg-white/5">Sentence case</button>
-          <button id="caseCopyBtn" class="rounded-full border border-white/15 text-ink-100 font-semibold text-sm px-5 py-2.5 hover:bg-white/5">نسخ النتيجة</button>
-          <button id="caseClearBtn" class="sm:mr-auto text-sm font-semibold text-ink-300/80 hover:text-white">مسح</button>
+          <button id="caseCopyBtn" data-i18n="action.copyResult" class="rounded-full border border-white/15 text-ink-100 font-semibold text-sm px-5 py-2.5 hover:bg-white/5">نسخ النتيجة</button>
+          <button id="caseClearBtn" data-i18n="action.clearShort" class="sm:mr-auto text-sm font-semibold text-ink-300/80 hover:text-white">مسح</button>
         </div>
         <div class="grid lg:grid-cols-2 gap-5">
           <div class="corner-marks rounded-xl border border-white/10 overflow-hidden bg-ink-900/50 flex flex-col">
@@ -814,7 +825,7 @@
           </div>
         </div>
         <div class="relative mt-2">
-          <div id="caseCopyToast" class="absolute left-0 -top-2 inline-flex items-center gap-1.5 rounded-full bg-teal-400 text-ink-950 text-xs font-bold px-3 py-1.5">تم نسخ النتيجة</div>
+          <div id="caseCopyToast" data-i18n="toast.copied" class="absolute left-0 -top-2 inline-flex items-center gap-1.5 rounded-full bg-teal-400 text-ink-950 text-xs font-bold px-3 py-1.5">تم نسخ النتيجة</div>
         </div>
       </div>
     </div>
@@ -825,19 +836,19 @@
     <div class="absolute inset-0 bg-gradient-to-b from-ink-900/60 via-ink-900 to-ink-900 pointer-events-none"></div>
     <div class="relative max-w-4xl mx-auto px-5 sm:px-8">
       <div class="mb-10">
-        <span class="font-mono text-xs tracking-widest text-teal-300/80">ACTIVE TOOL / أداة فعّالة</span>
-        <h2 class="mt-2 text-3xl sm:text-4xl font-extrabold text-white">مولّد كلمات المرور الآمنة</h2>
+        <span data-i18n="tool.eyebrow" class="font-mono text-xs tracking-widest text-teal-300/80">ACTIVE TOOL / أداة فعّالة</span>
+        <h2 data-i18n="tool.password.title" class="mt-2 text-3xl sm:text-4xl font-extrabold text-white">مولّد كلمات المرور الآمنة</h2>
       </div>
       <div class="rounded-2xl border border-white/10 bg-ink-850/70 p-5 sm:p-8">
         <div class="corner-marks relative rounded-xl border border-teal-400/25 bg-ink-900/60 px-5 py-6 flex items-center gap-4">
           <input id="passwordOutput" type="text" readonly value="اضغط «توليد كلمة مرور» للبدء" class="flex-1 min-w-0 bg-transparent font-mono text-lg sm:text-xl font-bold text-teal-200 focus:outline-none" dir="ltr" />
           <button id="copyPasswordBtn" aria-label="نسخ" class="relative shrink-0 w-11 h-11 grid place-items-center rounded-lg border border-white/10 text-ink-200 hover:text-teal-300 transition">
             <svg class="w-4.5 h-4.5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2m-6 4h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-8a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2z"/></svg>
-            <div id="copyToast" class="absolute -top-11 left-1/2 -translate-x-1/2 whitespace-nowrap inline-flex items-center gap-1.5 rounded-full bg-teal-400 text-ink-950 text-xs font-bold px-3 py-1.5">تم النسخ</div>
+            <div id="copyToast" data-i18n="toast.copiedOnly" class="absolute -top-11 left-1/2 -translate-x-1/2 whitespace-nowrap inline-flex items-center gap-1.5 rounded-full bg-teal-400 text-ink-950 text-xs font-bold px-3 py-1.5">تم النسخ</div>
           </button>
         </div>
         <div class="mt-8 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8">
-          <label for="lengthRange" class="font-mono text-xs text-ink-300/70 whitespace-nowrap">طول كلمة المرور</label>
+          <label for="lengthRange" data-i18n="password.length" class="font-mono text-xs text-ink-300/70 whitespace-nowrap">طول كلمة المرور</label>
           <input id="lengthRange" type="range" min="8" max="32" step="1" value="16" class="w-full sm:w-72" />
           <span id="lengthValue" class="font-mono text-sm font-bold text-teal-300 w-16 text-left">16 حرفًا</span>
         </div>
@@ -864,8 +875,8 @@
           </label>
         </div>
         <div class="mt-8 flex flex-col sm:flex-row items-center gap-4">
-          <button id="generatePasswordBtn" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-teal-400 text-ink-950 font-bold px-6 py-3.5 shadow-glow">توليد كلمة مرور</button>
-          <button id="clearPasswordBtn" class="w-full sm:w-auto sm:mr-auto text-sm font-semibold text-ink-300/80 hover:text-white">إعادة ضبط</button>
+          <button id="generatePasswordBtn" data-i18n="password.generate" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-teal-400 text-ink-950 font-bold px-6 py-3.5 shadow-glow">توليد كلمة مرور</button>
+          <button id="clearPasswordBtn" data-i18n="password.reset" class="w-full sm:w-auto sm:mr-auto text-sm font-semibold text-ink-300/80 hover:text-white">إعادة ضبط</button>
           <p id="passwordStatus" class="text-xs text-ink-400/70 font-mono"></p>
         </div>
       </div>
@@ -876,15 +887,15 @@
   <section id="base64-tool" class="relative py-20 md:py-28 border-t border-white/5">
     <div class="max-w-6xl mx-auto px-5 sm:px-8">
       <div class="mb-10">
-        <span class="font-mono text-xs tracking-widest text-teal-300/80">ACTIVE TOOL / أداة فعّالة</span>
-        <h2 class="mt-2 text-3xl sm:text-4xl font-extrabold text-white">ترميز وفك Base64</h2>
+        <span data-i18n="tool.eyebrow" class="font-mono text-xs tracking-widest text-teal-300/80">ACTIVE TOOL / أداة فعّالة</span>
+        <h2 data-i18n="tool.base64.title" class="mt-2 text-3xl sm:text-4xl font-extrabold text-white">ترميز وفك Base64</h2>
       </div>
       <div class="rounded-2xl border border-white/10 bg-ink-850/70 p-5 sm:p-8">
         <div class="flex flex-wrap items-center gap-3 mb-6">
-          <button id="b64EncodeBtn" class="rounded-full bg-teal-400 text-ink-950 font-bold text-sm px-5 py-2.5 shadow-glow">ترميز (Encode)</button>
-          <button id="b64DecodeBtn" class="rounded-full border border-white/15 text-ink-100 font-semibold text-sm px-5 py-2.5 hover:bg-white/5">فك الترميز (Decode)</button>
-          <button id="b64CopyBtn" class="rounded-full border border-white/15 text-ink-100 font-semibold text-sm px-5 py-2.5 hover:bg-white/5">نسخ النتيجة</button>
-          <button id="b64ClearBtn" class="sm:mr-auto text-sm font-semibold text-ink-300/80 hover:text-white">مسح</button>
+          <button id="b64EncodeBtn" data-i18n="base64.encode" class="rounded-full bg-teal-400 text-ink-950 font-bold text-sm px-5 py-2.5 shadow-glow">ترميز (Encode)</button>
+          <button id="b64DecodeBtn" data-i18n="base64.decode" class="rounded-full border border-white/15 text-ink-100 font-semibold text-sm px-5 py-2.5 hover:bg-white/5">فك الترميز (Decode)</button>
+          <button id="b64CopyBtn" data-i18n="action.copyResult" class="rounded-full border border-white/15 text-ink-100 font-semibold text-sm px-5 py-2.5 hover:bg-white/5">نسخ النتيجة</button>
+          <button id="b64ClearBtn" data-i18n="action.clearShort" class="sm:mr-auto text-sm font-semibold text-ink-300/80 hover:text-white">مسح</button>
         </div>
         <div class="grid lg:grid-cols-2 gap-5">
           <div class="corner-marks rounded-xl border border-white/10 overflow-hidden bg-ink-900/50 flex flex-col">
@@ -898,7 +909,7 @@
         </div>
         <div id="b64Status" class="hidden mt-5 rounded-xl border px-4 py-3 font-mono text-sm"></div>
         <div class="relative mt-2">
-          <div id="b64CopyToast" class="absolute left-0 -top-2 inline-flex items-center gap-1.5 rounded-full bg-teal-400 text-ink-950 text-xs font-bold px-3 py-1.5">تم نسخ النتيجة</div>
+          <div id="b64CopyToast" data-i18n="toast.copied" class="absolute left-0 -top-2 inline-flex items-center gap-1.5 rounded-full bg-teal-400 text-ink-950 text-xs font-bold px-3 py-1.5">تم نسخ النتيجة</div>
         </div>
       </div>
     </div>
@@ -910,61 +921,61 @@
     <div class="relative max-w-6xl mx-auto px-5 sm:px-8">
       <div class="mb-10 flex flex-wrap items-end justify-between gap-4">
         <div>
-          <span class="font-mono text-xs tracking-widest text-teal-300/80">ACTIVE TOOL / أداة فعّالة</span>
-          <h2 class="mt-2 text-3xl sm:text-4xl font-extrabold text-white">حاسبة النسب المئوية</h2>
+          <span data-i18n="tool.eyebrow" class="font-mono text-xs tracking-widest text-teal-300/80">ACTIVE TOOL / أداة فعّالة</span>
+          <h2 data-i18n="tool.percent.title" class="mt-2 text-3xl sm:text-4xl font-extrabold text-white">حاسبة النسب المئوية</h2>
         </div>
-        <button id="clearPercentBtn" class="text-sm font-semibold text-ink-300/80 hover:text-white rounded-full border border-white/10 px-4 py-2.5">إعادة ضبط</button>
+        <button id="clearPercentBtn" data-i18n="password.reset" class="text-sm font-semibold text-ink-300/80 hover:text-white rounded-full border border-white/10 px-4 py-2.5">إعادة ضبط</button>
       </div>
       <div class="grid md:grid-cols-3 gap-5">
         <div class="corner-marks rounded-2xl border border-white/10 bg-ink-850/70 p-6 flex flex-col">
-          <h3 class="font-bold text-white mb-1">ما هو X% من رقم؟</h3>
+          <h3 data-i18n="percent.card1.title" class="font-bold text-white mb-1">ما هو X% من رقم؟</h3>
           <div class="space-y-3 mt-4">
             <div>
-              <label class="block font-mono text-xs text-ink-300/70 mb-1.5">النسبة X (%)</label>
+              <label data-i18n="percent.card1.label1" class="block font-mono text-xs text-ink-300/70 mb-1.5">النسبة X (%)</label>
               <input id="pc1_percent" type="number" value="20" class="w-full rounded-lg bg-ink-950 border border-white/10 px-3 py-2.5 font-mono text-sm text-white focus:outline-none" />
             </div>
             <div>
-              <label class="block font-mono text-xs text-ink-300/70 mb-1.5">الرقم Y</label>
+              <label data-i18n="percent.card1.label2" class="block font-mono text-xs text-ink-300/70 mb-1.5">الرقم Y</label>
               <input id="pc1_number" type="number" value="150" class="w-full rounded-lg bg-ink-950 border border-white/10 px-3 py-2.5 font-mono text-sm text-white focus:outline-none" />
             </div>
           </div>
           <div class="mt-5 pt-5 border-t border-white/10 mt-auto">
-            <span class="block font-mono text-xs text-ink-300/60 mb-1">النتيجة</span>
+            <span data-i18n="percent.result" class="block font-mono text-xs text-ink-300/60 mb-1">النتيجة</span>
             <span id="pc1_result" class="font-mono text-2xl font-bold text-teal-300">30</span>
           </div>
         </div>
         <div class="corner-marks rounded-2xl border border-white/10 bg-ink-850/70 p-6 flex flex-col">
-          <h3 class="font-bold text-white mb-1">X كم نسبته من Y؟</h3>
+          <h3 data-i18n="percent.card2.title" class="font-bold text-white mb-1">X كم نسبته من Y؟</h3>
           <div class="space-y-3 mt-4">
             <div>
-              <label class="block font-mono text-xs text-ink-300/70 mb-1.5">الرقم X</label>
+              <label data-i18n="percent.card2.label1" class="block font-mono text-xs text-ink-300/70 mb-1.5">الرقم X</label>
               <input id="pc2_x" type="number" value="30" class="w-full rounded-lg bg-ink-950 border border-white/10 px-3 py-2.5 font-mono text-sm text-white focus:outline-none" />
             </div>
             <div>
-              <label class="block font-mono text-xs text-ink-300/70 mb-1.5">من الرقم Y</label>
+              <label data-i18n="percent.card2.label2" class="block font-mono text-xs text-ink-300/70 mb-1.5">من الرقم Y</label>
               <input id="pc2_y" type="number" value="150" class="w-full rounded-lg bg-ink-950 border border-white/10 px-3 py-2.5 font-mono text-sm text-white focus:outline-none" />
             </div>
           </div>
           <div class="mt-5 pt-5 border-t border-white/10 mt-auto">
-            <span class="block font-mono text-xs text-ink-300/60 mb-1">النتيجة</span>
+            <span data-i18n="percent.result" class="block font-mono text-xs text-ink-300/60 mb-1">النتيجة</span>
             <span id="pc2_result" class="font-mono text-2xl font-bold text-teal-300">20%</span>
           </div>
         </div>
         <div class="corner-marks rounded-2xl border border-white/10 bg-ink-850/70 p-6 flex flex-col">
-          <h3 class="font-bold text-white mb-1">نسبة التغيّر بين رقمين</h3>
+          <h3 data-i18n="percent.card3.title" class="font-bold text-white mb-1">نسبة التغيّر بين رقمين</h3>
           <div class="space-y-3 mt-4">
             <div>
-              <label class="block font-mono text-xs text-ink-300/70 mb-1.5">القيمة القديمة</label>
+              <label data-i18n="percent.card3.label1" class="block font-mono text-xs text-ink-300/70 mb-1.5">القيمة القديمة</label>
               <input id="pc3_old" type="number" value="150" class="w-full rounded-lg bg-ink-950 border border-white/10 px-3 py-2.5 font-mono text-sm text-white focus:outline-none" />
             </div>
             <div>
-              <label class="block font-mono text-xs text-ink-300/70 mb-1.5">القيمة الجديدة</label>
+              <label data-i18n="percent.card3.label2" class="block font-mono text-xs text-ink-300/70 mb-1.5">القيمة الجديدة</label>
               <input id="pc3_new" type="number" value="180" class="w-full rounded-lg bg-ink-950 border border-white/10 px-3 py-2.5 font-mono text-sm text-white focus:outline-none" />
             </div>
           </div>
           <div class="mt-5 pt-5 border-t border-white/10 mt-auto flex items-center gap-2">
             <div>
-              <span class="block font-mono text-xs text-ink-300/60 mb-1">النتيجة</span>
+              <span data-i18n="percent.result" class="block font-mono text-xs text-ink-300/60 mb-1">النتيجة</span>
               <span id="pc3_result" class="font-mono text-2xl font-bold text-teal-300">+20%</span>
             </div>
             <span id="pc3_label" class="font-mono text-[11px] font-bold px-2 py-1 rounded-full bg-teal-400/10 text-teal-300 border border-teal-400/25">زيادة</span>
@@ -979,26 +990,26 @@
     <div class="max-w-4xl mx-auto px-5 sm:px-8">
       <div class="mb-10 flex flex-wrap items-end justify-between gap-4">
         <div>
-          <span class="font-mono text-xs tracking-widest text-teal-300/80">ACTIVE TOOL / أداة فعّالة</span>
-          <h2 class="mt-2 text-3xl sm:text-4xl font-extrabold text-white">محول الوحدات</h2>
+          <span data-i18n="tool.eyebrow" class="font-mono text-xs tracking-widest text-teal-300/80">ACTIVE TOOL / أداة فعّالة</span>
+          <h2 data-i18n="tool.unit.title" class="mt-2 text-3xl sm:text-4xl font-extrabold text-white">محول الوحدات</h2>
         </div>
-        <button id="clearUnitBtn" class="text-sm font-semibold text-ink-300/80 hover:text-white rounded-full border border-white/10 px-4 py-2.5">إعادة ضبط</button>
+        <button id="clearUnitBtn" data-i18n="password.reset" class="text-sm font-semibold text-ink-300/80 hover:text-white rounded-full border border-white/10 px-4 py-2.5">إعادة ضبط</button>
       </div>
       <div class="rounded-2xl border border-white/10 bg-ink-850/70 p-5 sm:p-8">
         <div class="flex flex-wrap gap-2 mb-7" id="unitCategoryTabs">
-          <button data-category="length" class="unit-tab active-tab px-4 py-2 rounded-full text-sm font-semibold">الطول</button>
-          <button data-category="weight" class="unit-tab px-4 py-2 rounded-full text-sm font-semibold">الوزن</button>
-          <button data-category="temperature" class="unit-tab px-4 py-2 rounded-full text-sm font-semibold">الحرارة</button>
+          <button data-category="length" data-i18n="unit.length" class="unit-tab active-tab px-4 py-2 rounded-full text-sm font-semibold">الطول</button>
+          <button data-category="weight" data-i18n="unit.weight" class="unit-tab px-4 py-2 rounded-full text-sm font-semibold">الوزن</button>
+          <button data-category="temperature" data-i18n="unit.temperature" class="unit-tab px-4 py-2 rounded-full text-sm font-semibold">الحرارة</button>
         </div>
         <div class="grid sm:grid-cols-[1fr_auto_1fr] items-end gap-4">
           <div class="corner-marks rounded-xl border border-white/10 bg-ink-900/50 p-4">
-            <label class="block font-mono text-xs text-ink-300/70 mb-2">من</label>
+            <label data-i18n="unit.from" class="block font-mono text-xs text-ink-300/70 mb-2">من</label>
             <select id="unitFrom" class="w-full bg-ink-950 border border-white/10 rounded-lg px-3 py-2.5 text-sm text-white font-mono focus:outline-none mb-3"></select>
             <input id="unitValueFrom" type="number" value="1" class="w-full rounded-lg bg-ink-950 border border-white/10 px-3 py-2.5 font-mono text-lg font-bold text-white focus:outline-none" />
           </div>
           <button id="swapUnitsBtn" class="mb-8 sm:mb-16 w-11 h-11 grid place-items-center rounded-full border border-white/10 text-ink-300 hover:text-teal-300 transition justify-self-center">⥂</button>
           <div class="corner-marks rounded-xl border border-teal-400/25 bg-ink-900/50 p-4">
-            <label class="block font-mono text-xs text-teal-300 mb-2">إلى</label>
+            <label data-i18n="unit.to" class="block font-mono text-xs text-teal-300 mb-2">إلى</label>
             <select id="unitTo" class="w-full bg-ink-950 border border-white/10 rounded-lg px-3 py-2.5 text-sm text-white font-mono focus:outline-none mb-3"></select>
             <input id="unitValueTo" type="text" readonly class="w-full rounded-lg bg-ink-950 border border-white/10 px-3 py-2.5 font-mono text-lg font-bold text-teal-300 focus:outline-none" />
           </div>
@@ -1012,23 +1023,23 @@
     <div class="absolute inset-0 bg-gradient-to-b from-ink-900/60 via-ink-900 to-ink-900 pointer-events-none"></div>
     <div class="relative max-w-5xl mx-auto px-5 sm:px-8">
       <div class="mb-10">
-        <span class="font-mono text-xs tracking-widest text-teal-300/80">ACTIVE TOOL / أداة فعّالة</span>
-        <h2 class="mt-2 text-3xl sm:text-4xl font-extrabold text-white">مولّد رموز QR</h2>
+        <span data-i18n="tool.eyebrow" class="font-mono text-xs tracking-widest text-teal-300/80">ACTIVE TOOL / أداة فعّالة</span>
+        <h2 data-i18n="tool.qr.title" class="mt-2 text-3xl sm:text-4xl font-extrabold text-white">مولّد رموز QR</h2>
       </div>
       <div class="rounded-2xl border border-white/10 bg-ink-850/70 p-5 sm:p-8">
         <div class="grid lg:grid-cols-[1.1fr_0.9fr] gap-6 items-start">
           <div>
-            <label for="qrTextInput" class="block font-mono text-xs text-ink-300/70 mb-2">الرابط أو النص</label>
+            <label for="qrTextInput" data-i18n="qr.label" class="block font-mono text-xs text-ink-300/70 mb-2">الرابط أو النص</label>
             <textarea id="qrTextInput" spellcheck="false" placeholder="https://example.com..." class="code-area w-full h-32 resize-none rounded-xl bg-ink-900/50 border border-white/10 p-4 font-mono text-sm text-ink-100 focus:outline-none"></textarea>
             <div class="mt-5 flex flex-wrap items-center gap-3">
-              <button id="qrGenerateBtn" class="inline-flex items-center gap-2 rounded-full bg-teal-400 text-ink-950 font-bold text-sm px-5 py-2.5 shadow-glow">توليد رمز QR</button>
-              <button id="qrClearBtn" class="text-sm font-semibold text-ink-300/80 hover:text-white">مسح</button>
+              <button id="qrGenerateBtn" data-i18n="qr.generate" class="inline-flex items-center gap-2 rounded-full bg-teal-400 text-ink-950 font-bold text-sm px-5 py-2.5 shadow-glow">توليد رمز QR</button>
+              <button id="qrClearBtn" data-i18n="action.clearShort" class="text-sm font-semibold text-ink-300/80 hover:text-white">مسح</button>
             </div>
             <p id="qrStatus" class="mt-3 text-xs text-ink-400/70 font-mono"></p>
           </div>
           <div id="qrResultWrap" class="hidden corner-marks rounded-xl border border-teal-400/25 bg-ink-900/50 p-6 flex flex-col items-center gap-5">
             <div id="qrCodeContainer" class="bg-white p-3 rounded-xl grid place-items-center"></div>
-            <a id="qrDownloadBtn" download="webbox-qrcode.png" class="pointer-events-none opacity-50 inline-flex items-center justify-center gap-2 rounded-full bg-teal-400 text-ink-950 font-bold px-5 py-2.5 shadow-glow">تحميل الرمز PNG</a>
+            <a id="qrDownloadBtn" download="webbox-qrcode.png" data-i18n="qr.download" class="pointer-events-none opacity-50 inline-flex items-center justify-center gap-2 rounded-full bg-teal-400 text-ink-950 font-bold px-5 py-2.5 shadow-glow">تحميل الرمز PNG</a>
           </div>
         </div>
       </div>
@@ -1039,128 +1050,128 @@
   <section id="articles-section" class="relative py-20 md:py-28 border-t border-white/5">
     <div class="max-w-7xl mx-auto px-5 sm:px-8">
       <div class="mb-12">
-        <span class="font-mono text-xs tracking-widest text-teal-300/80">GUIDES & ARTICLES / دليل استخدام الأدوات</span>
-        <h2 class="mt-2 text-3xl sm:text-4xl font-extrabold text-white">مقالات تفصيلية وشروحات لكل أداة</h2>
+        <span data-i18n="articles.eyebrow" class="font-mono text-xs tracking-widest text-teal-300/80">GUIDES & ARTICLES / دليل استخدام الأدوات</span>
+        <h2 data-i18n="articles.title" class="mt-2 text-3xl sm:text-4xl font-extrabold text-white">مقالات تفصيلية وشروحات لكل أداة</h2>
       </div>
 
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         <article class="corner-marks rounded-2xl border border-white/10 bg-ink-850/70 p-6 flex flex-col justify-between">
           <div>
-            <span class="font-mono text-xs text-teal-300 bg-teal-400/10 px-2.5 py-1 rounded-full">أداة ضغط الصور</span>
-            <h3 class="mt-4 text-lg font-bold text-white leading-snug">دليلك لتقليل حجم صور الويب دون التأثير على جودتها المرئية</h3>
-            <p class="mt-3 text-sm text-ink-300/75 leading-relaxed">تؤثر أحجام الصور الضخمة سلباً على سرعة تصفح المواقع. تعرف على طريقة ضغط صورك محلياً.</p>
+            <span data-i18n="article.compressor.tag" class="font-mono text-xs text-teal-300 bg-teal-400/10 px-2.5 py-1 rounded-full">أداة ضغط الصور</span>
+            <h3 data-i18n="article.compressor.title" class="mt-4 text-lg font-bold text-white leading-snug">دليلك لتقليل حجم صور الويب دون التأثير على جودتها المرئية</h3>
+            <p data-i18n="article.compressor.desc" class="mt-3 text-sm text-ink-300/75 leading-relaxed">تؤثر أحجام الصور الضخمة سلباً على سرعة تصفح المواقع. تعرف على طريقة ضغط صورك محلياً.</p>
           </div>
           <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs text-ink-400 font-mono">
-            <span>يوليو 2026</span>
-            <a href="#compressor" class="text-teal-300 font-semibold hover:underline">افتح الأداة ←</a>
+            <span data-i18n="articles.date">يوليو 2026</span>
+            <a href="#compressor" data-i18n="articles.open">افتح الأداة ←</a>
           </div>
         </article>
 
         <article class="corner-marks rounded-2xl border border-white/10 bg-ink-850/70 p-6 flex flex-col justify-between">
           <div>
-            <span class="font-mono text-xs text-teal-300 bg-teal-400/10 px-2.5 py-1 rounded-full">تغيير الأبعاد</span>
-            <h3 class="mt-4 text-lg font-bold text-white leading-snug">كيفية ضبط أبعاد الصور ومقاساتها بدقة عالية</h3>
-            <p class="mt-3 text-sm text-ink-300/75 leading-relaxed">تحكم في عرض وارتفاع الصور مع الحفاظ على النسبة الأصلية لتناسب جميع منصات الويب.</p>
+            <span data-i18n="article.resizer.tag" class="font-mono text-xs text-teal-300 bg-teal-400/10 px-2.5 py-1 rounded-full">تغيير الأبعاد</span>
+            <h3 data-i18n="article.resizer.title" class="mt-4 text-lg font-bold text-white leading-snug">كيفية ضبط أبعاد الصور ومقاساتها بدقة عالية</h3>
+            <p data-i18n="article.resizer.desc" class="mt-3 text-sm text-ink-300/75 leading-relaxed">تحكم في عرض وارتفاع الصور مع الحفاظ على النسبة الأصلية لتناسب جميع منصات الويب.</p>
           </div>
           <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs text-ink-400 font-mono">
-            <span>يوليو 2026</span>
-            <a href="#image-resizer" class="text-teal-300 font-semibold hover:underline">افتح الأداة ←</a>
+            <span data-i18n="articles.date">يوليو 2026</span>
+            <a href="#image-resizer" data-i18n="articles.open">افتح الأداة ←</a>
           </div>
         </article>
 
         <article class="corner-marks rounded-2xl border border-white/10 bg-ink-850/70 p-6 flex flex-col justify-between">
           <div>
-            <span class="font-mono text-xs text-teal-300 bg-teal-400/10 px-2.5 py-1 rounded-full">منسق JSON</span>
-            <h3 class="mt-4 text-lg font-bold text-white leading-snug">أهمية تنسيق وتدقيق ملفات JSON للمبرمجين</h3>
-            <p class="mt-3 text-sm text-ink-300/75 leading-relaxed">اكتشف الأخطاء البرمجية في ملفات البيانات الخاصة بك وقم بتنسيقها أو تصغيرها فوراً.</p>
+            <span data-i18n="article.json.tag" class="font-mono text-xs text-teal-300 bg-teal-400/10 px-2.5 py-1 rounded-full">منسق JSON</span>
+            <h3 data-i18n="article.json.title" class="mt-4 text-lg font-bold text-white leading-snug">أهمية تنسيق وتدقيق ملفات JSON للمبرمجين</h3>
+            <p data-i18n="article.json.desc" class="mt-3 text-sm text-ink-300/75 leading-relaxed">اكتشف الأخطاء البرمجية في ملفات البيانات الخاصة بك وقم بتنسيقها أو تصغيرها فوراً.</p>
           </div>
           <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs text-ink-400 font-mono">
-            <span>يوليو 2026</span>
-            <a href="#json-formatter" class="text-teal-300 font-semibold hover:underline">افتح الأداة ←</a>
+            <span data-i18n="articles.date">يوليو 2026</span>
+            <a href="#json-formatter" data-i18n="articles.open">افتح الأداة ←</a>
           </div>
         </article>
 
         <article class="corner-marks rounded-2xl border border-white/10 bg-ink-850/70 p-6 flex flex-col justify-between">
           <div>
-            <span class="font-mono text-xs text-teal-300 bg-teal-400/10 px-2.5 py-1 rounded-full">كلمات المرور</span>
-            <h3 class="mt-4 text-lg font-bold text-white leading-snug">كيف تولد كلمات مرور آمنة ومقاومة للاختراق</h3>
-            <p class="mt-3 text-sm text-ink-300/75 leading-relaxed">حماية حساباتك الشخصية تبدأ باستخدام كلمات مرور عشوائية معقدة وطويلة.</p>
+            <span data-i18n="article.password.tag" class="font-mono text-xs text-teal-300 bg-teal-400/10 px-2.5 py-1 rounded-full">كلمات المرور</span>
+            <h3 data-i18n="article.password.title" class="mt-4 text-lg font-bold text-white leading-snug">كيف تولد كلمات مرور آمنة ومقاومة للاختراق</h3>
+            <p data-i18n="article.password.desc" class="mt-3 text-sm text-ink-300/75 leading-relaxed">حماية حساباتك الشخصية تبدأ باستخدام كلمات مرور عشوائية معقدة وطويلة.</p>
           </div>
           <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs text-ink-400 font-mono">
-            <span>يوليو 2026</span>
-            <a href="#password-generator" class="text-teal-300 font-semibold hover:underline">افتح الأداة ←</a>
+            <span data-i18n="articles.date">يوليو 2026</span>
+            <a href="#password-generator" data-i18n="articles.open">افتح الأداة ←</a>
           </div>
         </article>
 
         <article class="corner-marks rounded-2xl border border-white/10 bg-ink-850/70 p-6 flex flex-col justify-between">
           <div>
-            <span class="font-mono text-xs text-teal-300 bg-teal-400/10 px-2.5 py-1 rounded-full">ترميز Base64</span>
-            <h3 class="mt-4 text-lg font-bold text-white leading-snug">دليلك الشامل لترميز وفك شيفرة Base64</h3>
-            <p class="mt-3 text-sm text-ink-300/75 leading-relaxed">تعرف على كيفية تحويل النصوص والبيانات العربية والإنجليزية إلى ترميز آمن ومستقر.</p>
+            <span data-i18n="article.base64.tag" class="font-mono text-xs text-teal-300 bg-teal-400/10 px-2.5 py-1 rounded-full">ترميز Base64</span>
+            <h3 data-i18n="article.base64.title" class="mt-4 text-lg font-bold text-white leading-snug">دليلك الشامل لترميز وفك شيفرة Base64</h3>
+            <p data-i18n="article.base64.desc" class="mt-3 text-sm text-ink-300/75 leading-relaxed">تعرف على كيفية تحويل النصوص والبيانات العربية والإنجليزية إلى ترميز آمن ومستقر.</p>
           </div>
           <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs text-ink-400 font-mono">
-            <span>يوليو 2026</span>
-            <a href="#base64-tool" class="text-teal-300 font-semibold hover:underline">افتح الأداة ←</a>
+            <span data-i18n="articles.date">يوليو 2026</span>
+            <a href="#base64-tool" data-i18n="articles.open">افتح الأداة ←</a>
           </div>
         </article>
 
         <article class="corner-marks rounded-2xl border border-white/10 bg-ink-850/70 p-6 flex flex-col justify-between">
           <div>
-            <span class="font-mono text-xs text-teal-300 bg-teal-400/10 px-2.5 py-1 rounded-full">النسب المئوية</span>
-            <h3 class="mt-4 text-lg font-bold text-white leading-snug">حساب النسب المئوية والتغيرات المالية والرياضية</h3>
-            <p class="mt-3 text-sm text-ink-300/75 leading-relaxed">كيف تحسب الخصومات، نسب الزيادة والنقصان، وقيم الأرقام بكل سهولة ودقة.</p>
+            <span data-i18n="article.percent.tag" class="font-mono text-xs text-teal-300 bg-teal-400/10 px-2.5 py-1 rounded-full">النسب المئوية</span>
+            <h3 data-i18n="article.percent.title" class="mt-4 text-lg font-bold text-white leading-snug">حساب النسب المئوية والتغيرات المالية والرياضية</h3>
+            <p data-i18n="article.percent.desc" class="mt-3 text-sm text-ink-300/75 leading-relaxed">كيف تحسب الخصومات، نسب الزيادة والنقصان، وقيم الأرقام بكل سهولة ودقة.</p>
           </div>
           <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs text-ink-400 font-mono">
-            <span>يوليو 2026</span>
-            <a href="#percentage-calculator" class="text-teal-300 font-semibold hover:underline">افتح الأداة ←</a>
+            <span data-i18n="articles.date">يوليو 2026</span>
+            <a href="#percentage-calculator" data-i18n="articles.open">افتح الأداة ←</a>
           </div>
         </article>
 
         <article class="corner-marks rounded-2xl border border-white/10 bg-ink-850/70 p-6 flex flex-col justify-between">
           <div>
-            <span class="font-mono text-xs text-teal-300 bg-teal-400/10 px-2.5 py-1 rounded-full">محول الوحدات</span>
-            <h3 class="mt-4 text-lg font-bold text-white leading-snug">التحويل الفوري بين وحدات الطول، الوزن، والحرارة</h3>
-            <p class="mt-3 text-sm text-ink-300/75 leading-relaxed">أداة مرنة وسريعة للتحويل بين المقاييس العالمية المختلفة بدقة متناهية.</p>
+            <span data-i18n="article.unit.tag" class="font-mono text-xs text-teal-300 bg-teal-400/10 px-2.5 py-1 rounded-full">محول الوحدات</span>
+            <h3 data-i18n="article.unit.title" class="mt-4 text-lg font-bold text-white leading-snug">التحويل الفوري بين وحدات الطول، الوزن، والحرارة</h3>
+            <p data-i18n="article.unit.desc" class="mt-3 text-sm text-ink-300/75 leading-relaxed">أداة مرنة وسريعة للتحويل بين المقاييس العالمية المختلفة بدقة متناهية.</p>
           </div>
           <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs text-ink-400 font-mono">
-            <span>يوليو 2026</span>
-            <a href="#unit-converter" class="text-teal-300 font-semibold hover:underline">افتح الأداة ←</a>
+            <span data-i18n="articles.date">يوليو 2026</span>
+            <a href="#unit-converter" data-i18n="articles.open">افتح الأداة ←</a>
           </div>
         </article>
 
         <article class="corner-marks rounded-2xl border border-white/10 bg-ink-850/70 p-6 flex flex-col justify-between">
           <div>
-            <span class="font-mono text-xs text-teal-300 bg-teal-400/10 px-2.5 py-1 rounded-full">عداد الكلمات</span>
-            <h3 class="mt-4 text-lg font-bold text-white leading-snug">تتبع عدد الكلمات والحروف والفقرات أثناء الكتابة</h3>
-            <p class="mt-3 text-sm text-ink-300/75 leading-relaxed">أداة مثالية للمدونين والكتّاب لمراقبة حجم المقالات والنصوص مباشرة.</p>
+            <span data-i18n="article.words.tag" class="font-mono text-xs text-teal-300 bg-teal-400/10 px-2.5 py-1 rounded-full">عداد الكلمات</span>
+            <h3 data-i18n="article.words.title" class="mt-4 text-lg font-bold text-white leading-snug">تتبع عدد الكلمات والحروف والفقرات أثناء الكتابة</h3>
+            <p data-i18n="article.words.desc" class="mt-3 text-sm text-ink-300/75 leading-relaxed">أداة مثالية للمدونين والكتّاب لمراقبة حجم المقالات والنصوص مباشرة.</p>
           </div>
           <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs text-ink-400 font-mono">
-            <span>يوليو 2026</span>
-            <a href="#word-counter" class="text-teal-300 font-semibold hover:underline">افتح الأداة ←</a>
+            <span data-i18n="articles.date">يوليو 2026</span>
+            <a href="#word-counter" data-i18n="articles.open">افتح الأداة ←</a>
           </div>
         </article>
 
         <article class="corner-marks rounded-2xl border border-white/10 bg-ink-850/70 p-6 flex flex-col justify-between">
           <div>
-            <span class="font-mono text-xs text-teal-300 bg-teal-400/10 px-2.5 py-1 rounded-full">حالة الأحرف</span>
-            <h3 class="mt-4 text-lg font-bold text-white leading-snug">تحويل النصوص الإنجليزية إلى أحرف كبيرة أو صغيرة</h3>
-            <p class="mt-3 text-sm text-ink-300/75 leading-relaxed">تنسيق النصوص وإدارتها وتغيير حالات الحروف الإنجليزية بنقرة زر واحدة.</p>
+            <span data-i18n="article.case.tag" class="font-mono text-xs text-teal-300 bg-teal-400/10 px-2.5 py-1 rounded-full">حالة الأحرف</span>
+            <h3 data-i18n="article.case.title" class="mt-4 text-lg font-bold text-white leading-snug">تحويل النصوص الإنجليزية إلى أحرف كبيرة أو صغيرة</h3>
+            <p data-i18n="article.case.desc" class="mt-3 text-sm text-ink-300/75 leading-relaxed">تنسيق النصوص وإدارتها وتغيير حالات الحروف الإنجليزية بنقرة زر واحدة.</p>
           </div>
           <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs text-ink-400 font-mono">
-            <span>يوليو 2026</span>
-            <a href="#case-converter" class="text-teal-300 font-semibold hover:underline">افتح الأداة ←</a>
+            <span data-i18n="articles.date">يوليو 2026</span>
+            <a href="#case-converter" data-i18n="articles.open">افتح الأداة ←</a>
           </div>
         </article>
 
         <article class="corner-marks rounded-2xl border border-white/10 bg-ink-850/70 p-6 flex flex-col justify-between">
           <div>
-            <span class="font-mono text-xs text-teal-300 bg-teal-400/10 px-2.5 py-1 rounded-full">مولد QR</span>
-            <h3 class="mt-4 text-lg font-bold text-white leading-snug">إنشاء وتوليد رموز الاستجابة السريعة QR Code</h3>
-            <p class="mt-3 text-sm text-ink-300/75 leading-relaxed">حول أي رابط إلكتروني أو نص إلى رمز QR احترافي وقابل للتحميل كصورة PNG.</p>
+            <span data-i18n="article.qr.tag" class="font-mono text-xs text-teal-300 bg-teal-400/10 px-2.5 py-1 rounded-full">مولد QR</span>
+            <h3 data-i18n="article.qr.title" class="mt-4 text-lg font-bold text-white leading-snug">إنشاء وتوليد رموز الاستجابة السريعة QR Code</h3>
+            <p data-i18n="article.qr.desc" class="mt-3 text-sm text-ink-300/75 leading-relaxed">حول أي رابط إلكتروني أو نص إلى رمز QR احترافي وقابل للتحميل كصورة PNG.</p>
           </div>
           <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs text-ink-400 font-mono">
-            <span>يوليو 2026</span>
-            <a href="#qr-generator" class="text-teal-300 font-semibold hover:underline">افتح الأداة ←</a>
+            <span data-i18n="articles.date">يوليو 2026</span>
+            <a href="#qr-generator" data-i18n="articles.open">افتح الأداة ←</a>
           </div>
         </article>
       </div>
@@ -1172,17 +1183,17 @@
 <!-- ===================== صفحة "من نحن" ===================== -->
 <div id="aboutView" class="page-view">
   <section class="max-w-4xl mx-auto px-5 py-20">
-    <span class="font-mono text-xs tracking-widest text-teal-300">ABOUT US</span>
-    <h1 class="mt-2 text-4xl font-extrabold text-white">من نحن</h1>
+    <span data-i18n="about.eyebrow" class="font-mono text-xs tracking-widest text-teal-300">ABOUT US</span>
+    <h1 data-i18n="about.title" class="mt-2 text-4xl font-extrabold text-white">من نحن</h1>
     <div class="mt-8 space-y-6 text-ink-200/90 leading-relaxed bg-ink-850/70 p-8 rounded-2xl border border-white/10">
-      <p>مرحباً بك في <strong class="text-white">WebBox</strong>، منصتك التقنية الرائدة المخصصة لتوفير أدوات ويب مجانية وسريعة تعمل بالكامل داخل المتصفح الخاص بك.</p>
-      <h3 class="text-xl font-bold text-white pt-4">رؤيتنا وفلسفتنا</h3>
-      <p>نحن نؤمن بأن الأدوات الرقمية اليومية يجب أن تكون متاحة للجميع بسهولة وددون تعقيد. الأهم من ذلك، نحن نضع خصوصية مستخدمينا في المقام الأول؛ لذا صُممت جميع أدواتنا لمعالجة البيانات محلياً (Client-side)، مما يعني أن ملفاتك الشخصية وصورك لا تغادر جهازك أبداً ولا تُرفع إلى أي خادم خارجي.</p>
-      <h3 class="text-xl font-bold text-white pt-4">لماذا تختبر WebBox؟</h3>
-      <p>سواء كنت مبرمجاً يحتاج لتنسيق كود JSON، أو مصمماً يبحث عن ضغط صور سريع، أو كاتباً يتابع عدد الكلمات، فإن WebBox يوفر لك بيئة نظيفة، خالية من الإعلانات المزعجة، وفائقة السرعة.</p>
+      <p data-i18n="about.p1"><span>مرحباً بك في </span><strong class="text-white">WebBox</strong><span>، منصتك التقنية الرائدة المخصصة لتوفير أدوات ويب مجانية وسريعة تعمل بالكامل داخل المتصفح الخاص بك.</span></p>
+      <h3 data-i18n="about.h2" class="text-xl font-bold text-white pt-4">رؤيتنا وفلسفتنا</h3>
+      <p data-i18n="about.p2">نحن نؤمن بأن الأدوات الرقمية اليومية يجب أن تكون متاحة للجميع بسهولة وددون تعقيد. الأهم من ذلك، نحن نضع خصوصية مستخدمينا في المقام الأول؛ لذا صُممت جميع أدواتنا لمعالجة البيانات محلياً (Client-side)، مما يعني أن ملفاتك الشخصية وصورك لا تغادر جهازك أبداً ولا تُرفع إلى أي خادم خارجي.</p>
+      <h3 data-i18n="about.h3" class="text-xl font-bold text-white pt-4">لماذا تختبر WebBox؟</h3>
+      <p data-i18n="about.p3">سواء كنت مبرمجاً يحتاج لتنسيق كود JSON، أو مصمماً يبحث عن ضغط صور سريع، أو كاتباً يتابع عدد الكلمات، فإن WebBox يوفر لك بيئة نظيفة، خالية من الإعلانات المزعجة، وفائقة السرعة.</p>
     </div>
     <div class="mt-6">
-      <button onclick="switchView('home')" class="inline-flex items-center gap-2 text-teal-300 font-semibold hover:underline">← العودة للرئيسية</button>
+      <button onclick="switchView('home')" data-i18n="back.home" class="inline-flex items-center gap-2 text-teal-300 font-semibold hover:underline">← العودة للرئيسية</button>
     </div>
   </section>
 </div>
@@ -1190,27 +1201,27 @@
 <!-- ===================== صفحة "اتصل بنا" ===================== -->
 <div id="contactView" class="page-view">
   <section class="max-w-3xl mx-auto px-5 py-20">
-    <span class="font-mono text-xs tracking-widest text-teal-300">CONTACT US</span>
-    <h1 class="mt-2 text-4xl font-extrabold text-white">اتصل بنا</h1>
-    <p class="mt-3 text-ink-300">يسعدنا دائماً سماع آرائكم، استفساراتكم، أو استقبال مقترحاتكم لتطوير المنصة وإضافة أدوات جديدة.</p>
+    <span data-i18n="contact.eyebrow" class="font-mono text-xs tracking-widest text-teal-300">CONTACT US</span>
+    <h1 data-i18n="contact.title" class="mt-2 text-4xl font-extrabold text-white">اتصل بنا</h1>
+    <p data-i18n="contact.desc" class="mt-3 text-ink-300">يسعدنا دائماً سماع آرائكم، استفساراتكم، أو استقبال مقترحاتكم لتطوير المنصة وإضافة أدوات جديدة.</p>
     
     <div class="mt-8 bg-ink-850/70 p-8 rounded-2xl border border-white/10 space-y-5">
       <div>
-        <label class="block text-sm font-semibold text-white mb-2">الاسم الكريم</label>
-        <input type="text" placeholder="أدخل اسمك هنا..." class="w-full bg-ink-950 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-teal-400" />
+        <label data-i18n="contact.name" class="block text-sm font-semibold text-white mb-2">الاسم الكريم</label>
+        <input type="text" placeholder="أدخل اسمك هنا..." data-ph-key="contact.namePh" class="w-full bg-ink-950 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-teal-400" />
       </div>
       <div>
-        <label class="block text-sm font-semibold text-white mb-2">البريد الإلكتروني</label>
+        <label data-i18n="contact.email" class="block text-sm font-semibold text-white mb-2">البريد الإلكتروني</label>
         <input type="email" placeholder="name@example.com" class="w-full bg-ink-950 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-teal-400" />
       </div>
       <div>
-        <label class="block text-sm font-semibold text-white mb-2">نص الرسالة أو الاقتراح</label>
-        <textarea rows="4" placeholder="اكتب رسالتك بالتفصيل..." class="w-full bg-ink-950 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-teal-400 resize-none"></textarea>
+        <label data-i18n="contact.message" class="block text-sm font-semibold text-white mb-2">نص الرسالة أو الاقتراح</label>
+        <textarea rows="4" placeholder="اكتب رسالتك بالتفصيل..." data-ph-key="contact.messagePh" class="w-full bg-ink-950 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-teal-400 resize-none"></textarea>
       </div>
-      <button onclick="alert('تم إرسال رسالتك بنجاح! شكراً لتواصلك معنا.')" class="w-full bg-teal-400 text-ink-950 font-bold py-3 rounded-xl shadow-glow hover:bg-teal-300 transition">إرسال الرسالة</button>
+      <button onclick="alert(window.__webboxSendMsg || 'تم إرسال رسالتك بنجاح! شكراً لتواصلك معنا.')" data-i18n="contact.send" class="w-full bg-teal-400 text-ink-950 font-bold py-3 rounded-xl shadow-glow hover:bg-teal-300 transition">إرسال الرسالة</button>
     </div>
     <div class="mt-6">
-      <button onclick="switchView('home')" class="inline-flex items-center gap-2 text-teal-300 font-semibold hover:underline">← العودة للرئيسية</button>
+      <button onclick="switchView('home')" data-i18n="back.home" class="inline-flex items-center gap-2 text-teal-300 font-semibold hover:underline">← العودة للرئيسية</button>
     </div>
   </section>
 </div>
@@ -1218,19 +1229,19 @@
 <!-- ===================== صفحة "سياسة الخصوصية" ===================== -->
 <div id="privacyView" class="page-view">
   <section class="max-w-4xl mx-auto px-5 py-20">
-    <span class="font-mono text-xs tracking-widest text-teal-300">PRIVACY POLICY</span>
-    <h1 class="mt-2 text-4xl font-extrabold text-white">سياسة الخصوصية</h1>
+    <span data-i18n="privacy.eyebrow" class="font-mono text-xs tracking-widest text-teal-300">PRIVACY POLICY</span>
+    <h1 data-i18n="privacy.title" class="mt-2 text-4xl font-extrabold text-white">سياسة الخصوصية</h1>
     <div class="mt-8 space-y-6 text-ink-200/90 leading-relaxed bg-ink-850/70 p-8 rounded-2xl border border-white/10">
-      <p>في موقع <strong class="text-white">WebBox</strong>، تُعتبر خصوصية زوارنا أمراً بالغ الأهمية. توضح وثيقة سياسة الخصوصية هذه أنواع المعلومات الشخصية التي يتم جمعها وكيفية استخدامها.</p>
+      <p data-i18n="privacy.p1"><span>في موقع </span><strong class="text-white">WebBox</strong><span>، تُعتبر خصوصية زوارنا أمراً بالغ الأهمية. توضح وثيقة سياسة الخصوصية هذه أنواع المعلومات الشخصية التي يتم جمعها وكيفية استخدامها.</span></p>
       
-      <h3 class="text-xl font-bold text-white pt-3">1. المعالجة المحلية للبيانات (لا توجد خوادم تخزين)</h3>
-      <p>نلتزم التزاماً تاماً بأن جميع الملفات التي تقوم برفعها أو معالجتها على موقعنا (مثل الصور، النصوص، أو رموز QR) تتم معالجتها بالكامل داخل ذاكرة متصفحك المحلي. نحن لا نقوم برحض أو حفظ أو تخزين أي ملفات خاصة بك على خوادم أو سيرفرات خارجية.</p>
+      <h3 data-i18n="privacy.h1" class="text-xl font-bold text-white pt-3">1. المعالجة المحلية للبيانات (لا توجد خوادم تخزين)</h3>
+      <p data-i18n="privacy.p2">نلتزم التزاماً تاماً بأن جميع الملفات التي تقوم برفعها أو معالجتها على موقعنا (مثل الصور، النصوص، أو رموز QR) تتم معالجتها بالكامل داخل ذاكرة متصفحك المحلي. نحن لا نقوم برحض أو حفظ أو تخزين أي ملفات خاصة بك على خوادم أو سيرفرات خارجية.</p>
 
-      <h3 class="text-xl font-bold text-white pt-3">2. ملفات تعريف الارتباط (Cookies) والإعلانات</h3>
-      <p>نستخدم شبكة Google AdSense لعرض الإعلانات، والتي قد تستخدم ملفات تعريف الارتباط لعرض إعلانات بناءً على زياراتك السابقة لموقعنا أو مواقع أخرى على الإنترنت. يمكنك إلغاء استخدام ملفات تعريف الارتباط عبر إعدادات متصفحك.</p>
+      <h3 data-i18n="privacy.h2" class="text-xl font-bold text-white pt-3">2. ملفات تعريف الارتباط (Cookies) والإعلانات</h3>
+      <p data-i18n="privacy.p3">نستخدم شبكة Google AdSense لعرض الإعلانات، والتي قد تستخدم ملفات تعريف الارتباط لعرض إعلانات بناءً على زياراتك السابقة لموقعنا أو مواقع أخرى على الإنترنت. يمكنك إلغاء استخدام ملفات تعريف الارتباط عبر إعدادات متصفحك.</p>
     </div>
     <div class="mt-6">
-      <button onclick="switchView('home')" class="inline-flex items-center gap-2 text-teal-300 font-semibold hover:underline">← العودة للرئيسية</button>
+      <button onclick="switchView('home')" data-i18n="back.home" class="inline-flex items-center gap-2 text-teal-300 font-semibold hover:underline">← العودة للرئيسية</button>
     </div>
   </section>
 </div>
@@ -1238,22 +1249,22 @@
 <!-- ===================== صفحة "شروط الاستخدام" ===================== -->
 <div id="termsView" class="page-view">
   <section class="max-w-4xl mx-auto px-5 py-20">
-    <span class="font-mono text-xs tracking-widest text-teal-300">TERMS OF SERVICE</span>
-    <h1 class="mt-2 text-4xl font-extrabold text-white">شروط الاستخدام</h1>
+    <span data-i18n="terms.eyebrow" class="font-mono text-xs tracking-widest text-teal-300">TERMS OF SERVICE</span>
+    <h1 data-i18n="terms.title" class="mt-2 text-4xl font-extrabold text-white">شروط الاستخدام</h1>
     <div class="mt-8 space-y-6 text-ink-200/90 leading-relaxed bg-ink-850/70 p-8 rounded-2xl border border-white/10">
-      <p>باستخدامك لموقع <strong class="text-white">WebBox</strong>، فإنك توافق على الالتزام بالشروط والأحكام التالية:</p>
+      <p data-i18n="terms.intro"><span>باستخدامك لموقع </span><strong class="text-white">WebBox</strong><span>، فإنك توافق على الالتزام بالشروط والأحكام التالية:</span></p>
 
-      <h3 class="text-xl font-bold text-white pt-3">1. الاستخدام المقبول</h3>
-      <p>يجب استخدام الأدوات المتاحة في الموقع بأغراض مشروعة ومهنية فقط. يُمنع استغلال الأدوات في أي أنشطة غير قانونية أو ضارة.</p>
+      <h3 data-i18n="terms.h1" class="text-xl font-bold text-white pt-3">1. الاستخدام المقبول</h3>
+      <p data-i18n="terms.p1">يجب استخدام الأدوات المتاحة في الموقع بأغراض مشروعة ومهنية فقط. يُمنع استغلال الأدوات في أي أنشطة غير قانونية أو ضارة.</p>
 
-      <h3 class="text-xl font-bold text-white pt-3">2. إخلاء المسؤولية</h3>
-      <p>يتم تقديم الخدمات والأدوات على الموقع "كما هي" دون أي ضمانات صريحة أو ضمنية. نحن لا نتحمل أي مسؤولية عن أي فقدان للبيانات قد يحدث نتيجة خطأ في استخدام المتصفح أو الجهاز.</p>
+      <h3 data-i18n="terms.h2" class="text-xl font-bold text-white pt-3">2. إخلاء المسؤولية</h3>
+      <p data-i18n="terms.p2">يتم تقديم الخدمات والأدوات على الموقع "كما هي" دون أي ضمانات صريحة أو ضمنية. نحن لا نتحمل أي مسؤولية عن أي فقدان للبيانات قد يحدث نتيجة خطأ في استخدام المتصفح أو الجهاز.</p>
 
-      <h3 class="text-xl font-bold text-white pt-3">3. حقوق الملكية الفكرية</h3>
-      <p>جميع حقوق التصميم، الأكواد البرمجية، والمحتوى النصي لمنصة WebBox محمية، ولا يُسمح بنسخها أو إعادة توزيعها دون إذن مسبق.</p>
+      <h3 data-i18n="terms.h3" class="text-xl font-bold text-white pt-3">3. حقوق الملكية الفكرية</h3>
+      <p data-i18n="terms.p3">جميع حقوق التصميم، الأكواد البرمجية، والمحتوى النصي لمنصة WebBox محمية، ولا يُسمح بنسخها أو إعادة توزيعها دون إذن مسبق.</p>
     </div>
     <div class="mt-6">
-      <button onclick="switchView('home')" class="inline-flex items-center gap-2 text-teal-300 font-semibold hover:underline">← العودة للرئيسية</button>
+      <button onclick="switchView('home')" data-i18n="back.home" class="inline-flex items-center gap-2 text-teal-300 font-semibold hover:underline">← العودة للرئيسية</button>
     </div>
   </section>
 </div>
@@ -1261,12 +1272,12 @@
 <!-- الفوتر -->
 <footer class="border-t border-white/5 bg-ink-950 py-10 mt-20 text-center">
   <div class="max-w-7xl mx-auto px-5 flex flex-col sm:flex-row items-center justify-between gap-4">
-    <p class="text-sm text-ink-400">© 2026 WebBox. جميع الحقوق محفوظة.</p>
+    <p data-i18n="footer.copyright" class="text-sm text-ink-400">© 2026 WebBox. جميع الحقوق محفوظة.</p>
     <div class="flex flex-wrap items-center justify-center gap-6 text-sm text-ink-300">
-      <button onclick="switchView('about')" class="hover:text-white transition">من نحن</button>
-      <button onclick="switchView('contact')" class="hover:text-white transition">اتصل بنا</button>
-      <button onclick="switchView('privacy')" class="hover:text-white transition">سياسة الخصوصية</button>
-      <button onclick="switchView('terms')" class="hover:text-white transition">شروط الاستخدام</button>
+      <button onclick="switchView('about')" data-i18n="nav.about" class="hover:text-white transition">من نحن</button>
+      <button onclick="switchView('contact')" data-i18n="nav.contact" class="hover:text-white transition">اتصل بنا</button>
+      <button onclick="switchView('privacy')" data-i18n="footer.privacy" class="hover:text-white transition">سياسة الخصوصية</button>
+      <button onclick="switchView('terms')" data-i18n="footer.terms" class="hover:text-white transition">شروط الاستخدام</button>
     </div>
   </div>
 </footer>
@@ -1297,7 +1308,259 @@
     close.classList.toggle('hidden');
   }
 
+  /* ============================================================
+      نظام تعدد اللغات (i18n) — عربي / إنجليزي
+  ============================================================ */
+  const I18N = {
+    ar: {
+      "nav.home": "الرئيسية", "nav.tools": "الأدوات", "nav.articles": "المقالات والشروحات",
+      "nav.about": "من نحن", "nav.contact": "اتصل بنا", "nav.cta": "جرّب ضاغط الصور",
+      "hero.badge": "كل المعالجة تتم محليًا — لا رفع، لا خوادم",
+      "hero.title1": "أدواتك التقنية اليومية،", "hero.title2": "جاهزة داخل متصفحك مباشرة.",
+      "hero.desc": "WebBox مجموعة أدوات مجانية وسريعة — من ضغط الصور إلى تحويل البيانات وإجراء الحسابات — تُنجز مهمتها فورًا دون تثبيت برامج أو انتظار رفع الملفات.",
+      "hero.cta1": "ابدأ بضغط صورة الآن", "hero.cta2": "استعرض كل الأدوات",
+      "hero.stat1": "تشغيل من المتصفح", "hero.stat2": "ملفات تُرفع لخادم", "hero.stat3": "أدوات فعّالة الآن",
+      "grid.eyebrow": "TOOLKIT / الفهرس", "grid.title": "اختر أداتك",
+      "grid.desc": "جميع الأدوات متاحة للاستخدام الفوري والمجاني بالكامل دون قيود.",
+      "grid.badge": "متاحة الآن", "grid.open": "افتح الأداة",
+      "card.compressor.title": "🖼️ ضاغط الصور", "card.compressor.desc": "قلّل حجم صور PNG وJPEG وWebP مع معاينة فورية قبل التحميل، دون فقدان يُذكر في الجودة.",
+      "card.resizer.title": "📐 تغيير أبعاد الصور", "card.resizer.desc": "تحكّم في عرض وارتفاع الصورة بدقة، مع حفظ النسبة الأصلية تلقائيًا إن أردت.",
+      "card.json.title": "🧩 منسّق ومدقّق JSON", "card.json.desc": "نسّق، صغّر، وتحقّق من صحة بيانات JSON فورًا مع رسائل خطأ واضحة.",
+      "card.password.title": "🔐 مولّد كلمات المرور", "card.password.desc": "ولّد كلمات مرور قوية وعشوائية بالطول والخصائص التي تحددها بنقرة واحدة.",
+      "card.base64.title": "🔤 ترميز وفك Base64", "card.base64.desc": "حوّل النصوص من وإلى Base64 فورًا، مع دعم كامل للحروف العربية.",
+      "card.percent.title": "📊 حاسبة النسب المئوية", "card.percent.desc": "احسب النسب، الزيادة، والنقصان في ثوانٍ عبر ثلاث حاسبات متقدمة.",
+      "card.unit.title": "📏 محول الوحدات", "card.unit.desc": "تحويل فوري بين وحدات الطول، الوزن، والحرارة بدقة متناهية.",
+      "card.words.title": "📝 عداد الكلمات والحروف", "card.words.desc": "تتبّع عدد الكلمات والحروف والفقرات في نصك أثناء الكتابة مباشرة.",
+      "card.case.title": "🔠 تحويل حالة الأحرف", "card.case.desc": "حوّل النص الإنجليزي إلى أحرف كبيرة، صغيرة، أو حالة العنوان بنقرة واحدة.",
+      "card.qr.title": "🔳 مولّد رموز QR", "card.qr.desc": "أنشئ رمز QR من أي رابط أو نص، وحمّله كصورة PNG بشكل محلي بالكامل.",
+      "tool.eyebrow": "ACTIVE TOOL / أداة فعّالة",
+      "tool.compressor.title": "ضاغط الصور", "tool.compressor.desc": "ارفع صورة بصيغة PNG أو JPEG، اختر صيغة الإخراج، اضبط مستوى الجودة، وحمّل النسخة المضغوطة فوراً محلياً داخل متصفحك.",
+      "drop.title": "اسحب وأفلت صورتك هنا", "drop.or": "أو", "drop.choose": "اختر ملفًا", "drop.fromDevice": "من جهازك",
+      "compressor.outputFormat": "صيغة الإخراج", "compressor.webpUnsupported": "متصفحك لا يدعم WebP للتصدير.",
+      "compressor.quality": "مستوى الجودة", "action.clear": "مسح المحتوى", "action.newImage": "صورة جديدة",
+      "compressor.before": "قبل الضغط", "compressor.after": "بعد الضغط", "compressor.savings": "نسبة التوفير:",
+      "compressor.download": "تحميل الصورة المضغوطة",
+      "tool.resizer.title": "تغيير أبعاد الصور", "tool.resizer.desc": "تحكّم في عرض وارتفاع الصورة وحمّلها بالقياسات الجديدة.",
+      "resizer.dropTitle": "اسحب وأفلت صورتك هنا لتغيير أبعادها", "resizer.dropHint": "PNG أو JPEG",
+      "resizer.width": "العرض (px)", "resizer.height": "الارتفاع (px)", "resizer.lockAspect": "حفظ النسبة",
+      "resizer.apply": "تطبيق التغيير", "action.clearShort": "مسح",
+      "resizer.originalDims": "الأبعاد الأصلية", "resizer.newDims": "الأبعاد الجديدة", "resizer.download": "تحميل الصورة الجديدة",
+      "tool.json.title": "منسّق ومدقّق JSON", "tool.json.desc": "نسّق وصغّر وافحص أخطاء كود JSON فوراً.",
+      "json.beautify": "تنسيق (Beautify)", "json.minify": "تصغير (Minify)", "action.copyResult": "نسخ النتيجة",
+      "toast.copied": "تم نسخ النتيجة",
+      "tool.words.title": "عداد الكلمات والحروف والفقرات",
+      "words.text": "النص", "words.placeholder": "ابدأ الكتابة أو الصق نصك هنا...",
+      "words.words": "كلمة", "words.charsWithSpace": "حرف (مع المسافات)", "words.charsNoSpace": "حرف (بدون مسافات)", "words.paragraphs": "فقرة",
+      "tool.case.title": "تحويل حالة الأحرف",
+      "tool.password.title": "مولّد كلمات المرور الآمنة",
+      "toast.copiedOnly": "تم النسخ", "password.length": "طول كلمة المرور",
+      "password.generate": "توليد كلمة مرور", "password.reset": "إعادة ضبط",
+      "tool.base64.title": "ترميز وفك Base64", "base64.encode": "ترميز (Encode)", "base64.decode": "فك الترميز (Decode)",
+      "tool.percent.title": "حاسبة النسب المئوية",
+      "percent.card1.title": "ما هو X% من رقم؟", "percent.card1.label1": "النسبة X (%)", "percent.card1.label2": "الرقم Y",
+      "percent.card2.title": "X كم نسبته من Y؟", "percent.card2.label1": "الرقم X", "percent.card2.label2": "من الرقم Y",
+      "percent.card3.title": "نسبة التغيّر بين رقمين", "percent.card3.label1": "القيمة القديمة", "percent.card3.label2": "القيمة الجديدة",
+      "percent.result": "النتيجة",
+      "tool.unit.title": "محول الوحدات",
+      "unit.length": "الطول", "unit.weight": "الوزن", "unit.temperature": "الحرارة",
+      "unit.from": "من", "unit.to": "إلى",
+      "tool.qr.title": "مولّد رموز QR", "qr.label": "الرابط أو النص", "qr.generate": "توليد رمز QR", "qr.download": "تحميل الرمز PNG",
+      "articles.eyebrow": "GUIDES & ARTICLES / دليل استخدام الأدوات", "articles.title": "مقالات تفصيلية وشروحات لكل أداة",
+      "articles.date": "يوليو 2026", "articles.open": "افتح الأداة ←",
+      "article.compressor.tag": "أداة ضغط الصور", "article.compressor.title": "دليلك لتقليل حجم صور الويب دون التأثير على جودتها المرئية", "article.compressor.desc": "تؤثر أحجام الصور الضخمة سلباً على سرعة تصفح المواقع. تعرف على طريقة ضغط صورك محلياً.",
+      "article.resizer.tag": "تغيير الأبعاد", "article.resizer.title": "كيفية ضبط أبعاد الصور ومقاساتها بدقة عالية", "article.resizer.desc": "تحكم في عرض وارتفاع الصور مع الحفاظ على النسبة الأصلية لتناسب جميع منصات الويب.",
+      "article.json.tag": "منسق JSON", "article.json.title": "أهمية تنسيق وتدقيق ملفات JSON للمبرمجين", "article.json.desc": "اكتشف الأخطاء البرمجية في ملفات البيانات الخاصة بك وقم بتنسيقها أو تصغيرها فوراً.",
+      "article.password.tag": "كلمات المرور", "article.password.title": "كيف تولد كلمات مرور آمنة ومقاومة للاختراق", "article.password.desc": "حماية حساباتك الشخصية تبدأ باستخدام كلمات مرور عشوائية معقدة وطويلة.",
+      "article.base64.tag": "ترميز Base64", "article.base64.title": "دليلك الشامل لترميز وفك شيفرة Base64", "article.base64.desc": "تعرف على كيفية تحويل النصوص والبيانات العربية والإنجليزية إلى ترميز آمن ومستقر.",
+      "article.percent.tag": "النسب المئوية", "article.percent.title": "حساب النسب المئوية والتغيرات المالية والرياضية", "article.percent.desc": "كيف تحسب الخصومات، نسب الزيادة والنقصان، وقيم الأرقام بكل سهولة ودقة.",
+      "article.unit.tag": "محول الوحدات", "article.unit.title": "التحويل الفوري بين وحدات الطول، الوزن، والحرارة", "article.unit.desc": "أداة مرنة وسريعة للتحويل بين المقاييس العالمية المختلفة بدقة متناهية.",
+      "article.words.tag": "عداد الكلمات", "article.words.title": "تتبع عدد الكلمات والحروف والفقرات أثناء الكتابة", "article.words.desc": "أداة مثالية للمدونين والكتّاب لمراقبة حجم المقالات والنصوص مباشرة.",
+      "article.case.tag": "حالة الأحرف", "article.case.title": "تحويل النصوص الإنجليزية إلى أحرف كبيرة أو صغيرة", "article.case.desc": "تنسيق النصوص وإدارتها وتغيير حالات الحروف الإنجليزية بنقرة زر واحدة.",
+      "article.qr.tag": "مولد QR", "article.qr.title": "إنشاء وتوليد رموز الاستجابة السريعة QR Code", "article.qr.desc": "حول أي رابط إلكتروني أو نص إلى رمز QR احترافي وقابل للتحميل كصورة PNG.",
+      "about.eyebrow": "ABOUT US", "about.title": "من نحن",
+      "about.p1": "مرحباً بك في WebBox، منصتك التقنية الرائدة المخصصة لتوفير أدوات ويب مجانية وسريعة تعمل بالكامل داخل المتصفح الخاص بك.",
+      "about.h2": "رؤيتنا وفلسفتنا",
+      "about.p2": "نحن نؤمن بأن الأدوات الرقمية اليومية يجب أن تكون متاحة للجميع بسهولة ودون تعقيد. الأهم من ذلك، نحن نضع خصوصية مستخدمينا في المقام الأول؛ لذا صُممت جميع أدواتنا لمعالجة البيانات محلياً (Client-side)، مما يعني أن ملفاتك الشخصية وصورك لا تغادر جهازك أبداً ولا تُرفع إلى أي خادم خارجي.",
+      "about.h3": "لماذا تختبر WebBox؟",
+      "about.p3": "سواء كنت مبرمجاً يحتاج لتنسيق كود JSON، أو مصمماً يبحث عن ضغط صور سريع، أو كاتباً يتابع عدد الكلمات، فإن WebBox يوفر لك بيئة نظيفة، خالية من الإعلانات المزعجة، وفائقة السرعة.",
+      "contact.eyebrow": "CONTACT US", "contact.title": "اتصل بنا",
+      "contact.desc": "يسعدنا دائماً سماع آرائكم، استفساراتكم، أو استقبال مقترحاتكم لتطوير المنصة وإضافة أدوات جديدة.",
+      "contact.name": "الاسم الكريم", "contact.namePh": "أدخل اسمك هنا...",
+      "contact.email": "البريد الإلكتروني", "contact.message": "نص الرسالة أو الاقتراح", "contact.messagePh": "اكتب رسالتك بالتفصيل...",
+      "contact.send": "إرسال الرسالة",
+      "back.home": "← العودة للرئيسية",
+      "privacy.eyebrow": "PRIVACY POLICY", "privacy.title": "سياسة الخصوصية",
+      "privacy.p1": "في موقع WebBox، تُعتبر خصوصية زوارنا أمراً بالغ الأهمية. توضح وثيقة سياسة الخصوصية هذه أنواع المعلومات الشخصية التي يتم جمعها وكيفية استخدامها.",
+      "privacy.h1": "1. المعالجة المحلية للبيانات (لا توجد خوادم تخزين)",
+      "privacy.p2": "نلتزم التزاماً تاماً بأن جميع الملفات التي تقوم برفعها أو معالجتها على موقعنا (مثل الصور، النصوص، أو رموز QR) تتم معالجتها بالكامل داخل ذاكرة متصفحك المحلي. نحن لا نقوم بحفظ أو تخزين أي ملفات خاصة بك على خوادم أو سيرفرات خارجية.",
+      "privacy.h2": "2. ملفات تعريف الارتباط (Cookies) والإعلانات",
+      "privacy.p3": "نستخدم شبكة Google AdSense لعرض الإعلانات، والتي قد تستخدم ملفات تعريف الارتباط لعرض إعلانات بناءً على زياراتك السابقة لموقعنا أو مواقع أخرى على الإنترنت. يمكنك إلغاء استخدام ملفات تعريف الارتباط عبر إعدادات متصفحك.",
+      "terms.eyebrow": "TERMS OF SERVICE", "terms.title": "شروط الاستخدام",
+      "terms.intro": "باستخدامك لموقع WebBox، فإنك توافق على الالتزام بالشروط والأحكام التالية:",
+      "terms.h1": "1. الاستخدام المقبول",
+      "terms.p1": "يجب استخدام الأدوات المتاحة في الموقع بأغراض مشروعة ومهنية فقط. يُمنع استغلال الأدوات في أي أنشطة غير قانونية أو ضارة.",
+      "terms.h2": "2. إخلاء المسؤولية",
+      "terms.p2": "يتم تقديم الخدمات والأدوات على الموقع «كما هي» دون أي ضمانات صريحة أو ضمنية. نحن لا نتحمل أي مسؤولية عن أي فقدان للبيانات قد يحدث نتيجة خطأ في استخدام المتصفح أو الجهاز.",
+      "terms.h3": "3. حقوق الملكية الفكرية",
+      "terms.p3": "جميع حقوق التصميم، الأكواد البرمجية، والمحتوى النصي لمنصة WebBox محمية، ولا يُسمح بنسخها أو إعادة توزيعها دون إذن مسبق.",
+      "footer.copyright": "© 2026 WebBox. جميع الحقوق محفوظة.", "footer.privacy": "سياسة الخصوصية", "footer.terms": "شروط الاستخدام",
+      "pageTitle": "WebBox — أدواتك التقنية في متصفحك مباشرة",
+      "pageDescription": "WebBox: أدوات مجانية وسريعة تعمل بالكامل داخل متصفحك، دون رفع أي ملف لأي خادم. ضغط صور، تنسيق JSON، مولّد كلمات مرور، والمزيد.",
+      "meta.charCountSuffix": "حرف"
+    },
+    en: {
+      "nav.home": "Home", "nav.tools": "Tools", "nav.articles": "Guides & Articles",
+      "nav.about": "About", "nav.contact": "Contact", "nav.cta": "Try Image Compressor",
+      "hero.badge": "Everything runs locally — no uploads, no servers",
+      "hero.title1": "Your everyday tech tools,", "hero.title2": "ready right inside your browser.",
+      "hero.desc": "WebBox is a set of free, fast tools — from image compression to data conversion and calculations — that get the job done instantly, with no installs and no waiting for uploads.",
+      "hero.cta1": "Start compressing an image", "hero.cta2": "Browse all tools",
+      "hero.stat1": "Runs in the browser", "hero.stat2": "Files uploaded to a server", "hero.stat3": "Active tools",
+      "grid.eyebrow": "TOOLKIT / INDEX", "grid.title": "Pick your tool",
+      "grid.desc": "Every tool is free to use instantly, with no limits.",
+      "grid.badge": "Available now", "grid.open": "Open tool",
+      "card.compressor.title": "🖼️ Image Compressor", "card.compressor.desc": "Shrink PNG, JPEG, and WebP images with an instant preview before downloading, with barely any visible quality loss.",
+      "card.resizer.title": "📐 Image Resizer", "card.resizer.desc": "Precisely control an image's width and height, with the option to keep the original aspect ratio automatically.",
+      "card.json.title": "🧩 JSON Formatter & Validator", "card.json.desc": "Format, minify, and validate JSON data instantly with clear error messages.",
+      "card.password.title": "🔐 Password Generator", "card.password.desc": "Generate strong, random passwords with the length and character types you choose, in one click.",
+      "card.base64.title": "🔤 Base64 Encode/Decode", "card.base64.desc": "Convert text to and from Base64 instantly, with full support for non-English text.",
+      "card.percent.title": "📊 Percentage Calculator", "card.percent.desc": "Calculate percentages, increases, and decreases in seconds with three advanced calculators.",
+      "card.unit.title": "📏 Unit Converter", "card.unit.desc": "Instant conversion between length, weight, and temperature units with high precision.",
+      "card.words.title": "📝 Word & Character Counter", "card.words.desc": "Track the number of words, characters, and paragraphs in your text as you type.",
+      "card.case.title": "🔠 Case Converter", "card.case.desc": "Convert English text to uppercase, lowercase, or title case in one click.",
+      "card.qr.title": "🔳 QR Code Generator", "card.qr.desc": "Turn any link or text into a QR code and download it as a PNG image, fully offline.",
+      "tool.eyebrow": "ACTIVE TOOL",
+      "tool.compressor.title": "Image Compressor", "tool.compressor.desc": "Upload a PNG or JPEG image, choose an output format, adjust the quality level, and download the compressed version instantly, right in your browser.",
+      "drop.title": "Drag & drop your image here", "drop.or": "or", "drop.choose": "choose a file", "drop.fromDevice": "from your device",
+      "compressor.outputFormat": "Output format", "compressor.webpUnsupported": "Your browser doesn't support exporting WebP.",
+      "compressor.quality": "Quality level", "action.clear": "Clear content", "action.newImage": "New image",
+      "compressor.before": "Before compression", "compressor.after": "After compression", "compressor.savings": "Savings:",
+      "compressor.download": "Download compressed image",
+      "tool.resizer.title": "Image Resizer", "tool.resizer.desc": "Control the image's width and height and download it with the new dimensions.",
+      "resizer.dropTitle": "Drag & drop your image here to resize it", "resizer.dropHint": "PNG or JPEG",
+      "resizer.width": "Width (px)", "resizer.height": "Height (px)", "resizer.lockAspect": "Keep aspect ratio",
+      "resizer.apply": "Apply change", "action.clearShort": "Clear",
+      "resizer.originalDims": "Original dimensions", "resizer.newDims": "New dimensions", "resizer.download": "Download new image",
+      "tool.json.title": "JSON Formatter & Validator", "tool.json.desc": "Format, minify, and check JSON code for errors instantly.",
+      "json.beautify": "Beautify", "json.minify": "Minify", "action.copyResult": "Copy result",
+      "toast.copied": "Result copied",
+      "tool.words.title": "Word, Character & Paragraph Counter",
+      "words.text": "Text", "words.placeholder": "Start typing or paste your text here...",
+      "words.words": "words", "words.charsWithSpace": "chars (with spaces)", "words.charsNoSpace": "chars (no spaces)", "words.paragraphs": "paragraphs",
+      "tool.case.title": "Case Converter",
+      "tool.password.title": "Secure Password Generator",
+      "toast.copiedOnly": "Copied", "password.length": "Password length",
+      "password.generate": "Generate password", "password.reset": "Reset",
+      "tool.base64.title": "Base64 Encode/Decode", "base64.encode": "Encode", "base64.decode": "Decode",
+      "tool.percent.title": "Percentage Calculator",
+      "percent.card1.title": "What is X% of a number?", "percent.card1.label1": "Percentage X (%)", "percent.card1.label2": "Number Y",
+      "percent.card2.title": "What % is X of Y?", "percent.card2.label1": "Number X", "percent.card2.label2": "Of number Y",
+      "percent.card3.title": "% change between two numbers", "percent.card3.label1": "Old value", "percent.card3.label2": "New value",
+      "percent.result": "Result",
+      "tool.unit.title": "Unit Converter",
+      "unit.length": "Length", "unit.weight": "Weight", "unit.temperature": "Temperature",
+      "unit.from": "From", "unit.to": "To",
+      "tool.qr.title": "QR Code Generator", "qr.label": "Link or text", "qr.generate": "Generate QR code", "qr.download": "Download PNG",
+      "articles.eyebrow": "GUIDES & ARTICLES", "articles.title": "In-depth guides for every tool",
+      "articles.date": "July 2026", "articles.open": "Open tool →",
+      "article.compressor.tag": "Image Compressor", "article.compressor.title": "Your guide to shrinking web images without hurting their look", "article.compressor.desc": "Oversized images slow websites down. Learn how to compress your images locally.",
+      "article.resizer.tag": "Resizing", "article.resizer.title": "How to precisely set image dimensions", "article.resizer.desc": "Control image width and height while keeping the original ratio, for any web platform.",
+      "article.json.tag": "JSON Formatter", "article.json.title": "Why formatting and validating JSON matters for developers", "article.json.desc": "Catch syntax errors in your data files and format or minify them instantly.",
+      "article.password.tag": "Passwords", "article.password.title": "How to generate secure, hard-to-crack passwords", "article.password.desc": "Protecting your accounts starts with long, complex, random passwords.",
+      "article.base64.tag": "Base64 Encoding", "article.base64.title": "Your complete guide to encoding and decoding Base64", "article.base64.desc": "Learn how to convert text and data into a safe, stable encoding.",
+      "article.percent.tag": "Percentages", "article.percent.title": "Calculating percentages and financial or mathematical changes", "article.percent.desc": "How to calculate discounts, increase and decrease rates, and number values easily and accurately.",
+      "article.unit.tag": "Unit Converter", "article.unit.title": "Instant conversion between length, weight, and temperature units", "article.unit.desc": "A flexible, fast tool for converting between global measurement systems with high precision.",
+      "article.words.tag": "Word Counter", "article.words.title": "Track word, character, and paragraph counts while you write", "article.words.desc": "An ideal tool for bloggers and writers to monitor the size of their articles and text live.",
+      "article.case.tag": "Case Converter", "article.case.title": "Convert English text to uppercase or lowercase", "article.case.desc": "Format and manage text, changing English letter case in a single click.",
+      "article.qr.tag": "QR Generator", "article.qr.title": "Create and generate QR codes", "article.qr.desc": "Turn any link or text into a professional QR code you can download as a PNG image.",
+      "about.eyebrow": "ABOUT US", "about.title": "About us",
+      "about.p1": "Welcome to WebBox, your go-to tech platform for free, fast web tools that run entirely inside your browser.",
+      "about.h2": "Our vision and philosophy",
+      "about.p2": "We believe everyday digital tools should be easy for everyone to use, without complication. More importantly, we put our users' privacy first — that's why every tool is designed to process data client-side, meaning your personal files and images never leave your device or get uploaded to any external server.",
+      "about.h3": "Why try WebBox?",
+      "about.p3": "Whether you're a developer who needs to format JSON code, a designer looking for quick image compression, or a writer tracking word counts, WebBox gives you a clean environment, free of annoying ads, and lightning fast.",
+      "contact.eyebrow": "CONTACT US", "contact.title": "Contact us",
+      "contact.desc": "We'd love to hear your feedback, questions, or suggestions for new tools and improvements.",
+      "contact.name": "Your name", "contact.namePh": "Enter your name...",
+      "contact.email": "Email address", "contact.message": "Your message or suggestion", "contact.messagePh": "Write your message in detail...",
+      "contact.send": "Send message",
+      "back.home": "← Back to home",
+      "privacy.eyebrow": "PRIVACY POLICY", "privacy.title": "Privacy Policy",
+      "privacy.p1": "At WebBox, our visitors' privacy matters a great deal. This privacy policy explains the kinds of personal information we collect and how it's used.",
+      "privacy.h1": "1. Local data processing (no storage servers)",
+      "privacy.p2": "We are fully committed to the fact that any files you upload or process on our site (such as images, text, or QR codes) are handled entirely within your browser's local memory. We do not save or store any of your files on external servers.",
+      "privacy.h2": "2. Cookies and advertising",
+      "privacy.p3": "We use the Google AdSense network to show ads, which may use cookies to display ads based on your previous visits to our site or other sites. You can disable cookies through your browser settings.",
+      "terms.eyebrow": "TERMS OF SERVICE", "terms.title": "Terms of Service",
+      "terms.intro": "By using WebBox, you agree to be bound by the following terms and conditions:",
+      "terms.h1": "1. Acceptable use",
+      "terms.p1": "The tools on this site must be used for lawful, professional purposes only. Using the tools for any illegal or harmful activity is prohibited.",
+      "terms.h2": "2. Disclaimer",
+      "terms.p2": "The site's services and tools are provided \"as is\" without any express or implied warranties. We are not liable for any data loss resulting from misuse of the browser or device.",
+      "terms.h3": "3. Intellectual property",
+      "terms.p3": "All design rights, code, and text content of the WebBox platform are protected, and may not be copied or redistributed without prior permission.",
+      "footer.copyright": "© 2026 WebBox. All rights reserved.", "footer.privacy": "Privacy Policy", "footer.terms": "Terms of Service",
+      "pageTitle": "WebBox — Your tech tools, right in your browser",
+      "pageDescription": "WebBox: free, fast tools that run entirely in your browser, with no file ever uploaded to a server. Image compression, JSON formatting, password generation, and more.",
+      "meta.charCountSuffix": "chars"
+    }
+  };
+
+  function applyLanguage(lang) {
+    const dict = I18N[lang] || I18N.ar;
+    document.documentElement.setAttribute('lang', lang);
+    document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (dict[key] !== undefined) el.textContent = dict[key];
+    });
+    document.querySelectorAll('[data-ph-key]').forEach(el => {
+      const key = el.getAttribute('data-ph-key');
+      if (dict[key] !== undefined) el.setAttribute('placeholder', dict[key]);
+    });
+
+    document.querySelectorAll('.rtl-flip').forEach(svg => {
+      svg.style.transform = lang === 'ar' ? 'rotate(180deg)' : 'rotate(0deg)';
+    });
+
+    const titleEl = document.getElementById('pageTitle');
+    if (titleEl) titleEl.textContent = dict['pageTitle'];
+    const descEl = document.getElementById('pageDescription');
+    if (descEl) descEl.setAttribute('content', dict['pageDescription']);
+
+    window.__webboxSendMsg = lang === 'ar'
+      ? 'تم إرسال رسالتك بنجاح! شكراً لتواصلك معنا.'
+      : 'Your message has been sent! Thanks for reaching out.';
+
+    const labelEl = document.getElementById('langToggleLabel');
+    const labelElMobile = document.getElementById('langToggleLabelMobile');
+    const nextLabel = lang === 'ar' ? 'EN' : 'ع';
+    if (labelEl) labelEl.textContent = nextLabel;
+    if (labelElMobile) labelElMobile.textContent = nextLabel;
+
+    document.querySelectorAll('[data-count-suffix]').forEach(el => {
+      const n = (el.textContent.match(/\d+/) || ['0'])[0];
+      el.textContent = n + ' ' + dict['meta.charCountSuffix'];
+    });
+
+    localStorage.setItem('webbox-lang', lang);
+  }
+
+  function toggleLanguage() {
+    const current = document.documentElement.getAttribute('lang') === 'en' ? 'en' : 'ar';
+    applyLanguage(current === 'ar' ? 'en' : 'ar');
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
+
+    /* ============ اللغة ============ */
+    const savedLang = localStorage.getItem('webbox-lang') || 'ar';
+    applyLanguage(savedLang);
+    const langToggle = document.getElementById('langToggle');
+    const langToggleMobile = document.getElementById('langToggleMobile');
+    if (langToggle) langToggle.addEventListener('click', toggleLanguage);
+    if (langToggleMobile) langToggleMobile.addEventListener('click', toggleLanguage);
 
     /* ============ زر القائمة في الجوال ============ */
     const menuBtn = document.getElementById('menuBtn');
@@ -1590,6 +1853,11 @@
 
       if (!input) return;
 
+      function suffix() {
+        const lang = document.documentElement.getAttribute('lang') === 'en' ? 'en' : 'ar';
+        return I18N[lang]['meta.charCountSuffix'];
+      }
+
       function setStatus(msg, ok) {
         if (!msg) { statusEl.classList.add('hidden'); return; }
         statusEl.classList.remove('hidden');
@@ -1599,14 +1867,14 @@
       }
 
       input.addEventListener('input', () => {
-        inputCount.textContent = input.value.length + ' حرف';
+        inputCount.textContent = input.value.length + ' ' + suffix();
       });
 
       beautifyBtn.addEventListener('click', () => {
         try {
           const parsed = JSON.parse(input.value);
           output.value = JSON.stringify(parsed, null, 2);
-          outputCount.textContent = output.value.length + ' حرف';
+          outputCount.textContent = output.value.length + ' ' + suffix();
           setStatus('صيغة JSON صحيحة وتم تنسيقها بنجاح.', true);
         } catch (err) {
           output.value = '';
@@ -1618,7 +1886,7 @@
         try {
           const parsed = JSON.parse(input.value);
           output.value = JSON.stringify(parsed);
-          outputCount.textContent = output.value.length + ' حرف';
+          outputCount.textContent = output.value.length + ' ' + suffix();
           setStatus('تم تصغير JSON بنجاح.', true);
         } catch (err) {
           output.value = '';
@@ -1634,8 +1902,8 @@
       clearBtn.addEventListener('click', () => {
         input.value = '';
         output.value = '';
-        inputCount.textContent = '0 حرف';
-        outputCount.textContent = '0 حرف';
+        inputCount.textContent = '0 ' + suffix();
+        outputCount.textContent = '0 ' + suffix();
         setStatus('', false);
       });
     })();
@@ -1731,7 +1999,8 @@
       };
 
       lengthRange.addEventListener('input', () => {
-        lengthValue.textContent = lengthRange.value + ' حرفًا';
+        const lang = document.documentElement.getAttribute('lang') === 'en' ? 'en' : 'ar';
+        lengthValue.textContent = lang === 'en' ? (lengthRange.value + ' chars') : (lengthRange.value + ' حرفًا');
       });
 
       function generatePassword() {
@@ -1758,7 +2027,8 @@
 
       generateBtn.addEventListener('click', generatePassword);
       clearBtn.addEventListener('click', () => {
-        output.value = 'اضغط «توليد كلمة مرور» للبدء';
+        const lang = document.documentElement.getAttribute('lang') === 'en' ? 'en' : 'ar';
+        output.value = lang === 'en' ? 'Click "Generate password" to start' : 'اضغط «توليد كلمة مرور» للبدء';
         statusEl.textContent = '';
       });
       copyBtn.addEventListener('click', () => {
@@ -1869,14 +2139,15 @@
         const pct = oldVal !== 0 ? (diff / Math.abs(oldVal)) * 100 : 0;
         const sign = pct > 0 ? '+' : '';
         pc3_result.textContent = sign + pct.toLocaleString('en-US', { maximumFractionDigits: 2 }) + '%';
+        const lang = document.documentElement.getAttribute('lang') === 'en' ? 'en' : 'ar';
         if (pct > 0) {
-          pc3_label.textContent = 'زيادة';
+          pc3_label.textContent = lang === 'en' ? 'Increase' : 'زيادة';
           pc3_label.className = 'font-mono text-[11px] font-bold px-2 py-1 rounded-full bg-teal-400/10 text-teal-300 border border-teal-400/25';
         } else if (pct < 0) {
-          pc3_label.textContent = 'نقصان';
+          pc3_label.textContent = lang === 'en' ? 'Decrease' : 'نقصان';
           pc3_label.className = 'font-mono text-[11px] font-bold px-2 py-1 rounded-full bg-red-400/10 text-red-300 border border-red-400/25';
         } else {
-          pc3_label.textContent = 'بدون تغيير';
+          pc3_label.textContent = lang === 'en' ? 'No change' : 'بدون تغيير';
           pc3_label.className = 'font-mono text-[11px] font-bold px-2 py-1 rounded-full bg-white/10 text-ink-300 border border-white/15';
         }
       }
@@ -1909,55 +2180,54 @@
 
       if (!tabsWrap) return;
 
+      const UNITS_BY_LANG = {
+        ar: {
+          length: { label: 'الطول', units: { mm: 'ملم', cm: 'سم', m: 'متر', km: 'كم', in: 'بوصة', ft: 'قدم', mi: 'ميل' } },
+          weight: { label: 'الوزن', units: { mg: 'ملغم', g: 'غرام', kg: 'كغم', ton: 'طن', lb: 'رطل', oz: 'أونصة' } },
+          temperature: { label: 'الحرارة', units: { c: 'مئوية °C', f: 'فهرنهايت °F', k: 'كلفن K' } }
+        },
+        en: {
+          length: { label: 'Length', units: { mm: 'mm', cm: 'cm', m: 'm', km: 'km', in: 'in', ft: 'ft', mi: 'mi' } },
+          weight: { label: 'Weight', units: { mg: 'mg', g: 'g', kg: 'kg', ton: 'ton', lb: 'lb', oz: 'oz' } },
+          temperature: { label: 'Temperature', units: { c: '°C', f: '°F', k: 'K' } }
+        }
+      };
+
       const UNITS = {
         length: {
-          label: 'الطول',
           units: {
-            mm: { name: 'ملم', toBase: 0.001 },
-            cm: { name: 'سم', toBase: 0.01 },
-            m: { name: 'متر', toBase: 1 },
-            km: { name: 'كم', toBase: 1000 },
-            in: { name: 'بوصة', toBase: 0.0254 },
-            ft: { name: 'قدم', toBase: 0.3048 },
-            mi: { name: 'ميل', toBase: 1609.344 }
+            mm: { toBase: 0.001 }, cm: { toBase: 0.01 }, m: { toBase: 1 }, km: { toBase: 1000 },
+            in: { toBase: 0.0254 }, ft: { toBase: 0.3048 }, mi: { toBase: 1609.344 }
           },
           defaultFrom: 'm', defaultTo: 'ft'
         },
         weight: {
-          label: 'الوزن',
           units: {
-            mg: { name: 'ملغم', toBase: 0.001 },
-            g: { name: 'غرام', toBase: 1 },
-            kg: { name: 'كغم', toBase: 1000 },
-            ton: { name: 'طن', toBase: 1000000 },
-            lb: { name: 'رطل', toBase: 453.592 },
-            oz: { name: 'أونصة', toBase: 28.3495 }
+            mg: { toBase: 0.001 }, g: { toBase: 1 }, kg: { toBase: 1000 }, ton: { toBase: 1000000 },
+            lb: { toBase: 453.592 }, oz: { toBase: 28.3495 }
           },
           defaultFrom: 'kg', defaultTo: 'lb'
         },
-        temperature: {
-          label: 'الحرارة',
-          units: {
-            c: { name: 'مئوية °C' },
-            f: { name: 'فهرنهايت °F' },
-            k: { name: 'كلفن K' }
-          },
-          defaultFrom: 'c', defaultTo: 'f'
-        }
+        temperature: { units: { c: {}, f: {}, k: {} }, defaultFrom: 'c', defaultTo: 'f' }
       };
 
       let currentCategory = 'length';
 
+      function currentLang() {
+        return document.documentElement.getAttribute('lang') === 'en' ? 'en' : 'ar';
+      }
+
       function populateSelects() {
         const cat = UNITS[currentCategory];
+        const names = UNITS_BY_LANG[currentLang()][currentCategory].units;
         fromSelect.innerHTML = '';
         toSelect.innerHTML = '';
         Object.keys(cat.units).forEach((key) => {
           const opt1 = document.createElement('option');
-          opt1.value = key; opt1.textContent = cat.units[key].name;
+          opt1.value = key; opt1.textContent = names[key];
           fromSelect.appendChild(opt1);
           const opt2 = document.createElement('option');
-          opt2.value = key; opt2.textContent = cat.units[key].name;
+          opt2.value = key; opt2.textContent = names[key];
           toSelect.appendChild(opt2);
         });
         fromSelect.value = cat.defaultFrom;
@@ -2021,8 +2291,19 @@
         convert();
       });
 
+      // إعادة تعبئة القوائم عند تبديل اللغة
+      document.addEventListener('webbox-lang-changed', () => { populateSelects(); convert(); });
+
       populateSelects();
       convert();
+
+      // hook into language toggle to refresh unit names
+      const _origApply = applyLanguage;
+      window.applyLanguage = function (lang) {
+        _origApply(lang);
+        populateSelects();
+        convert();
+      };
     })();
 
     /* =====================================================
